@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Inicio de Sesión</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+   
+
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/styleAuth.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  
+    <form class="formIS">
+        <p class="titleIS">Inicio de Sesión </p>
+        @*<div class="flexIS">*@
+
+            <label>
+                <input required="" placeholder="" type="email" class="input">
+                <span>Correo</span>
+            </label>
+
+            <label>
+                <input required="" placeholder="" type="password" class="input">
+                <span>Clave</span>
+            </label>
+            <button class="submitIS">Iniciar sesión</button>
+            <p class="signinIS">¿No tiene una cuenta? <a href="@Url.Action("Registro", "Acceso")">Registrarme</a> </p>
+    </form>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+

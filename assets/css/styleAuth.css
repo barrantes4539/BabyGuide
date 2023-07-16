@@ -1,0 +1,314 @@
+.form {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid rgb(139, 192, 206);
+}
+  
+  
+  .title {
+    font-size: 28px;
+    color: rgb(50, 223, 189);
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .title::before,.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: rgb(50, 223, 189);
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background-color: rgb(50, 223, 189);
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .message, .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a {
+    color: royalblue;
+  }
+  
+  .signin a:hover {
+    text-decoration: underline royalblue;
+  }
+  
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .form label {
+    position: relative;
+  }
+  
+  .form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  .form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,.form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .form label .input:valid + span {
+    color: green;
+  }
+
+.submit {
+    background-color: rgb(50, 223, 189);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .submit:hover {
+        background-color: rgb(40, 183, 155);
+    }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+/* Estilos para el inicio de sesion */
+.formIS {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid rgb(139, 192, 206);
+}
+
+.titleIS {
+  font-size: 28px;
+  color: rgb(50, 223, 189);
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.titleIS::before,
+.titleIS::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: rgb(50, 223, 189);
+}
+
+.titleIS::before {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(50, 223, 189);
+}
+
+.titleIS::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.messageIS,
+.signinIS {
+  color: rgba(88, 88, 88, 0.7);
+  font-size: 14px;
+  text-align: center;
+}
+
+.flexIS {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.labelIS {
+  position: relative;
+}
+
+.labelIS input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.labelIS input:focus {
+  outline: none;
+  border-bottom: 1px solid rgb(50, 223, 189);
+}
+
+.labelIS span {
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  color: rgba(88, 88, 88, 0.7);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.labelIS input:focus ~ span,
+.labelIS input:valid ~ span {
+  transform: translateY(-20px);
+  font-size: 12px;
+  color: rgb(50, 223, 189);
+}
+
+.submitIS {
+  background-color: rgb(50, 223, 189);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitIS:hover {
+  background-color: rgb(40, 183, 155);
+}
+
+.signinIS a {
+  color: rgb(50, 223, 189);
+  text-decoration: none;
+}
+
+.signinIS a:hover {
+  text-decoration: underline;
+}
+
+.loginIS a {
+    color: rgb(50, 223, 189);
+    text-decoration: none;
+}
+
+    .loginIS a:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos adicionales para los campos de inicio de sesión */
+
+.labelIS input[type="text"],
+.labelIS input[type="email"],
+.labelIS input[type="password"] {
+  border-radius: 5px;
+}
+
+.formIS label {
+  position: relative;
+}
+
+.formIS label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.formIS label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.formIS label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.formIS label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.formIS label .input:valid + span {
+  color: green;
+}
+

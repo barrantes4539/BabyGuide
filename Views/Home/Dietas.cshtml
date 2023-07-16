@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Dietas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="../assets/css/styleDietas.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+        <div class="row gy-4 d-flex justify-content-between">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                <h2 data-aos="fade-up" class="titleDietas" ><strong>Encuentra las mejores dietas para tu bebé</strong></h2>
+
+                <form action="#" class="form-search d-flex align-items-stretch mb-3 mt-4" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" class="form-control" placeholder="Ingrese la comida deseada para su bebé">
+                    <button type="submit" class="btnBuscarDieta">Buscar</button>
+                </form>
+                <ul>
+                    <li><i class="ri-check-line"></i>Primera etapa: 1 mes a 6 meses</li>
+                    <li><i class="ri-check-line"></i>Segunda etapa: 6 meses a año y medio</li>
+                    <li><i class="ri-check-line"></i>Tercera etapa: Año y medio a 3 años</li>
+                </ul>
+
+            </div>
+
+            <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                <img src="../assets/img/DietasPage/vista-superior-tazon-comida-bebes.jpg" class="img-fluid mb-3 mb-lg-0" alt="">
+            </div>
+
+        </div>
+    </div>
+</section><!-- End Hero Section -->
+<!-- ======= About Us Section ======= -->
+<section id="about" class="about pt-0 mt-5">
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'PrimeraEtapa')">Primera etapa</button>
+        <button class="tablinks" onclick="openCity(event, 'SegundaEtapa')">Segunda etapa</button>
+        <button class="tablinks" onclick="openCity(event, 'TerceraEtapa')">Tercera etapa</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="PrimeraEtapa" class="tabcontent">
+        <h3>Picadillo de papa con vegetales</h3>
+        <p>Pasos para realizar la dieta tomando en consideración la primera etapa del bebé</p>
+    </div>
+
+    <div id="SegundaEtapa" class="tabcontent">
+        <h3>Picadillo de papa con vegetales</h3>
+        <p>Pasos para realizar la dieta tomando en consideración la segunda etapa del bebé</p>
+    </div>
+
+    <div id="TerceraEtapa" class="tabcontent">
+        <h3>Picadillo de papa con vegetales</h3>
+        <p>Pasos para realizar la dieta tomando en consideración la tercera etapa del bebé</p>
+    </div>
+</section><!-- End About Us Section -->
+
+
+<script src="../assets/js/openCity.js"></script>
+
+<script src="../assets/js/main.js"></script>
+
+
