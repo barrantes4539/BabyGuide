@@ -13,7 +13,10 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-
+        public ActionResult BabyGaleria()
+        {
+            return View();
+        }
         public ActionResult Preguntas()
         {
             return View();

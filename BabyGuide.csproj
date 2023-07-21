@@ -128,10 +128,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\BabyGaleria.css" />
     <Content Include="assets\css\preguntas.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\styleAuth.css" />
     <Content Include="assets\css\styleDietas.css" />
+    <Content Include="assets\img\BabyGaleria\album-bebe.png" />
+    <Content Include="assets\img\BabyGaleria\AlbumFamiliar.jpg" />
+    <Content Include="assets\img\BabyGaleria\marioneta.png" />
+    <Content Include="assets\img\BabyGaleria\matriz.png" />
+    <Content Include="assets\img\BabyGaleria\nubes.png" />
+    <Content Include="assets\img\BabyGaleria\oso-de-peluche.png" />
     <Content Include="assets\img\DietasPage\Dietas.jpg" />
     <Content Include="assets\img\DietasPage\vista-superior-tazon-comida-bebes.jpg" />
     <Content Include="assets\img\HomePage\Imagen lego amarillo.jpg" />
@@ -279,6 +286,7 @@
     <Content Include="Views\Acceso\Login.cshtml" />
     <Content Include="Views\Acceso\Registro.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\BabyGaleria.cshtml" />
     <Content Include="Views\Home\Preguntas.cshtml" />
   </ItemGroup>
   <ItemGroup>
