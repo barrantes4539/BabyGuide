@@ -25,6 +25,7 @@
 
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
+  
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -58,7 +59,7 @@
                             <li><a href="#">Cerrar Sesión</a></li>
                         </ul>
                     </li>
-                    
+
                     <li><a class="getstarted scrollto" href="@Url.Action("Registro", "Acceso")">Registrarme</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -76,5 +77,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
