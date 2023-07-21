@@ -1,7 +1,4 @@
-﻿nav {
-    background-color: #678D97;
-    height: 100px;
-}
+﻿
 
 .contenedor-agregar-archivo {
     display: flex;
@@ -13,6 +10,9 @@
     margin: 2%;
     width: 40%;
     height: 75%;
+    margin-top: 150px;
+    margin-left: 20px;
+   
 }
 
 h2 {
@@ -28,10 +28,12 @@ h2 {
 
 label {
     display: flex;
-    position: re;
     background-color: white;
-    margin-top: -50%;
+    margin-top: -250px;
     color: #00DDBD;
+    margin-bottom: 40px;
+    margin-right: 250px;
+    padding: 25px;
 }
 
 input {
