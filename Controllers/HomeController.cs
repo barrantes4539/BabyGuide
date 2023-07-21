@@ -21,6 +21,18 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
+        public ActionResult Expediente()
+        {
+            return View();
+        }
+        public ActionResult Citas()
+        {
+            return View();
+        }
+        public ActionResult Alertas()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
