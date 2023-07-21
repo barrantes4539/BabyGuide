@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccesoController.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -295,9 +296,16 @@
     <Content Include="Views\Home\Alertas.cshtml" />
     <Content Include="Views\Home\NuevaAventura.cshtml" />
     <Content Include="Views\Acceso\DobleVerificacion.cshtml" />
+    <Content Include="Views\Shared\_LayoutConfig.cshtml" />
+    <Content Include="Views\Config\ModuloConfiguracion.cshtml" />
+    <Content Include="Views\Config\Usuarios.cshtml" />
+    <Content Include="Views\Config\Historial.cshtml" />
+    <Content Include="Views\Config\Configuracion.cshtml" />
+    <Content Include="Views\Config\CrearDietas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\css\ModuloConfiguracion\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
