@@ -291,6 +291,7 @@
     <Content Include="Views\Home\Expediente.cshtml" />
     <Content Include="Views\Home\Citas.cshtml" />
     <Content Include="Views\Home\Alertas.cshtml" />
+    <Content Include="Views\Home\NuevaAventura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
