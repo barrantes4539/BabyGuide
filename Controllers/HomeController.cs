@@ -46,5 +46,10 @@ namespace BabyGuide.Controllers
 
             return View();
         }
+
+        public ActionResult NuevaAventura()
+        {
+            return View();
+        }
     }
 }
