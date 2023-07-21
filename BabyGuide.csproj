@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\BabyGaleria.css" />
+    <Content Include="assets\css\NuevaAventura.css" />
     <Content Include="assets\css\preguntas.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\styleAuth.css" />
