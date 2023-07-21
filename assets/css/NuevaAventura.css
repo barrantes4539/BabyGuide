@@ -1,0 +1,95 @@
+﻿nav {
+    background-color: #678D97;
+    height: 100px;
+}
+
+.contenedor-agregar-archivo {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    border: 3.5px dashed #00DDBD;
+    border-radius: 30px;
+    margin: 2%;
+    width: 40%;
+    height: 75%;
+}
+
+h2 {
+    position: absolute;
+    background-color: #00ddbc56;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding: 1%;
+    top: 1%;
+    width: 85%;
+    color: #426E77;
+}
+
+label {
+    display: flex;
+    position: re;
+    background-color: white;
+    margin-top: -50%;
+    color: #00DDBD;
+}
+
+input {
+    position: absolute;
+    border: 2px solid #89C0CF;
+    border-radius: 7px;
+    padding: 1.5%;
+    margin: 1%;
+    top: 20%;
+    left: 5%;
+    width: 50%;
+    font-family: Daniel, sans-serif;
+    color: #00DDBD;
+}
+
+select {
+    position: absolute;
+    border: 2px solid #89C0CF;
+    border-radius: 7px;
+    padding: 1.5%;
+    top: 21%;
+    right: 7%;
+    width: 30%;
+    font-family: Daniel, sans-serif;
+    color: #00DDBD;
+    cursor: pointer;
+}
+
+.Contenedor-drop {
+    border: 2px dashed #00DDBD;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    height: 35%;
+    font-family: Daniel, sans-serif;
+}
+
+    .Contenedor-drop span {
+        margin: 1%;
+        font-size: 150%;
+        color: #00DDBD;
+        opacity: 50%;
+    }
+
+    .Contenedor-drop button {
+        background-color: #00ddbc90;
+        border: none;
+        border-radius: 50px;
+        margin-top: 2%;
+        padding: 2%;
+        width: 30%;
+        color: #426E77;
+        cursor: pointer;
+    }
+
+    .Contenedor-drop input {
+        display: none;
+    }

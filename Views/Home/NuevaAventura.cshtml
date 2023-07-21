@@ -4,5 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>NuevaAventura</h2>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/NuevaAventura.css">
+    <title>Nueva Aventura</title>
+</head>
+
+<body>
+    <nav></nav>
+    <div class="contenedor-agregar-archivo">
+        <h2>Nueva Aventura Juntos</h2>
+        <label id="lbl-titulo">Titulo de nuestra aventura</label>
+        <input type="text" id="titulo">
+        <select id="tipo-archivo">
+            <option value="" selected disabled>Tipo de Archivo</option>
+            <option value="opcion1">Imágen</option>
+            <option value="opcion2">Video</option>
+            <option value="opcion3">Audio</option>
+        </select>
+        <div class="Contenedor-drop">
+            <span>Arrastra & suelta tu archivo aquí</span>
+            <span>o</span>
+            <button class="boton-selector-archivos"><b>Buscar Archivo</b></button>
+            <input type="file">
+        </div>
+        <!--select id="etapas-desarrollo"></select>
+        <select id="album-destino"></select-->
+    </div>
+</body>
+
+
 
