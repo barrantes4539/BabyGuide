@@ -17,5 +17,10 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
+
+        public ActionResult DobleVerificacion()
+        {
+            return View();
+        }
     }
 }

@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\BabyGaleria.css" />
+    <Content Include="assets\css\DobleVerificacion.css" />
     <Content Include="assets\css\NuevaAventura.css" />
     <Content Include="assets\css\preguntas.css" />
     <Content Include="assets\css\style.css" />
@@ -293,6 +294,7 @@
     <Content Include="Views\Home\Citas.cshtml" />
     <Content Include="Views\Home\Alertas.cshtml" />
     <Content Include="Views\Home\NuevaAventura.cshtml" />
+    <Content Include="Views\Acceso\DobleVerificacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
