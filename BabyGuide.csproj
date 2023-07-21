@@ -288,6 +288,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\BabyGaleria.cshtml" />
     <Content Include="Views\Home\Preguntas.cshtml" />
+    <Content Include="Views\Home\Expediente.cshtml" />
+    <Content Include="Views\Home\Citas.cshtml" />
+    <Content Include="Views\Home\Alertas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
