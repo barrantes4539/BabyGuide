@@ -131,6 +131,7 @@
   <ItemGroup>
     <Content Include="assets\css\BabyGaleria.css" />
     <Content Include="assets\css\DobleVerificacion.css" />
+    <Content Include="assets\css\ModuloConfiguracion\TablaUsuarios.css" />
     <Content Include="assets\css\NuevaAventura.css" />
     <Content Include="assets\css\preguntas.css" />
     <Content Include="assets\css\style.css" />
@@ -215,6 +216,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\responsive.dataTables.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -263,11 +266,30 @@
     <Content Include="assets\vendor\remixicon\remixicon.woff2" />
     <Content Include="assets\vendor\swiper\swiper-bundle.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\dataTables.bootstrap5.js" />
+    <Content Include="Scripts\dataTables.bootstrap5.min.js" />
+    <Content Include="Scripts\dataTables.bulma.js" />
+    <Content Include="Scripts\dataTables.bulma.min.js" />
+    <Content Include="Scripts\dataTables.dataTables.js" />
+    <Content Include="Scripts\dataTables.dataTables.min.js" />
+    <Content Include="Scripts\dataTables.foundation.js" />
+    <Content Include="Scripts\dataTables.foundation.min.js" />
+    <Content Include="Scripts\dataTables.jqueryui.js" />
+    <Content Include="Scripts\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\dataTables.responsive.js" />
+    <Content Include="Scripts\dataTables.semanticui.js" />
+    <Content Include="Scripts\dataTables.semanticui.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -304,7 +326,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\css\ModuloConfiguracion\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
