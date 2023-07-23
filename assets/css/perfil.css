@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #6CA5B1;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #00DDBD;
+    border-radius: 5px;
+  }
+
+  .body{
+    margin-top: 10%;
+  }
+  .botongeneral {
+    border-radius: 5px;
+    background: #00DDBD;
+    color: white;
+    font-family: Daniel Black;
+    border: none;
+    padding: 1%;
+    width: 30%;
+}
+button:hover {
+    background-color: white;
+    color: #00DDBD;
+}
+.input-item {
+    padding-left: 10px;
+    font-size: 20px;
+    width: 70%;
+    height: 43px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #6CA5B1;
+}
+
+.deco{
+    width: 100px;
+    margin: 4%;
+    margin-left: 10%;
+    height: 50%;
+}
+
+.main{
+    width: 100%;
+    padding: 3%;
+    background-color: #89C0CF;
+}
+.main h2{
+    color: white;
+    justify-content: center;
+    display: flex;
+}
+.bebe{
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    margin-top: 5%;
+}
+.bebe button{
+    border-radius: 5px;
+    background: #6CA5B1;
+    height: 40px;
+    width: 200px;
+    margin-left: 20%;
+    margin-top: 7%;
+}
+
+.bebes{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    height: 60%;
+}
+
+.infobebe{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.main2{
+    width: 100%;
+    padding: 3%;
+    background-color: rgba(0, 221, 189, 0.32);
+}
+.main2 h2{
+    color:#00DDBD;
+    justify-content: center;
+    display: flex;
+}
+
+.perfil{
+    display: flex;
+    flex-direction: row;
+}
+.infoperfil{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4%;
+}
+.botonperfil{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: 5%;
+}
+.botonperfil button{
+    width: 200px;
+    height: 30px;
+    margin: 3%;
+}
+.rol{
+    border-radius: 20px;
+    border: 3px solid #00DDBD;
+    color: #00DDBD;
+    margin-left: 6%;
+    height: 50px;
+    padding: 1%;
+}
+.deco2{
+    height: 300px;
+    position: absolute;
+    top: 220px;
+    right: 20px;
+}
+.agregar{
+    display: flex;
+    flex-direction: row;
+    margin: 5%;
+}
+.agregar button{
+    margin: 0;
+    margin-left: 2%;
+}
+.bebe2{
+    margin-right: 30%;
+}
+
+@media screen and (max-width:700px){
+    .deco2{
+        display: none;
+    }
+    .bebe{
+        flex-direction: column;
+        margin-left: 5%;
+        height: 40%;
+    }
+    .bebes{
+        width: 100%;
+    }
+    .perfil{
+        flex-direction: column;
+    }
+    .rol{
+        width: 15%;
+        padding: 3%;
+        margin-left: 40%;
+    }
+    .infoperfil{
+        margin-left: 60%;
+        margin-top: -25%;
+    }
+    .botonperfil{
+        margin-left: 20%;
+    }
+    .agregar{
+        margin-left: 10%;
+        width: 100%;
+    }
+    .input-item{
+        width: 80%;
+    }
+    .body{
+        margin-top: 30%;
+    }
+}

@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #6CA5B1;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #00DDBD;
+    border-radius: 5px;
+}
+
+
+.body{
+    margin-top: 10%;
+  }
+h1 {
+    background: rgba(108, 165, 177, 0.32);
+    color: #6CA5B1;
+    text-align: center;
+    font-family: Daniel Black;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin-top: 1%;
+    padding: 0.5%;
+}
+
+.botongeneral {
+    border-radius: 5px;
+    background: #00DDBD;
+    color: white;
+    font-family: Daniel Black;
+    border: none;
+    margin-left: 1%;
+    padding: 4%;
+}
+
+button:hover {
+    background-color: white;
+    color: #00DDBD;
+}
+
+.input-item {
+    padding-left: 10px;
+    font-size: 20px;
+    width: 80%;
+    height: 53px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #6CA5B1;
+    margin: 1%;
+}
+#desc{
+    width: 100%;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.submain {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2%;
+}
+
+.contenedor1 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contenedor2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.submain2 {
+    margin: 4%;
+    width:20%;
+}
+
+.deco {
+    margin-bottom: 13%;
+}
+
+.main2 {
+    margin: 3%;
+}
+
+.cita {
+    border-radius: 20px;
+    border: 1px solid #6CA5B1;
+    width: 90%;
+    margin: 3%;
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+}
+
+.cita a {
+    margin: 2%;
+}
+
+.citainfo {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.citainfo label {
+    margin: 1%;
+}
+
+.citainfo2 img {
+    height: 60px;
+    margin-left: 50px;
+}
+
+@media screen and (max-width:700px) {
+    .deco{
+        display: none;
+    }
+    .input-item, #desc{
+        width: 130%;
+    }
+    .main{
+        flex-direction: column;
+    }
+    .submain, .submain2{
+        width: 95%;
+    }
+    .input-item{
+        width: 500%;
+    }
+    .contenedor2{
+        flex-direction: column;
+    }
+    .botongeneral{
+        margin-left: 25%;
+    }
+    .citainfo2 img {
+        height: 20px;
+        margin-left: 50px;
+    }
+    .body{
+        margin-top: 20%;
+      }
+}
