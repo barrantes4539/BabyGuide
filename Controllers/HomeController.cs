@@ -37,7 +37,10 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-
+        public ActionResult Perfil()
+        {
+            return View();
+        }
 
     }
 }

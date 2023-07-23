@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #6CA5B1;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #00DDBD;
+  border-radius: 5px;
+}
+
+.body{
+  margin-top: 10%;
+}
+select{
+  border-radius: 20px;
+  border: 1px solid #6CA5B1;
+  width: 45%;
+  height: 53px;
+  margin: 1%;
+}
+
+h1 {
+  background: rgba(108, 165, 177, 0.32);
+  color: #6CA5B1;
+  text-align: center;
+  font-family: Daniel Black;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin-top: 1%;
+  padding: 0.5%;
+}
+
+.containerex {
+  width: 70%;
+  /* Espacio entre los inputs */
+  margin: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+
+.input-item {
+  padding-left: 10px;
+  font-size: 20px;
+  width: 45%;
+  height: 53px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #6CA5B1;
+  margin: 1%;
+}
+
+.cuerpo {
+  margin-left: 6%;
+  display: flex;
+}
+
+.cuerpo .botongeneral{
+  margin-top: 5%;
+}
+.deco{
+  height: 100px;
+  margin-top: 5%;
+}
+
+.botongeneral {
+  border-radius: 5px;
+  background: #00DDBD;
+  color: white;
+  font-family: Daniel Black;
+  padding: 0.5%;
+  border: none;
+  height: 1%;
+  margin-left: 1%;
+  padding: 1%;
+}
+
+button:hover {
+  background-color: white;
+  color: #00DDBD;
+}
+
+.cuerpo2 {
+  margin-left: 3%;
+  margin-right: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cuerpo2 .input-item{
+  width: 30%;
+}
+.cuerpo2 select{
+  width: 30%;
+}
+
+.cuerpo3 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  /* Espacio entre los inputs */
+  width: 90%;
+  margin-left: 5%;
+}
+
+#multi_option{
+  max-width: 40%;
+  margin-left: 3%;
+}
+.vscomp-toggle-button{
+	border-radius: 20px;
+  border: 1px solid #6CA5B1;
+  height: 50px;
+}
+
+
+.item-list-container {
+  max-height: 300px;
+  min-height: 300px;
+  /* Altura máxima del contenedor */
+  overflow: auto;
+  /* Habilitar la barra de desplazamiento vertical */
+  border-radius: 20px;
+  border: 1px solid #6CA5B1;
+  width: 40%;
+  margin: 3%;
+  display: inline-block;
+}
+
+.item-list-container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.item-list-container::-webkit-scrollbar-thumb {
+  background-color: #00DDBD;
+  border-radius: 5px;
+}
+
+.item-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: 1px solid #6CA5B1;
+  margin: 3%;
+}
+
+.item-list li span {
+  margin-left: 5px;
+}
+
+.delete-button {
+  margin-left: 70%;
+
+}
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #6CA5B1;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: rgba(0, 221, 189, 0.32);
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: rgba(0, 221, 189, 0.32);
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  border: 1px solid #6CA5B1;
+  border-radius: 5px;
+  border-top: none;
+  width: 100%;
+}
+
+.item-list-container .input-item{
+  display: flex;
+  width: 80%;
+  margin: 4%;
+}
+
+.item-list-container .botongeneral{
+  margin: 10%;
+}
+@media screen and (max-width:700px){
+
+  .deco{
+    display: none;
+  }
+
+  .input-item{
+    width: 120%;
+  }
+  .containerex{
+    flex-direction: column;
+    margin-top: 20%;
+  }
+  .containerex select{
+    width: 120%;
+  }
+  .botongeneral{
+    margin-top: 20%;
+    position: absolute;
+    height: 5%;
+    margin-left: 30%;
+  }
+  .cuerpo2{
+    flex-direction: column;
+    margin-left: 8%;
+  }
+  .cuerpo2 .input-item{
+    width: 90%;
+  }
+  .cuerpo2 select{
+    width: 90%;
+  }
+  .item-list-container {
+    display: flex;
+    width: 90%;
+  }
+  .item-list{
+    width: 100%;
+  }
+  #Diagnosticos .item-list-container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 4%;
+  }
+  #Diagnosticos button{
+    position: relative;
+  }
+  .body{
+    margin-top: 35%;
+  }
+}
