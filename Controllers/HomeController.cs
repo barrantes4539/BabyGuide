@@ -41,6 +41,13 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-
+        public ActionResult PerfilModificar()
+        {
+            return View();
+        }
+        public ActionResult GestionFamilia()
+        {
+            return View();
+        }
     }
 }

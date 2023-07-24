@@ -12,7 +12,7 @@
     background-color: #00DDBD;
     border-radius: 5px;
   }
-
+  
   .body{
     margin-top: 10%;
   }
@@ -22,29 +22,26 @@
     color: white;
     font-family: Daniel Black;
     border: none;
-    padding: 3%;
-    width: 130%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10%;
-    margin-left: 100%;
+    padding: 1%;
+    width: 30%;
 }
-    .botongeneral:hover {
-        background-color: white;
-        color: #00DDBD;
-    }
+button:hover {
+    background-color: white;
+    color: #00DDBD;
+}
 .input-item {
     padding-left: 10px;
     font-size: 20px;
-    width: 70%;
+    width: 100%;
     height: 43px;
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid #6CA5B1;
+    margin: 2%;
 }
 
 .deco{
-    width: 100px;
+    width: 200px;
     margin: 4%;
     margin-left: 10%;
     height: 50%;
@@ -60,35 +57,22 @@
     justify-content: center;
     display: flex;
 }
-.bebe{
+.perfiles{
     display: flex;
     flex-direction: row;
-    height: 30%;
-    margin-top: 5%;
 }
-.bebe button{
-    border-radius: 5px;
-    background: #6CA5B1;
-    height: 40px;
-    width: 200px;
-    margin-left: 20%;
-    margin-top: 7%;
-}
-
-.bebes{
-    display: flex;
-    flex-direction: row;
-    width: 60%;
-    height: 60%;
-}
-
-.infobebe{
+.perfil1{
     display: flex;
     flex-direction: column;
-    margin-top: 4%;
     margin-left: 5%;
+    margin-right: 17%;
+    margin-top: 3%;
 }
-
+.perfil2{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
 .main2{
     width: 100%;
     padding: 3%;
@@ -104,19 +88,18 @@
     display: flex;
     flex-direction: row;
 }
-.infoperfil{
+.infoperfil1{
     display: flex;
     flex-direction: column;
-    margin-top: 4%;
+    margin-left: 20%;
 }
-.botonperfil{
+.infoperfil2{
     display: flex;
     flex-direction: column;
-    margin-top: 10%;
-    margin-left: 5%;
+    margin-left: 10%;
 }
-.botonperfil button{
-    width: 200px;
+.perfil2 button{
+    width: 230px;
     height: 30px;
     margin: 3%;
 }
@@ -124,9 +107,12 @@
     border-radius: 20px;
     border: 3px solid #00DDBD;
     color: #00DDBD;
-    margin-left: 6%;
-    height: 50px;
-    padding: 1%;
+    margin-left: 50%;
+    margin-bottom: 10%;
+    height: 40px;
+    padding: 3%;
+    width: 25%;
+    
 }
 .deco2{
     height: 300px;
@@ -147,45 +133,35 @@
     margin-right: 30%;
 }
 
-@media screen and (max-width:1000px) {
-    .deco2 {
+@media screen and (max-width:1000px){
+    .deco2{
         display: none;
     }
 }
 
 @media screen and (max-width:700px){
-    .bebe{
-        flex-direction: column;
-        margin-left: 5%;
-        height: 40%;
+    .deco3{
+        display: none;
     }
-    .bebes{
-        width: 100%;
+    .body{
+        margin-top: 30%;
     }
     .perfil{
         flex-direction: column;
     }
     .rol{
-        width: 15%;
-        padding: 3%;
-        margin-left: 40%;
+        width: 70px;
+        height: 50px;
+        padding: 5%;
+        margin-left: 45%;
     }
-    .infoperfil{
-        margin-left: 60%;
-        margin-top: -25%;
-    }
-    .botonperfil{
-        margin-right: 250%;
-        width: 40%;
-    }
-    .agregar{
+    .infoperfil1{
         margin-left: 10%;
-        width: 100%;
     }
-    .input-item{
-        width: 80%;
+    .perfiles {
+        flex-direction: column;
     }
-    .body{
-        margin-top: 30%;
+    .perfil2 {
+        margin-left: 17%;
     }
 }

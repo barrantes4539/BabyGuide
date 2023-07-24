@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #6CA5B1;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #00DDBD;
+    border-radius: 5px;
+  }
+  
+  .body{
+    margin-top: 10%;
+  }
+  .botongeneral {
+    border-radius: 5px;
+    background: #00DDBD;
+    color: white;
+    font-family: Daniel Black;
+    border: none;
+    padding: 1%;
+    width: 30%;
+    margin-left: 30%;
+    margin-top: 7%;
+}
+button:hover {
+    background-color: white;
+    color: #00DDBD;
+}
+.input-item {
+    padding-left: 10px;
+    font-size: 20px;
+    width: 45%;
+    height: 43px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #6CA5B1;
+}
+
+.deco{
+    position: absolute;
+    margin-left: 10%;
+    height: 50%;
+}
+
+.main{
+    width: 94%;
+    padding: 3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.personas{
+    border-radius: 50px;
+    background: rgba(108, 165, 177, 0.32);
+    padding: 2%;
+    min-width: 40%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+}
+.rol{
+    margin-left: 70%;
+}
+.body h2{
+    color: white;
+    justify-content: center;
+    display: flex;
+    background: rgba(0, 221, 189, 0.32);
+}
+.main2{
+    border-radius: 50px;
+    background: rgba(108, 165, 177, 0.32);
+    padding: 2%;
+    width: 40%;
+    margin-left: 40%;
+}
+.main2 select{
+    min-width: 40%;
+    border-radius: 50px;
+    height: 40px;
+    margin-left: 5%;
+    padding: 1%;
+}
+
+@media screen and (max-width:700px){
+    .deco{
+        display: none;
+    }
+    .body{
+        margin-top: 30%;
+    }
+    .main{
+        flex-direction: column;
+
+    }
+    .main2{
+        width: 90%;
+        margin-left: 7%;
+    }
+    .perfil{
+        flex-direction: column;
+    }
+    .rol{
+        margin-left: 60%;
+        margin-top: 5%;
+    }
+    .infoperfil{
+        margin-left: 60%;
+        margin-top: -25%;
+    }
+}

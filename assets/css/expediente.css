@@ -51,7 +51,7 @@ h1 {
 .input-item {
   padding-left: 10px;
   font-size: 20px;
-  width: 45%;
+  min-width: 45%;
   height: 53px;
   flex-shrink: 0;
   border-radius: 20px;
@@ -63,7 +63,9 @@ h1 {
   margin-left: 6%;
   display: flex;
 }
-
+.cuerpo select {
+    min-width: 45%;
+}
 .cuerpo .botongeneral{
   margin-top: 5%;
 }
@@ -100,7 +102,7 @@ button:hover {
   width: 30%;
 }
 .cuerpo2 select{
-  width: 30%;
+  min-width: 92%;
 }
 
 .cuerpo3 {
@@ -222,14 +224,14 @@ button:hover {
   }
 
   .input-item{
-    width: 120%;
+    min-width: 120%;
   }
   .containerex{
     flex-direction: column;
     margin-top: 20%;
   }
   .containerex select{
-    width: 120%;
+    min-width: 120%;
   }
   .botongeneral{
     margin-top: 20%;
@@ -242,7 +244,7 @@ button:hover {
     margin-left: 8%;
   }
   .cuerpo2 .input-item{
-    width: 90%;
+    min-width: 90%;
   }
   .cuerpo2 select{
     width: 90%;
