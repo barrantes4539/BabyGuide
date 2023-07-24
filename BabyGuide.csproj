@@ -133,9 +133,11 @@
     <Content Include="assets\css\citas.css" />
     <Content Include="assets\css\DobleVerificacion.css" />
     <Content Include="assets\css\expediente.css" />
+    <Content Include="assets\css\familia.css" />
     <Content Include="assets\css\ModuloConfiguracion\TablaUsuarios.css" />
     <Content Include="assets\css\NuevaAventura.css" />
     <Content Include="assets\css\perfil.css" />
+    <Content Include="assets\css\perfilmodificar.css" />
     <Content Include="assets\css\preguntas.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\styleAuth.css" />
@@ -152,6 +154,7 @@
     <Content Include="assets\img\DietasPage\Dietas.jpg" />
     <Content Include="assets\img\DietasPage\vista-superior-tazon-comida-bebes.jpg" />
     <Content Include="assets\img\ExpedientePage\chupon.png" />
+    <Content Include="assets\img\GestionarFamiliaPage\encargado.png" />
     <Content Include="assets\img\HomePage\Imagen lego amarillo.jpg" />
     <Content Include="assets\img\HomePage\ImagenRojaLego.jpg" />
     <Content Include="assets\img\HomePage\ImagenVerdeLego.jpg" />
@@ -159,6 +162,9 @@
     <Content Include="assets\img\newLogo.png" />
     <Content Include="assets\img\PerfilPage\familia.png" />
     <Content Include="assets\img\PerfilPage\perfil.png" />
+    <Content Include="assets\img\PModificarPage\cubos.png" />
+    <Content Include="assets\img\PModificarPage\familia.png" />
+    <Content Include="assets\img\PModificarPage\perfil.png" />
     <Content Include="assets\img\PreguntasPage\carrusel.png" />
     <Content Include="assets\img\PreguntasPage\papalote.png" />
     <Content Include="assets\js\main.js" />
@@ -333,6 +339,8 @@
     <Content Include="Views\Config\Configuracion.cshtml" />
     <Content Include="Views\Config\CrearDietas.cshtml" />
     <Content Include="Views\Home\Perfil.cshtml" />
+    <Content Include="Views\Home\PerfilModificar.cshtml" />
+    <Content Include="Views\Home\GestionFamilia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
