@@ -162,8 +162,8 @@ button:hover {
 }
 
 .delete-button {
-  margin-left: 70%;
-
+    margin-left: 70%;
+    border: none;
 }
 
 
