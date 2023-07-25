@@ -3,7 +3,6 @@
     ViewBag.Title = "Preguntas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <head>
     <link rel="stylesheet" href="../assets/css/preguntas.css">
     <link href="../assets/css/style.css" rel="stylesheet">
@@ -14,10 +13,12 @@
         <div class="contenedor">
             <img src="../assets/img/PreguntasPage/papalote.png" alt="">
             <h1>Preguntas con Expertos</h1>
-            <input type="text" class="input-item" placeholder="Escribir Pregunta">
-            <button class="botongeneral">Buscar Pregunta</button>
+            <input type="text" class="input-item" placeholder="Escribir Pregunta" id="miInput">
+            <button class="botongeneral" id="miBoton">Buscar Pregunta</button>
             <div class="resp">
                 <label for="">Respuesta</label>
+
+                <label id="miLabel"></label>
             </div>
         </div>
         <div class="contenedor2">
@@ -53,6 +54,33 @@
             });
         }
     </script>
+    @*
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            // Asociar el evento click al botón
+            $("#miBoton").click(function() {
+                // Obtener el valor del input
+                var textoInput = $("#miInput").val();
+
+                // Realizar la petición AJAX al controlador con el valor del input
+                $.ajax({
+                    url: '@Url.Action("Resp", "Home")',
+                    type: 'POST', // O 'GET' según corresponda
+                    data: { inputText: textoInput }, // Enviar el valor del input en los datos de la petición
+                    success: function(result) {
+                        // Actualizar el contenido del label con la respuesta del controlador
+                        $("#miLabel").text(result);
+                    },
+                    error: function(xhr, status, error) {
+                        // Manejar errores aquí si es necesario
+                        console.error(error);
+                    }
+                });
+            });
+        });
+        </script>
+    *@
     <script src="../assets/js/main.js"></script>
 </body>
 
