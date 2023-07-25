@@ -24,11 +24,26 @@
             </div>
 
             <div class="bebe2">
-                <button class="botongeneral">Registrar bebé</button>
+                <button class="botongeneral" id="registrarBebeBtn">Registrar bebé</button>
                 o
                 <div class="agregar">
                     <input type="text" class="input-item" placeholder="Ingrese clave bebé">
                     <button class="botongeneral">Confirmar</button>
+                </div>
+            </div>
+
+            <!-- Modal de registro del bebé -->
+            <div class="modal" id="registroBebeModal">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <h2>Registrar bebé</h2>
+                    <label for="nombreBebe">Nombre:</label>
+                    <input type="text" id="nombreBebe" class="input-item" placeholder="Ingrese el nombre del bebé">
+                    <label for="apellidosBebe">Apellidos:</label>
+                    <input type="text" id="apellidosBebe" class="input-item" placeholder="Ingrese los apellidos del bebé">
+                    <label for="edadBebe">Edad:</label>
+                    <input type="text" id="edadBebe" class="input-item" placeholder="Ingrese la edad del bebé">
+                    <button class="botongeneral">Registrar</button>
                 </div>
             </div>
         </div>
@@ -54,3 +69,15 @@
 
     </div>
 </div>
+<script>
+    // Mostrar el modal de registro del bebé al hacer clic en el botón "Registrar bebé"
+    document.getElementById('registrarBebeBtn').addEventListener('click', function () {
+        document.getElementById('registroBebeModal').style.display = 'block';
+    });
+
+    // Ocultar el modal de registro del bebé al hacer clic en la "X" de cerrar
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('registroBebeModal').style.display = 'none';
+    });
+
+</script>

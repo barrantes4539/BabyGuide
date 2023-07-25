@@ -3,6 +3,38 @@
     ViewBag.Title = "CrearDietas";
     Layout = "~/Views/Shared/_LayoutConfig.cshtml";
 }
+<head>
+    <link href="../assets/css/ModuloConfiguracion/AgregarDietas.css" rel="stylesheet" />
+</head>
+<h1>Nueva Dieta</h1>
 
-<h2>CrearDietas</h2>
+<div class="formContainer">
+    <form class="addDietasContainer">
+        <div class="coolinput">
+            <label for="input" class="text">Nombre de la dieta</label>
+            <input type="text" name="input" class="input">
+        </div>
+        <section id="about" class="about">
+            <!-- Tab links -->
+
+            <div class="tab">
+                <button class="tablinks" id="tab1">Primera etapa</button>
+                <button class="tablinks" id="tab2">Segunda etapa</button>
+                <button class="tablinks" id="tab3">Tercera etapa</button>
+            </div>
+
+
+
+        </section><!-- End About Us Section -->
+<div class="coolinput">
+    <label for="textarea" class="text">Pasos para realizar la dieta</label>
+    <textarea name="textarea" class="textarea"></textarea>
+</div>
+<button type="submit" class="crearDietaButton">Crear Dieta</button>
+    </form>
+</div>
+<script src="../assets/js/CreacionDietasEtapas.js"></script>
+
+
+
 
