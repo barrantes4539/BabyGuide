@@ -51,18 +51,14 @@
         <div id="Alergias" class="tabcontent">
             <div class="item-list-container">
                 <ul class="item-list">
-                    <li>
-                        <span>Item 1</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 2</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
+                    @foreach (var i in Model.Alergias)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
+                        </li>
+                    }
+
                 </ul>
             </div>
             <div class="item-list-container">
@@ -123,18 +119,13 @@
         <div id="Vacunas" class="tabcontent">
             <div class="item-list-container">
                 <ul class="item-list">
-                    <li>
-                        <span>Item 1</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 2</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
+                    @foreach (var i in Model.Vacunas)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
+                        </li>
+                    }
                 </ul>
             </div>
             <div class="item-list-container">
@@ -256,20 +247,14 @@
         <div id="Medicamentos" class="tabcontent">
             <div class="item-list-container">
                 <ul class="item-list">
-                    <li>
-                        <span>Item 1</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 2</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                </ul>
-            </div>
+                    @foreach (var i in Model.Medicamentos)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
+                        </li>
+                    }
+</div>
             <div class="item-list-container">
                 <ul class="item-list">
                     <li>

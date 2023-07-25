@@ -1,5 +1,8 @@
 ﻿using BabyGuide.Models;
 using BabyGuide.Models.BD;
+using BabyGuide.Models.Listas;
+using System.Collections.Generic;
+using System.Data;
 using System.Web.Mvc;
 
 namespace BabyGuide.Controllers
@@ -8,9 +11,6 @@ namespace BabyGuide.Controllers
     {
         public ActionResult Index()
         {
-            expediente expediente = new expediente();
-            expediente.VerAlergias();
-            
             return View();
         }
 
@@ -28,7 +28,16 @@ namespace BabyGuide.Controllers
         }
         public ActionResult Expediente()
         {
-            return View();
+            Expediente expediente = new Expediente();
+
+            var viewModel = new ExpedienteModel
+            {
+                Alergias = expediente.VerAlergias(),
+                Vacunas = expediente.VerVacunas(),
+                Medicamentos = expediente.VerMedicamentos(),
+            };
+
+            return View(viewModel);
         }
         public ActionResult Citas()
         {
