@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using BabyGuide.Models;
+using BabyGuide.Models.BD;
+using System.Web.Mvc;
 
 namespace BabyGuide.Controllers
 {
@@ -6,6 +8,9 @@ namespace BabyGuide.Controllers
     {
         public ActionResult Index()
         {
+            expediente expediente = new expediente();
+            expediente.VerAlergias();
+            
             return View();
         }
 
