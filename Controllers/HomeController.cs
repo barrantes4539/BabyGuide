@@ -25,6 +25,10 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
+        public ActionResult NuevaAventura()
+        {
+            return View();
+        }
         public ActionResult Preguntas()
         {
             
@@ -97,10 +101,6 @@ namespace BabyGuide.Controllers
             return View();
         }
         public ActionResult Alertas()
-        {
-            return View();
-        }
-        public ActionResult NuevaAventura()
         {
             return View();
         }

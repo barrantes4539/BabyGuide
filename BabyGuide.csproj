@@ -168,6 +168,7 @@
     <Content Include="assets\img\HomePage\ImagenVerdeLego.jpg" />
     <Content Include="assets\img\HomePage\services.png" />
     <Content Include="assets\img\newLogo.png" />
+    <Content Include="assets\img\NuevaAventura\Baño.jpg" />
     <Content Include="assets\img\PerfilPage\familia.png" />
     <Content Include="assets\img\PerfilPage\perfil.png" />
     <Content Include="assets\img\PModificarPage\cubos.png" />
@@ -177,6 +178,7 @@
     <Content Include="assets\img\PreguntasPage\papalote.png" />
     <Content Include="assets\js\AccordionDashboard.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\NuevaAventura.js" />
     <Content Include="assets\js\openCity.js" />
     <Content Include="assets\js\ValidacionPass.js" />
     <Content Include="assets\scss\Readme.txt" />
