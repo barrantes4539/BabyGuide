@@ -2,21 +2,22 @@
     margin: 0;
     padding: 0;
     color: #6CA5B1;
-  }
-  
-  body::-webkit-scrollbar {
+}
+
+body::-webkit-scrollbar {
     width: 7px;
-  }
-  
-  body::-webkit-scrollbar-thumb {
+}
+
+body::-webkit-scrollbar-thumb {
     background-color: #00DDBD;
     border-radius: 5px;
-  }
+}
 
-  .body{
+.body {
     margin-top: 10%;
-  }
-  .botongeneral {
+}
+
+.botongeneral {
     border-radius: 5px;
     background: #00DDBD;
     color: white;
@@ -29,10 +30,12 @@
     margin-bottom: 10%;
     margin-left: 100%;
 }
+
     .botongeneral:hover {
         background-color: white;
         color: #00DDBD;
     }
+
 .input-item {
     padding-left: 10px;
     font-size: 20px;
@@ -43,84 +46,92 @@
     border: 1px solid #6CA5B1;
 }
 
-.deco{
+.deco {
     width: 100px;
     margin: 4%;
     margin-left: 10%;
     height: 50%;
 }
 
-.main{
+.main {
     width: 100%;
     padding: 3%;
     background-color: #89C0CF;
 }
-.main h2{
-    color: white;
-    justify-content: center;
-    display: flex;
-}
-.bebe{
+
+    .main h2 {
+        color: white;
+        justify-content: center;
+        display: flex;
+    }
+
+.bebe {
     display: flex;
     flex-direction: row;
     height: 30%;
     margin-top: 5%;
 }
-.bebe button{
-    border-radius: 5px;
-    background: #6CA5B1;
-    height: 40px;
-    width: 200px;
-    margin-left: 20%;
-    margin-top: 7%;
-}
 
-.bebes{
+    .bebe button {
+        border-radius: 5px;
+        background: #6CA5B1;
+        height: 40px;
+        width: 200px;
+        margin-left: 20%;
+        margin-top: 7%;
+    }
+
+.bebes {
     display: flex;
     flex-direction: row;
     width: 60%;
     height: 60%;
 }
 
-.infobebe{
+.infobebe {
     display: flex;
     flex-direction: column;
     margin-top: 4%;
     margin-left: 5%;
 }
 
-.main2{
+.main2 {
     width: 100%;
     padding: 3%;
     background-color: rgba(0, 221, 189, 0.32);
 }
-.main2 h2{
-    color:#00DDBD;
-    justify-content: center;
-    display: flex;
-}
 
-.perfil{
+    .main2 h2 {
+        color: #00DDBD;
+        justify-content: center;
+        display: flex;
+    }
+
+.perfil {
     display: flex;
     flex-direction: row;
 }
-.infoperfil{
+
+.infoperfil {
     display: flex;
     flex-direction: column;
     margin-top: 4%;
 }
-.botonperfil{
+
+.botonperfil {
     display: flex;
     flex-direction: column;
     margin-top: 10%;
     margin-left: 5%;
 }
-.botonperfil button{
-    width: 200px;
-    height: 30px;
-    margin: 3%;
-}
-.rol{
+
+    .botonperfil button {
+        width: 200px;
+        height: 30px;
+        margin: 3%;
+    }
+
+.rol {
     border-radius: 20px;
     border: 3px solid #00DDBD;
     color: #00DDBD;
@@ -128,22 +139,26 @@
     height: 50px;
     padding: 1%;
 }
-.deco2{
+
+.deco2 {
     height: 300px;
     position: absolute;
     top: 220px;
     right: 20px;
 }
-.agregar{
+
+.agregar {
     display: flex;
     flex-direction: row;
     margin: 5%;
 }
-.agregar button{
-    margin: 0;
-    margin-left: 2%;
-}
-.bebe2{
+
+    .agregar button {
+        margin: 0;
+        margin-left: 2%;
+    }
+
+.bebe2 {
     margin-right: 30%;
 }
 /* Estilos para el modal de registro del bebé */
@@ -203,45 +218,125 @@
     border-radius: 5px;
 }
 
-@media screen and (max-width:1000px) {
-    .deco2 {
-        display: none;
-    }
+<<<<<<< Updated upstream
+=======
+/* Estilos para el modal de registro del bebE*/
+.modal {
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-@media screen and (max-width:700px){
-    .bebe{
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 400px; /* Reducir el ancho del modal */
+    border-radius: 10px; /* Agregar bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agregar sombra */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px; /* Agrandar el tamaño de la "X" */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* Estilo para el botón "Registrar" dentro del modal */
+.modal-content button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para los campos de entrada dentro del modal */
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+..modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+> > > > > > > Stashed changes
+
+@media screen and (max-width:1000px) {
+    .deco2
+
+{
+    display: none;
+}
+
+}
+
+@media screen and (max-width:700px) {
+    .bebe {
         flex-direction: column;
         margin-left: 5%;
         height: 40%;
     }
-    .bebes{
+
+    .bebes {
         width: 100%;
     }
-    .perfil{
+
+    .perfil {
         flex-direction: column;
     }
-    .rol{
+
+    .rol {
         width: 15%;
         padding: 3%;
         margin-left: 40%;
     }
-    .infoperfil{
+
+    .infoperfil {
         margin-left: 60%;
         margin-top: -25%;
     }
-    .botonperfil{
+
+    .botonperfil {
         margin-right: 250%;
         width: 40%;
     }
-    .agregar{
+
+    .agregar {
         margin-left: 10%;
         width: 100%;
     }
-    .input-item{
+
+    .input-item {
         width: 80%;
     }
-    .body{
+
+    .body {
         margin-top: 30%;
     }
 }

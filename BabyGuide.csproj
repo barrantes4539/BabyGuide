@@ -127,6 +127,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BD\Expediente.cs" />
+    <Compile Include="Models\BD\Perfil.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Listas\Alergias.cs" />
     <Compile Include="Models\Listas\ExpedienteModel.cs" />

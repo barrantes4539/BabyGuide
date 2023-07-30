@@ -19,24 +19,22 @@
     <div class="cuerpo">
         <img class="deco" src="../assets/img/ExpedientePage/chupon.png" alt="">
         <div class="containerex">
-            <input type="text" class="input-item" placeholder="Nombre">
-            <input type="text" class="input-item" placeholder="Apellidos">
-            <input type="date" class="input-item">
+            <input type="text" class="input-item" placeholder="Nombre" value="@ViewBag.nom">
+            <input type="text" class="input-item" placeholder="Apellidos" value="@ViewBag.ape1">
+            <input type="date" class="input-item" value="@ViewBag.nac.ToString("yyyy-MM-dd")">
             <select>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                <option value="1" @(ViewBag.gest.ToString() == "1" ? "selected" : "")>1 mes</option>
+                <option value="2" @(ViewBag.gest.ToString() == "2" ? "selected" : "")>2 meses</option>
             </select>
         </div>
         <button class="botongeneral">Guardar</button>
     </div>
     <div class="cuerpo2">
-        <input type="tel" class="input-item" placeholder="Altura         cm">
-        <input type="text" class="input-item" placeholder="Peso          kg">
+        <input type="tel" class="input-item" placeholder="Altura         cm" value="@ViewBag.alt">
+        <input type="text" class="input-item" placeholder="Peso          kg" value="@ViewBag.peso">
         <select>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
+            <option value="1" @(ViewBag.gen.ToString() == "1" ? "selected" : "")>Masculino</option>
+            <option value="0" @(ViewBag.gen.ToString() == "0" ? "selected" : "")>Femenino</option>
         </select>
     </div>
     <div class="cuerpo3">
