@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 
 namespace BabyGuide.Controllers
@@ -55,13 +56,27 @@ namespace BabyGuide.Controllers
         {
             Expediente expediente = new Expediente();
 
+            List<Alergias> alergias = expediente.VerAlergias();
+            List<Vacunas> vacunas = expediente.VerVacunas();
+            List<Medicamentos> medicamentos = expediente.VerMedicamentos();
+            Session["Alergias"] = alergias;
             var viewModel = new ExpedienteModel
             {
-                Alergias = expediente.VerAlergias(),
+                Alergias = alergias,
                 AlergiasSelec = null,
                 Vacunas = expediente.VerVacunas(),
                 Medicamentos = expediente.VerMedicamentos(),
             };
+
+            DataTable dt = expediente.CargarExpediente();
+            DataRow fila = dt.Rows[0];
+            ViewBag.nom = fila["Nombre"];
+            ViewBag.ape1 = fila["Apellido1"];
+            ViewBag.gen = fila["Genero"];
+            ViewBag.nac = fila["FechaNacimiento"];
+            ViewBag.gest = fila["FechaGestacion"];
+            ViewBag.alt = fila["Altura"];
+            ViewBag.peso = fila["Peso"];
 
             return View(viewModel);
         }
@@ -75,19 +90,18 @@ namespace BabyGuide.Controllers
                 name = nombre
             };
 
-            // Agregar el elemento a la lista de elementos seleccionados.
-            // Suponiendo que 'ListaSeleccionados' es una lista en tu modelo.
-            
+            ((List<Alergias>)Session["Alergias"]).Add(elemento);
 
-            // Devolver el elemento agregado como una respuesta JSON.
             return Json(elemento);
         }
         [HttpPost]
-        public ActionResult EliminarElemento(int id)
+        public ActionResult EliminarElemento(string id)
         {
             // Eliminar el elemento de la lista seleccionada.
             // Suponiendo que 'ListaSeleccionados' es una lista en tu modelo.
-            
+
+            ((List<Alergias>)Session["Alergias"]).RemoveAll(alergia => alergia.id == id);
+
 
             // Devolver el resultado.
             return Json(new { success = true });
@@ -106,6 +120,19 @@ namespace BabyGuide.Controllers
         }
         public ActionResult Perfil()
         {
+            string nom = Request.Form["nom"]?.ToString();
+            string ape1 = Request.Form["ape1"]?.ToString();
+            string ape2 = Request.Form["ape2"]?.ToString();
+            string gen = Request.Form["gen"]?.ToString();
+            string nac = Request.Form["nac"]?.ToString();
+            string gest = Request.Form["gest"]?.ToString();
+
+            if (nom != null && ape1 != null && ape2 != null && gen != null && nac != null && gest != null)
+            {
+                Perfil perfil = new Perfil();
+                perfil.AgregarBebe(nom, ape1, ape2, Convert.ToInt32(gen), nac, Convert.ToInt32(gest));
+            }
+
             return View();
         }
         public ActionResult PerfilModificar()

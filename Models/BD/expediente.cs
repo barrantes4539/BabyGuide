@@ -130,6 +130,42 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
+        public DataTable CargarExpediente()
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerExpediente", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", 2);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    //return ex.InnerException.Message;
+                }
+                else
+                {
+                    //return ex.Message;
+                }
+                DataTable dataTable = new DataTable();
+                return dataTable;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
     
 }

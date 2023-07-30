@@ -31,6 +31,35 @@
                     <button class="botongeneral">Confirmar</button>
                 </div>
             </div>
+
+            <!-- Modal de registro del bebé -->
+            <div class="modal" id="registroBebeModal">
+                <div class="modal-content">
+                    <form action="/Home/Perfil" method="post">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h2>Registrar bebé</h2>
+                        <label for="nombreBebe">Nombre:</label>
+                        <input type="text" id="nombreBebe" name="nom" class="input-item" placeholder="Ingrese el nombre del bebé">
+                        <label for="apellido1Bebe">Apellido 1:</label>
+                        <input type="text" id="apellido1Bebe" name="ape1" class="input-item" placeholder="Ingrese el primer apellido del bebé">
+                        <label for="apellido2Bebe">Apellido 2:</label>
+                        <input type="text" id="apellido2Bebe" name="ape2" class="input-item" placeholder="Ingrese el segundo apellido del bebé">
+                        <label for="genero">Género:</label>
+                        <select id="genero" class="input-item" name="gen">
+                            <option value="1">Masculino</option>
+                            <option value="0">Femenino</option>
+                        </select>
+                        <label for="edadBebe">Fecha de Nacimiento (Opcional):</label>
+                        <input type="date" id="edadBebe" name="nac" class="input-item">
+                        <label for="gestacion">Fecha de Gestación:</label>
+                        <select id="gestacion" name="gest" class="input-item">
+                            <option value="1">1 mes</option>
+                            <option value="2">2 meses</option>
+                        </select>
+                        <button class="botongeneral" type="submit">Registrar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <img src="../assets/img/PerfilPage/familia.png" alt="" class="deco2">
@@ -54,3 +83,15 @@
 
     </div>
 </div>
+<script>
+    // Mostrar el modal de registro del bebé al hacer clic en el botón "Registrar bebé"
+    document.getElementById('registrarBebeBtn').addEventListener('click', function () {
+        document.getElementById('registroBebeModal').style.display = 'block';
+    });
+
+    // Ocultar el modal de registro del bebé al hacer clic en la "X" de cerrar
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('registroBebeModal').style.display = 'none';
+    });
+
+</script>
