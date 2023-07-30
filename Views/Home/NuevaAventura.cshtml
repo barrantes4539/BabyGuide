@@ -4,18 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/NuevaAventura.css">
-    <title>Nueva Aventura</title>
+    <link href="../assets/css/NuevaAventura.css" rel="stylesheet" />
+    <title>Document</title>
 </head>
 
 <body>
-
-    <div class="contenedor-agregar-archivo">
+    <div class="info">
         <h2>Nueva Aventura Juntos</h2>
         <label id="lbl-titulo">Titulo de nuestra aventura</label>
         <input type="text" id="titulo">
@@ -25,17 +22,30 @@
             <option value="opcion2">Video</option>
             <option value="opcion3">Audio</option>
         </select>
-        <div class="Contenedor-drop">
-            <span>Arrastra & suelta tu archivo aquí</span>
-            <span>o</span>
-            <button class="boton-selector-archivos"><b>Buscar Archivo</b></button>
-            <input type="file">
+        <div class="card">
+            <div class="top">
+                <p>Drag & Drop image uploading</p>
+            </div>
+            <form action="/upload" method="post" class="">
+                <span class="inner">Drag & Drop image here or</span>
+                <span class="select">Browse</span>
+                <input name="file" type="file" class="file">
+            </form>
+            <div class="contenedor"></div>
         </div>
-        <!--select id="etapas-desarrollo"></select>
-        <select id="album-destino"></select-->
+        <script src="../assets/js/NuevaAventura.js"></script>
+        <label id="lbl-album-destino">Álbum de destino</label>
+        <select id="album-destino"></select>
+        <label id="lbl-etapa-desarrollo">Etapa de desarrollo</label>
+        <select id="etapas-desarrollo"></select>
+        <button>Registrar Aventura</button>
     </div>
-    <script src="../assets/js/main.js"></script>
+    <img src="../assets/img/NuevaAventura/Baño.jpg" class="img-aventura" />
+    <p id="leyenda">
+        <b>
+            Captura y guarda los dulces momentos de tu bebé.
+            Nuestra Baby Galería te ofrece una carga de imágenes fácil y segura,
+            para que puedas disfrutar de cada instante sin complicaciones.
+        </b>
+    </p>
 </body>
-
-
-

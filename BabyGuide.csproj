@@ -141,6 +141,8 @@
     <Content Include="assets\css\DobleVerificacion.css" />
     <Content Include="assets\css\expediente.css" />
     <Content Include="assets\css\familia.css" />
+    <Content Include="assets\css\ModuloConfiguracion\AgregarDietas.css" />
+    <Content Include="assets\css\ModuloConfiguracion\Dashboard.css" />
     <Content Include="assets\css\ModuloConfiguracion\TablaUsuarios.css" />
     <Content Include="assets\css\NuevaAventura.css" />
     <Content Include="assets\css\perfil.css" />
@@ -167,6 +169,7 @@
     <Content Include="assets\img\HomePage\ImagenVerdeLego.jpg" />
     <Content Include="assets\img\HomePage\services.png" />
     <Content Include="assets\img\newLogo.png" />
+    <Content Include="assets\img\NuevaAventura\Baño.jpg" />
     <Content Include="assets\img\PerfilPage\familia.png" />
     <Content Include="assets\img\PerfilPage\perfil.png" />
     <Content Include="assets\img\PModificarPage\cubos.png" />
@@ -174,7 +177,9 @@
     <Content Include="assets\img\PModificarPage\perfil.png" />
     <Content Include="assets\img\PreguntasPage\carrusel.png" />
     <Content Include="assets\img\PreguntasPage\papalote.png" />
+    <Content Include="assets\js\AccordionDashboard.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\NuevaAventura.js" />
     <Content Include="assets\js\openCity.js" />
     <Content Include="assets\js\ValidacionPass.js" />
     <Content Include="assets\scss\Readme.txt" />
