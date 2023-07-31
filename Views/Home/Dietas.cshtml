@@ -7,6 +7,8 @@
 <head>
     <link href="../assets/css/styleDietas.css" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 
@@ -14,60 +16,122 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
     <div class="container">
-        <div class="row gy-4 d-flex justify-content-between">
-            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                <h2 data-aos="fade-up" class="titleDietas"><strong>Encuentra las mejores dietas para tu bebé</strong></h2>
-                <form action="#" class="form-search d-flex align-items-stretch mb-3 mt-4" data-aos="fade-up" data-aos-delay="200">
-                    
-                    <input type="text" class="form-control" id="comidaInput" placeholder="Ingrese la comida deseada para su bebé">
-                    <button type="submit" class="btnBuscarDieta">Buscar</button>
-                </form>
-
-
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h2 data-aos="fade-up" class="titleDietas"><strong>Encuentra las mejores dietas para tu bebé</strong></h2>
+            <form action="#" class="form-search d-flex align-items-stretch mb-3 mt-4" data-aos="fade-up" data-aos-delay="200">
+                <select class="form-select" id="nombreIngrediente">
+                    <!-- Opciones se generarán dinámicamente aquí -->
+                </select>
+            </form>
 
                 <ul>
                     <li><i class="ri-check-line"></i>Primera etapa: 1 mes a 6 meses</li>
                     <li><i class="ri-check-line"></i>Segunda etapa: 6 meses a año y medio</li>
                     <li><i class="ri-check-line"></i>Tercera etapa: Año y medio a 3 años</li>
                 </ul>
-
-            </div>
-
-            <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                <img src="../assets/img/DietasPage/vista-superior-tazon-comida-bebes.jpg" class="img-fluid mb-3 mb-lg-0" alt="">
-            </div>
-
         </div>
+
+        <div class="col-lg-6 offset-lg-7 order-lg-2 order-md-first hero-img" data-aos="zoom-out" style="margin-top: -320px; margin-right: 20px;">
+            <img src="../assets/img/DietasPage/vista-superior-tazon-comida-bebes.jpg" class="img-fluid mb-3 mb-lg-0" alt="">
+        </div>
+
     </div>
+
 </section><!-- End Hero Section -->
 <!-- ======= About Us Section ======= -->
 <section id="about" class="about pt-0 mt-5">
     <!-- Tab links -->
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'PrimeraEtapa')">Primera etapa</button>
-        <button class="tablinks" onclick="openCity(event, 'SegundaEtapa')">Segunda etapa</button>
-        <button class="tablinks" onclick="openCity(event, 'TerceraEtapa')">Tercera etapa</button>
+        <button class="tablinks" data-tab="Etapa1" value="1">Primera etapa</button>
+        <button class="tablinks" data-tab="Etapa2" value="2">Segunda etapa</button>
+        <button class="tablinks" data-tab="Etapa3" value="3">Tercera etapa</button>
     </div>
 
     <!-- Tab content -->
-    <div id="PrimeraEtapa" class="tabcontent">
-        <h3>Picadillo de papa con vegetales</h3>
-        <p>Pasos para realizar la dieta tomando en consideración la primera etapa del bebé</p>
+    <div id="Etapa1" class="tabcontent">
+
     </div>
 
-    <div id="SegundaEtapa" class="tabcontent">
-        <h3>Picadillo de papa con vegetales</h3>
-        <p>Pasos para realizar la dieta tomando en consideración la segunda etapa del bebé</p>
+    <div id="Etapa2" class="tabcontent">
+
     </div>
 
-    <div id="TerceraEtapa" class="tabcontent">
-        <h3>Picadillo de papa con vegetales</h3>
-        <p>Pasos para realizar la dieta tomando en consideración la tercera etapa del bebé</p>
+    <div id="Etapa3" class="tabcontent">
+
     </div>
-</section><!-- End About Us Section -->
+</section>
 
 
-<script src="../assets/js/openCity.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Llenar el select con la lista de ingredientes al cargar la página
+        llenarSelectIngredientes();
+
+        // Variable to store the current tab content ID
+        var currentTabId = null;
+
+        // Función para llenar el select con la lista de ingredientes
+        function llenarSelectIngredientes() {
+            $.ajax({
+                url: '@Url.Action("ObtenerListaIngredientes", "Home")', // Cambiar la ruta a la acción en el controlador que devuelve la lista de ingredientes
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var select = $("#nombreIngrediente");
+                    // Limpiar el select antes de agregar las nuevas opciones
+                    select.empty();
+
+                    // Agregar las opciones del select con los ingredientes obtenidos
+                    for (var i = 0; i < data.length; i++) {
+                        select.append("<option value='" + data[i] + "'>" + data[i] + "</option>");
+                    }
+                },
+                error: function (data) {
+                    alert("Error al obtener la lista de ingredientes.");
+                }
+            });
+        }
+
+        // Agregar un evento de clic a los botones del tab para realizar la consulta cuando el usuario cambie de etapa
+        $(".tablinks").click(function () {
+            var etapaSeleccionada = parseInt($(this).attr("value"));
+            obtenerPasosPorIngredienteYEtapa(etapaSeleccionada);
+        });
+
+        // Función para obtener los pasos del ingrediente y etapa seleccionados
+        function obtenerPasosPorIngredienteYEtapa(etapa) {
+            // Obtener el valor seleccionado en el select de ingredientes
+            var ingredienteSeleccionado = $("#nombreIngrediente option:selected").text();
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: '@Url.Action("ObtenerPasosIngredienteYEtapa", "Home")',
+                type: "POST",
+                data: { ingrediente: ingredienteSeleccionado, etapa: etapa },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    var tabId = $("#" + data.etapa); // Usar el ID correcto según la etapa recibida
+
+                    // Clear previous tab content if there is any
+                    if (currentTabId !== null && currentTabId !== data.etapa) {
+                        $("#" + currentTabId).empty();
+                    }
+
+                    // Update the currentTabId with the new tab's ID
+                    currentTabId = data.etapa;
+
+                    tabId.empty();
+                    tabId.append("<h3>" + data.etapa + "</h3><p>" + data.pasos + "</p>");
+                },
+                error: function (data) {
+                    alert("Error al obtener los pasos del ingrediente y etapa seleccionados.");
+                }
+            });
+        }
+    });
+</script>
 
 <script src="../assets/js/main.js"></script>
 

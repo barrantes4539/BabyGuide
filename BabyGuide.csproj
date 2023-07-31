@@ -126,10 +126,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BD\Dietas.cs" />
     <Compile Include="Models\BD\Expediente.cs" />
     <Compile Include="Models\BD\Perfil.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Listas\Alergias.cs" />
+    <Compile Include="Models\Listas\DietasModel.cs" />
     <Compile Include="Models\Listas\ExpedienteModel.cs" />
     <Compile Include="Models\Listas\Medicamentos.cs" />
     <Compile Include="Models\Listas\Vacunas.cs" />

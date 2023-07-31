@@ -4,10 +4,13 @@ using BabyGuide.Models.Listas;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web.DynamicData;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 
 namespace BabyGuide.Controllers
 {
@@ -32,7 +35,7 @@ namespace BabyGuide.Controllers
         }
         public ActionResult Preguntas()
         {
-            
+
 
             return View();
         }
@@ -143,5 +146,37 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        public ActionResult ObtenerPasosIngredienteYEtapa(string ingrediente, int etapa)
+        {
+            Dietas dietas = new Dietas();
+
+            string pasos = dietas.ObtenerPasosPorIngredienteYEtapa(ingrediente, etapa);
+
+            var data = new
+            {
+                etapa = "Etapa" + etapa,
+                pasos = pasos
+            };
+
+            return Json(data);
+        }
+
+
+        [HttpGet]
+        public JsonResult ObtenerListaIngredientes()
+        {
+            Dietas dietas = new Dietas();
+            List<string> listaIngredientes = dietas.ObtenerListaDeIngredientes();
+
+            // Devuelve la lista de ingredientes como JSON
+            return Json(listaIngredientes, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
     }
 }
