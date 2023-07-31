@@ -166,6 +166,7 @@
     <Content Include="assets\img\DietasPage\vista-superior-tazon-comida-bebes.jpg" />
     <Content Include="assets\img\ExpedientePage\chupon.png" />
     <Content Include="assets\img\GestionarFamiliaPage\encargado.png" />
+    <Content Include="assets\img\HomePage\fondoNameM.jpg" />
     <Content Include="assets\img\HomePage\Imagen lego amarillo.jpg" />
     <Content Include="assets\img\HomePage\ImagenRojaLego.jpg" />
     <Content Include="assets\img\HomePage\ImagenVerdeLego.jpg" />
