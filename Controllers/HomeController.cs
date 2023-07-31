@@ -60,6 +60,20 @@ namespace BabyGuide.Controllers
         {
             Expediente expediente = new Expediente();
 
+            string nom = Request.Form["nom"]?.ToString();
+            string ape1 = Request.Form["ape1"]?.ToString();
+            string ape2 = Request.Form["ape2"]?.ToString();
+            string gen = Request.Form["gen"]?.ToString();
+            string nac = Request.Form["nac"]?.ToString();
+            int gest = Convert.ToInt32(Request.Form["gest"]?.ToString());
+            string alt = Request.Form["alt"]?.ToString();
+            string pes = Request.Form["pes"]?.ToString();
+
+            if (nom != null && ape1 != null && ape2 != null && nac != null && alt != null && pes != null)
+            {
+                expediente.Modificar(2, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes), (List<Alergias>)Session["Alergias"]);
+            }
+
             List<Alergias> alergias = expediente.VerAlergias();
             List<Vacunas> vacunas = expediente.VerVacunas();
             List<Medicamentos> medicamentos = expediente.VerMedicamentos();
@@ -68,22 +82,10 @@ namespace BabyGuide.Controllers
             {
                 Alergias = alergias,
                 AlergiasSelec = null,
-                Vacunas = expediente.VerVacunas(),
-                Medicamentos = expediente.VerMedicamentos(),
+                Vacunas = vacunas,
+                Medicamentos = medicamentos,
             };
-            string nom = Request.Form["nom"]?.ToString();
-            string ape1 = Request.Form["ape1"]?.ToString();
-            string ape2 = Request.Form["ape2"]?.ToString();
-            int gen =Convert.ToInt32( Request.Form["gen"]?.ToString());
-            string nac = Request.Form["nac"]?.ToString();
-            int gest = Convert.ToInt32(Request.Form["gest"]?.ToString());
-            string alt = Request.Form["alt"]?.ToString();
-            string pes = Request.Form["pes"]?.ToString();
-
-            if (nom != null && ape1 != null && ape2 != null && nac != null && alt != null && pes != null)
-            {
-
-            }
+            
 
             DataTable dt = expediente.CargarExpediente();
             DataRow fila = dt.Rows[0];

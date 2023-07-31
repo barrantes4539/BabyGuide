@@ -166,7 +166,7 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
-        public void Modificar(int id, string nom, string ape1, string ape2, string nac, int gen, int gest, double alt, double pes, List<Alergias> alergias)
+        public void Modificar(int id, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, double pes, List<Alergias> alergias)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -176,6 +176,7 @@ namespace BabyGuide.Models.BD
                 connection.Open();
                 SqlCommand command = new SqlCommand("spModificarExpediente", connection);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@nom", nom);
                 command.Parameters.AddWithValue("@ape1", ape1);
                 command.Parameters.AddWithValue("@ape2", ape2);
@@ -184,7 +185,11 @@ namespace BabyGuide.Models.BD
                 command.Parameters.AddWithValue("@gest", gest);
                 command.Parameters.AddWithValue("@alt", alt);
                 command.Parameters.AddWithValue("@pes", pes);
-                command.ExecuteNonQuery();
+                int idexp = (int)command.ExecuteScalar();
+
+                //SqlCommand command = new SqlCommand("spModificarExpediente", connection);
+                //command.CommandType = CommandType.StoredProcedure;
+                //command.Parameters.AddWithValue("@id", idexp);
             }
             catch (Exception ex)
             {

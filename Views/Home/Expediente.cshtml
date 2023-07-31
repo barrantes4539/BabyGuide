@@ -15,7 +15,7 @@
 </head>
 
 <div class="body">
-    <form action="/" method="post">
+    <form action="/Home/Expediente" method="post">
         <h1>Expediente de tu Bendición</h1>
         <div class="cuerpo">
             <img class="deco" src="../assets/img/ExpedientePage/chupon.png" alt="">
@@ -39,8 +39,8 @@
             <input type="text" id="pes" name="pes" class="input-item" placeholder="Peso (kg)" value="@ViewBag.peso" pattern="^\d+(\.\d{1})?$">
             <label for="gen" id="lblgen">Género</label>
             <select id="gen" name="gen">
-                <option value="1" @(ViewBag.gen.ToString() == "1" ? "selected" : "")>Masculino</option>
-                <option value="0" @(ViewBag.gen.ToString() == "0" ? "selected" : "")>Femenino</option>
+                <option value="True" @(ViewBag.gen.ToString() == "True" ? "selected" : "")>Masculino</option>
+                <option value="False" @(ViewBag.gen.ToString() == "False" ? "selected" : "")>Femenino</option>
             </select>
             <label for="gest" id="lblgest">Mes(es) de Gestación</label>
             <select id="gest" name="gest">
