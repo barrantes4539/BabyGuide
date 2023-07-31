@@ -5,6 +5,7 @@
 }
 <head>
     <link href="../assets/css/ModuloConfiguracion/AgregarDietas.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <h1>Nueva Dieta</h1>
 
@@ -14,18 +15,20 @@
             <label for="input" class="text">Nombre de la dieta</label>
             <input type="text" name="input" class="input">
         </div>
-        <section id="about" class="about">
-            <!-- Tab links -->
-
+    
+  
+            <!-- Select para elegir la etapa de la dieta -->
             <div class="tab">
-                <button class="tablinks" id="tab1">Primera etapa</button>
-                <button class="tablinks" id="tab2">Segunda etapa</button>
-                <button class="tablinks" id="tab3">Tercera etapa</button>
+                <select class="etapaSelect">
+                    <option value="1">Primera etapa</option>
+                    <option value="2">Segunda etapa</option>
+                    <option value="3">Tercera etapa</option>
+                </select>
             </div>
 
 
 
-        </section><!-- End About Us Section -->
+   
 <div class="coolinput">
     <label for="textarea" class="text">Pasos para realizar la dieta</label>
     <textarea name="textarea" class="textarea"></textarea>
@@ -34,6 +37,38 @@
     </form>
 </div>
 <script src="../assets/js/CreacionDietasEtapas.js"></script>
+
+<script>
+      $(document).ready(function () {
+        // Agregar un evento de clic al botón "Crear Dieta"
+        $(".crearDietaButton").click(function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+            // Obtener los valores del formulario
+            var nombreDieta = $(".input").val();
+            var pasosDieta = $(".textarea").val();
+            var etapaDieta = parseInt($(".etapaSelect").val()); // Obtener el valor de la etapa seleccionada desde el select
+
+            // Realizar la solicitud AJAX para insertar la dieta
+            $.ajax({
+                url: '@Url.Action("CrearDieta", "Config")',
+                type: "POST",
+                data: { ingrediente: nombreDieta, pasos: pasosDieta, anioDieta: etapaDieta },
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    console.log(data)
+                    // La dieta se insertó correctamente, puedes realizar alguna acción adicional si es necesario
+                    alert("Dieta creada exitosamente");
+                },
+                error: function (data) {
+                    alert("Error al insertar la dieta.");
+                }
+            });
+        });
+    });
+
+</script>
 
 
 

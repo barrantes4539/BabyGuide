@@ -118,3 +118,34 @@
 .tab button.active {
     background-color: rgb(50, 223, 189);
 }
+/* Estilo del contenedor del select */
+.tab {
+    margin-top: 10px; /* Espacio entre el input y el select */
+    position: relative; /* Posición relativa para agregar el indicador */
+}
+
+/* Estilo del select */
+.etapaSelect {
+    width: 100%; /* Ancho del select al 100% del contenedor */
+    padding: 10px; /* Espacio interno del select */
+    font-size: 16px; /* Tamaño de fuente */
+    border: 2px solid #ccc; /* Borde del select */
+    border-radius: 4px; /* Borde redondeado */
+    background-color: #f8f8f8; /* Color de fondo del select */
+    appearance: none; /* Elimina el estilo nativo del select en algunos navegadores */
+}
+
+    /* Estilo de las opciones del select */
+    .etapaSelect option {
+        font-size: 16px; /* Tamaño de fuente */
+    }
+
+/* Estilo del indicador de desplegable */
+.tab::after {
+    content: "\25BC"; /* Código Unicode para la flecha hacia abajo */
+    position: absolute;
+    top: 50%;
+    right: 5px; /* Ajusta el valor para separar más la flecha */
+    transform: translateY(-50%);
+    pointer-events: none; /* Evita que la flecha afecte la interacción del select */
+}
