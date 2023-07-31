@@ -71,11 +71,25 @@ namespace BabyGuide.Controllers
                 Vacunas = expediente.VerVacunas(),
                 Medicamentos = expediente.VerMedicamentos(),
             };
+            string nom = Request.Form["nom"]?.ToString();
+            string ape1 = Request.Form["ape1"]?.ToString();
+            string ape2 = Request.Form["ape2"]?.ToString();
+            int gen =Convert.ToInt32( Request.Form["gen"]?.ToString());
+            string nac = Request.Form["nac"]?.ToString();
+            int gest = Convert.ToInt32(Request.Form["gest"]?.ToString());
+            string alt = Request.Form["alt"]?.ToString();
+            string pes = Request.Form["pes"]?.ToString();
+
+            if (nom != null && ape1 != null && ape2 != null && nac != null && alt != null && pes != null)
+            {
+
+            }
 
             DataTable dt = expediente.CargarExpediente();
             DataRow fila = dt.Rows[0];
             ViewBag.nom = fila["Nombre"];
             ViewBag.ape1 = fila["Apellido1"];
+            ViewBag.ape2 = fila["Apellido2"];
             ViewBag.gen = fila["Genero"];
             ViewBag.nac = fila["FechaNacimiento"];
             ViewBag.gest = fila["FechaGestacion"];

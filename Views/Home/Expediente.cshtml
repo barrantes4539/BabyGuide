@@ -15,28 +15,50 @@
 </head>
 
 <div class="body">
-    <h1>Expediente de tu Bendición</h1>
-    <div class="cuerpo">
-        <img class="deco" src="../assets/img/ExpedientePage/chupon.png" alt="">
-        <div class="containerex">
-            <input type="text" class="input-item" placeholder="Nombre" value="@ViewBag.nom">
-            <input type="text" class="input-item" placeholder="Apellidos" value="@ViewBag.ape1">
-            <input type="date" class="input-item" value="@ViewBag.nac.ToString("yyyy-MM-dd")">
-            <select>
+    <form action="/" method="post">
+        <h1>Expediente de tu Bendición</h1>
+        <div class="cuerpo">
+            <img class="deco" src="../assets/img/ExpedientePage/chupon.png" alt="">
+            <div class="containerex">
+                <label for="nom">Nombre</label>
+                <input type="text" id="nom" name="nom" class="input-item" placeholder="Nombre" value="@ViewBag.nom" maxlength="30">
+                <label for="nac" id="lblnac">Fecha Nacimiento</label>
+                <input type="date" id="nac" name="nac" class="input-item" value="@ViewBag.nac.ToString("yyyy-MM-dd")">
+                <label for="ape1" id="lblape1">Primer Apellido</label>
+                <input type="text" id="ape1" name="ape1" class="input-item" placeholder="Apellidos" value="@ViewBag.ape1" maxlength="30">
+                <label for="ape2" id="lblape2">Segundo Apellido</label>
+                <input type="text" id="ape2" name="ape2" class="input-item" placeholder="Apellidos" value="@ViewBag.ape2" maxlength="30">
+
+            </div>
+            <button class="botongeneral">Guardar</button>
+        </div>
+        <div class="cuerpo2">
+            <label for="alt" id="lblalt">Altura (cm)</label>
+            <input type="tel" id="alt" name="alt" class="input-item" placeholder="Altura (cm)" value="@ViewBag.alt" pattern="^\d+(\.\d{1})?$">
+            <label for="pes" id="lblpes">Peso (kg)</label>
+            <input type="text" id="pes" name="pes" class="input-item" placeholder="Peso (kg)" value="@ViewBag.peso" pattern="^\d+(\.\d{1})?$">
+            <label for="gen" id="lblgen">Género</label>
+            <select id="gen" name="gen">
+                <option value="1" @(ViewBag.gen.ToString() == "1" ? "selected" : "")>Masculino</option>
+                <option value="0" @(ViewBag.gen.ToString() == "0" ? "selected" : "")>Femenino</option>
+            </select>
+            <label for="gest" id="lblgest">Mes(es) de Gestación</label>
+            <select id="gest" name="gest">
                 <option value="1" @(ViewBag.gest.ToString() == "1" ? "selected" : "")>1 mes</option>
                 <option value="2" @(ViewBag.gest.ToString() == "2" ? "selected" : "")>2 meses</option>
+                <option value="3" @(ViewBag.gest.ToString() == "3" ? "selected" : "")>3 meses</option>
+                <option value="4" @(ViewBag.gest.ToString() == "4" ? "selected" : "")>4 meses</option>
+                <option value="5" @(ViewBag.gest.ToString() == "5" ? "selected" : "")>5 meses</option>
+                <option value="6" @(ViewBag.gest.ToString() == "6" ? "selected" : "")>6 meses</option>
+                <option value="7" @(ViewBag.gest.ToString() == "7" ? "selected" : "")>7 meses</option>
+                <option value="8" @(ViewBag.gest.ToString() == "8" ? "selected" : "")>8 meses</option>
+                <option value="9" @(ViewBag.gest.ToString() == "9" ? "selected" : "")>9 meses</option>
+                <option value="10" @(ViewBag.gest.ToString() == "10" ? "selected" : "")>10 meses</option>
+                <option value="11" @(ViewBag.gest.ToString() == "11" ? "selected" : "")>11 meses</option>
+                <option value="12" @(ViewBag.gest.ToString() == "12" ? "selected" : "")>12 meses</option>
             </select>
         </div>
-        <button class="botongeneral">Guardar</button>
-    </div>
-    <div class="cuerpo2">
-        <input type="tel" class="input-item" placeholder="Altura         cm" value="@ViewBag.alt">
-        <input type="text" class="input-item" placeholder="Peso          kg" value="@ViewBag.peso">
-        <select>
-            <option value="1" @(ViewBag.gen.ToString() == "1" ? "selected" : "")>Masculino</option>
-            <option value="0" @(ViewBag.gen.ToString() == "0" ? "selected" : "")>Femenino</option>
-        </select>
-    </div>
+    </form>
     <div class="cuerpo3">
         <div class="tab">
             <button class="tablinks" onclick="openT(event, 'Alergias')" id="defaultOpen">Alergias</button>
