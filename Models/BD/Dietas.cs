@@ -62,6 +62,25 @@ namespace BabyGuide.Models.BD
             return listaIngredientes;
         }
 
+        public void CrearDieta(string ingrediente, string pasos, int anioDieta)
+        {
+            using (SqlConnection connection = new SqlConnection(Conexion.cn))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("sp_CreacionDieta", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ingrediente", ingrediente);
+                    command.Parameters.AddWithValue("@pasos", pasos);
+                    command.Parameters.AddWithValue("@añoxdieta", anioDieta);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
 
     }
 }

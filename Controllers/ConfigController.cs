@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BabyGuide.Models.BD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -38,6 +39,17 @@ namespace BabyGuide.Controllers
         public ActionResult CrearDietas()
         {
             return View();
+        }
+
+
+        // Método para insertar dieta utilizando el procedimiento almacenado
+        [HttpPost]
+        public ActionResult CrearDieta(string ingrediente, string pasos, int anioDieta)
+        {
+            Dietas dietas = new Dietas();
+            dietas.CrearDieta(ingrediente, pasos, anioDieta);
+
+            return Json(new { result = "success" });
         }
     }
 }
