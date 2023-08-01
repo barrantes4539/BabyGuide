@@ -166,6 +166,40 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
+        public void Modificar(int id, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, double pes, List<Alergias> alergias)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spModificarExpediente", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@nom", nom);
+                command.Parameters.AddWithValue("@ape1", ape1);
+                command.Parameters.AddWithValue("@ape2", ape2);
+                command.Parameters.AddWithValue("@nac", nac);
+                command.Parameters.AddWithValue("@gen", gen);
+                command.Parameters.AddWithValue("@gest", gest);
+                command.Parameters.AddWithValue("@alt", alt);
+                command.Parameters.AddWithValue("@pes", pes);
+                int idexp = (int)command.ExecuteScalar();
+
+                //SqlCommand command = new SqlCommand("spModificarExpediente", connection);
+                //command.CommandType = CommandType.StoredProcedure;
+                //command.Parameters.AddWithValue("@id", idexp);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
     
 }

@@ -102,9 +102,52 @@ button:hover {
   width: 30%;
 }
 .cuerpo2 select{
-  min-width: 92%;
+  min-width: 45%;
 }
 
+label{
+    position:absolute;
+    background-color: white;
+    margin-left: 2%;
+    margin-bottom: 5%;
+}
+#lblnac {
+    position: absolute;
+    background-color: white;
+    margin-left: 33%;
+    margin-bottom: 5%;
+}
+#lblape1 {
+    position: absolute;
+    background-color: white;
+    margin-left: 2%;
+    margin-top: 5.5%;
+}
+#lblape2 {
+    position: absolute;
+    background-color: white;
+    margin-left: 33%;
+    margin-top: 5.5%;
+}
+#lblpes {
+    position: absolute;
+    background-color: white;
+    margin-left: 46%;
+    margin-bottom: 5%;
+}
+#lblgen {
+    position: absolute;
+    background-color: white;
+    margin-left: 2%;
+    margin-top: 6%;
+}
+
+#lblgest {
+    position: absolute;
+    background-color: white;
+    margin-left: 46%;
+    margin-top: 5.5%;
+}
 .cuerpo3 {
   display: flex;
   flex-direction: row;
