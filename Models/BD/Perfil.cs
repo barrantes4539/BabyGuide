@@ -4,9 +4,19 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace BabyGuide.Models.BD
 {
+    public class Bebes
+    {
+        public int IdUsuario { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public bool Genero { get; set; }
+        public string FechaNacimiento { get; set; }
+    }
     public class Perfil
     {
         public void AgregarBebe(string nom, string ape1, string ape2, int gen, string nac, int gest, string claveBebe)

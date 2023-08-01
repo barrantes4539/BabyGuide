@@ -38,6 +38,9 @@
                     <form action="/Home/Perfil" method="post">
                         <span class="close" id="closeModal">&times;</span>
                         <h2>Registrar bebé</h2>
+                        <label for="idBebe">Identificación:</label>
+                        <input type="text" id="idBebe" name="id" class="input-item" placeholder="Ingrese la identificación del bebé">
+                        <button class="botongeneral" type="button" id="btnCargarDatos">Buscar Bebe</button>
                         <label for="nombreBebe">Nombre:</label>
                         <input type="text" id="nombreBebe" name="nom" class="input-item" placeholder="Ingrese el nombre del bebé">
                         <label for="apellido1Bebe">Apellido 1:</label>
@@ -46,11 +49,11 @@
                         <input type="text" id="apellido2Bebe" name="ape2" class="input-item" placeholder="Ingrese el segundo apellido del bebé">
                         <label for="genero">Género:</label>
                         <select id="genero" class="input-item" name="gen">
-                            <option value="1">Masculino</option>
-                            <option value="0">Femenino</option>
+                            <option value="True">Masculino</option>
+                            <option value="False">Femenino</option>
                         </select>
-                        <label for="edadBebe">Fecha de Nacimiento (Opcional):</label>
-                        <input type="date" id="edadBebe" name="nac" class="input-item">
+                        <label for="FechaNacBebe">Fecha de Nacimiento (Opcional):</label>
+                        <input type="date" id="FechaNacBebe" name="nac" class="input-item">
                         <label for="gestacion">Fecha de Gestación:</label>
                         <select id="gestacion" name="gest" class="input-item">
                             <option value="1">1 mes</option>
@@ -84,6 +87,9 @@
 
     </div>
 </div>
+
+<!--script src="~/assets/js/Perfil.js"></!--script-->
+
 <script>
     // Mostrar el modal de registro del bebé al hacer clic en el botón "Registrar bebé"
     document.getElementById('registrarBebeBtn').addEventListener('click', function () {
@@ -95,4 +101,54 @@
         document.getElementById('registroBebeModal').style.display = 'none';
     });
 
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Asociar el botón al evento click y llamar a la función obtenerDetalleBebe con el valor del campo de bebé
+        $('#btnCargarDatos').on('click', function () {
+            var idBebe = $('#idBebe').val();
+            obtenerDetalleBebe(idBebe);
+        });
+    });
+
+    function obtenerDetalleBebe(idBebe) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DetalleBebe", "Home")',
+            data: { idBebe: idBebe },
+            success: function (data) {
+                debugger;
+                console.log(data);
+                mostrarDetalleBebe(data);
+            },
+            error: function () {
+                alert('Datos del bebe no encontrados.');
+            }
+        });
+    }
+
+    function mostrarDetalleBebe(data) {
+        if (data && data.length > 0) {
+            var usuario = data[0];
+            $('#idUsuarioInput').val(usuario.IdUsuario);
+            $('#nombreBebe').val(usuario.Nombre);
+            $('#apellido1Bebe').val(usuario.Apellido1);
+            $('#apellido2Bebe').val(usuario.Apellido2);
+            $('#genero').val(usuario.Genero);
+            $('#FechaNacBebe').val(usuario.FechaNacimiento);
+        } else {
+            limpiarCampos();
+        }
+    }
+
+    function limpiarCampos() {
+        $('#idBebe').val('');
+        $('#nombreBebe').val('');
+        $('#apellido1Bebe').val('');
+        $('#apellido2Bebe').val('');
+        $('#generoInput').val('');
+        $('#FechaNacBebe').val('');
+    };
 </script>
