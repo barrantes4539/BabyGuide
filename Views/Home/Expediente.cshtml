@@ -85,7 +85,7 @@
                 <ul class="item-list" id="selec">
                     @foreach (var i in Model.Alergias)
                     {
-                        
+
                     }
 
                 </ul>
@@ -314,6 +314,8 @@
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
     $(document).ready(function () {
         // Manejar el clic en el botón de agregar
@@ -342,7 +344,8 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#selec").append("<li>" + data.name + "<button class='delete-button' data-id='" + data.id +"'>-</button></li>");
+                        $("#selec").append("<li>" + data.name + "<button class='delete-button' data-id='" + data.id + "'>-</button></li>");
+                        swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
                     }
                 },
                 error: function () {

@@ -6,6 +6,8 @@
 <head>
     <link href="../assets/css/ModuloConfiguracion/AgregarDietas.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 <h1>Nueva Dieta</h1>
 
@@ -15,29 +17,30 @@
             <label for="input" class="text">Nombre de la dieta</label>
             <input type="text" name="input" class="input">
         </div>
-    
-  
-            <!-- Select para elegir la etapa de la dieta -->
-            <div class="tab">
-                <select class="etapaSelect">
-                    <option value="1">Primera etapa</option>
-                    <option value="2">Segunda etapa</option>
-                    <option value="3">Tercera etapa</option>
-                </select>
-            </div>
+
+
+        <!-- Select para elegir la etapa de la dieta -->
+        <div class="tab">
+            <select class="etapaSelect">
+                <option value="1">Primera etapa</option>
+                <option value="2">Segunda etapa</option>
+                <option value="3">Tercera etapa</option>
+            </select>
+        </div>
 
 
 
-   
-<div class="coolinput">
-    <label for="textarea" class="text">Pasos para realizar la dieta</label>
-    <textarea name="textarea" class="textarea"></textarea>
-</div>
-<button type="submit" class="crearDietaButton">Crear Dieta</button>
+
+        <div class="coolinput">
+            <label for="textarea" class="text">Pasos para realizar la dieta</label>
+            <textarea name="textarea" class="textarea"></textarea>
+        </div>
+        <button type="submit" class="crearDietaButton">Crear Dieta</button>
     </form>
 </div>
 <script src="../assets/js/CreacionDietasEtapas.js"></script>
-
+<!-- Include SweetAlert library -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
       $(document).ready(function () {
         // Agregar un evento de clic al botón "Crear Dieta"
@@ -59,7 +62,7 @@
                     debugger;
                     console.log(data)
                     // La dieta se insertó correctamente, puedes realizar alguna acción adicional si es necesario
-                    alert("Dieta creada exitosamente");
+                    swal("Dieta creada exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
                 },
                 error: function (data) {
                     alert("Error al insertar la dieta.");
