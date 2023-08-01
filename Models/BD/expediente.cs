@@ -75,7 +75,7 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
-        public List<Alergias> VerAlergiasBebe(int idexp)
+        public List<AlergiasBebe> VerAlergiasBebe(int idexp)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -91,14 +91,15 @@ namespace BabyGuide.Models.BD
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
 
-                List<Alergias> List = new List<Alergias>();
+                List<AlergiasBebe> List = new List<AlergiasBebe>();
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    Alergias Data = new Alergias
+                    AlergiasBebe Data = new AlergiasBebe
                     {
                         name = row["Nombre"].ToString(),
                         id = row["idAlergia"].ToString(),
+                        fecha = row["FechaAlergia"].ToString(),
                         // ...
                     };
 
@@ -108,7 +109,7 @@ namespace BabyGuide.Models.BD
             }
             catch (Exception)
             {
-                return new List<Alergias>();
+                return new List<AlergiasBebe>();
             }
             finally
             {
@@ -149,6 +150,47 @@ namespace BabyGuide.Models.BD
             catch (Exception)
             {
                 return new List<Vacunas>();
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public List<VacunasBebe> VerVacunasBebe(int idexp)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerVacunasBebe", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", idexp);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<VacunasBebe> List = new List<VacunasBebe>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    VacunasBebe Data = new VacunasBebe
+                    {
+                        name = row["Nombre"].ToString(),
+                        id = row["idVacuna"].ToString(),
+                        fecha = row["FechaVacuna"].ToString(),
+                        // ...
+                    };
+
+                    List.Add(Data);
+                }
+                return List;
+            }
+            catch (Exception)
+            {
+                return new List<VacunasBebe>();
             }
             finally
             {
@@ -232,7 +274,8 @@ namespace BabyGuide.Models.BD
             }
         }
         public void Modificar(int id, int idexp, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, 
-            double pes, List<Alergias> alergiasagregar, List<Alergias> alergiaseliminar)
+            double pes, List<AlergiasBebe> alergiasagregar, List<Alergias> alergiaseliminar,
+            List<VacunasBebe> vacunasagregar, List<Vacunas> vacunaseliminar)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -261,6 +304,7 @@ namespace BabyGuide.Models.BD
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@idexp", idexp);
                         command.Parameters.AddWithValue("@idaler", elemento.id);
+                        command.Parameters.AddWithValue("@fecha", elemento.fecha);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -275,7 +319,30 @@ namespace BabyGuide.Models.BD
                         command.ExecuteNonQuery();
                     }
                 }
-                
+                if (vacunasagregar != null)
+                {
+                    foreach (var elemento in vacunasagregar)
+                    {
+                        command = new SqlCommand("spIngresarVacunas", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@idvac", elemento.id);
+                        command.Parameters.AddWithValue("@fecha", elemento.fecha);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                if (vacunaseliminar != null)
+                {
+                    foreach (var elemento in vacunaseliminar)
+                    {
+                        command = new SqlCommand("spEliminarVacunas", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@idvac", elemento.id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
             }
             catch (Exception ex)
             {
