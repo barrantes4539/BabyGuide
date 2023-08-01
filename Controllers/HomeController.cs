@@ -1,11 +1,13 @@
 ﻿using BabyGuide.Models;
 using BabyGuide.Models.BD;
 using BabyGuide.Models.Listas;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web.DynamicData;
@@ -89,7 +91,7 @@ namespace BabyGuide.Controllers
                 Vacunas = vacunas,
                 Medicamentos = medicamentos,
             };
-            
+
 
             DataTable dt = expediente.CargarExpediente();
             DataRow fila = dt.Rows[0];
@@ -217,13 +219,40 @@ namespace BabyGuide.Controllers
 
         //Indicador
         [HttpGet]
- 
+
         public int ObtenerTotalUsuarios()
         {
             Usuarios usuarios = new Usuarios();
             int totalUsuarios = usuarios.TotalUsuarios();
 
             return totalUsuarios;
+        }
+
+        [HttpPost]
+        public ActionResult DetalleBebe(int idBebe)
+        {
+            //var apiUrl = $"https://tiusr2pl.cuc-carrera-ti.ac.cr/APIRegistroNacional/usuarios.asmx?WSDL/{idBebe}";
+            //var response = await httpClient.GetAsync(apiUrl);
+
+            APIRegistroNacional.Usuarios1SoapClient DatosBbebe = new APIRegistroNacional.Usuarios1SoapClient();
+            string jsonResult = DatosBbebe.GetUsuarios(idBebe);
+
+            var usuarios = JsonConvert.DeserializeObject<List<Bebes>>(jsonResult);
+
+                foreach (var usuario in usuarios)
+            {
+            DateTime fechaDateTime = DateTime.Parse(usuario.FechaNacimiento);
+
+            // Formatear la fecha como una cadena con el formato deseado ("dd/MM/yyyy")
+            string fechaFormateada = fechaDateTime.ToString("MM/dd/yyyy");
+
+            // Luego, puedes asignar la fecha formateada de vuelta a la propiedad "fecha" en tu objeto "Data"
+            usuario.FechaNacimiento = fechaFormateada;
+            }
+
+
+            return Json(usuarios);
+
         }
 
     }
