@@ -97,6 +97,38 @@ namespace BabyGuide.Models.BD
             return idUsuario;
         }
 
+        //Indicador 
+        public int TotalUsuarios()
+        {
+            int totalUsuarios = 0; // Inicializar a 0 como valor predeterminado.
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(idUsuario) AS TotalUsuarios FROM [BabyGuide].[Usuarios]", oConexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        totalUsuarios = Convert.ToInt32(reader["TotalUsuarios"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine(ex.Message);
+            }
+
+            return totalUsuarios;
+        }
+
 
     }
 }
