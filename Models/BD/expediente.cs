@@ -102,7 +102,13 @@ namespace BabyGuide.Models.BD
                         fecha = row["FechaAlergia"].ToString(),
                         // ...
                     };
+                    DateTime fechaDateTime = DateTime.Parse(Data.fecha);
 
+                    // Formatear la fecha como una cadena con el formato deseado ("dd/MM/yyyy")
+                    string fechaFormateada = fechaDateTime.ToString("dd/MM/yyyy");
+
+                    // Luego, puedes asignar la fecha formateada de vuelta a la propiedad "fecha" en tu objeto "Data"
+                    Data.fecha = fechaFormateada;
                     List.Add(Data);
                 }
                 return List;
@@ -183,7 +189,13 @@ namespace BabyGuide.Models.BD
                         fecha = row["FechaVacuna"].ToString(),
                         // ...
                     };
+                    DateTime fechaDateTime = DateTime.Parse(Data.fecha);
 
+                    // Formatear la fecha como una cadena con el formato deseado ("dd/MM/yyyy")
+                    string fechaFormateada = fechaDateTime.ToString("dd/MM/yyyy");
+
+                    // Luego, puedes asignar la fecha formateada de vuelta a la propiedad "fecha" en tu objeto "Data"
+                    Data.fecha = fechaFormateada;
                     List.Add(Data);
                 }
                 return List;
@@ -191,6 +203,54 @@ namespace BabyGuide.Models.BD
             catch (Exception)
             {
                 return new List<VacunasBebe>();
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public List<Diagnosticos> VerDiagnosticosBebe(int idexp)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerDiagnosticosBebe", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", idexp);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<Diagnosticos> List = new List<Diagnosticos>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+
+                    Diagnosticos Data = new Diagnosticos
+                    {
+                        name = row["Padecimientos"].ToString(),
+                        id = row["idDiagnostico"].ToString(),
+                        fecha = row["Fecha"].ToString(),
+                        // ...
+                    };
+                    DateTime fechaDateTime = DateTime.Parse(Data.fecha);
+
+                    // Formatear la fecha como una cadena con el formato deseado ("dd/MM/yyyy")
+                    string fechaFormateada = fechaDateTime.ToString("dd/MM/yyyy");
+
+                    // Luego, puedes asignar la fecha formateada de vuelta a la propiedad "fecha" en tu objeto "Data"
+                    Data.fecha = fechaFormateada;
+                    List.Add(Data);
+                }
+                return List;
+            }
+            catch (Exception)
+            {
+                return new List<Diagnosticos>();
             }
             finally
             {
@@ -208,6 +268,46 @@ namespace BabyGuide.Models.BD
                 SqlCommand command = new SqlCommand("spVerMedicamentos", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 //command.Parameters.AddWithValue("@ced", ced);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<Medicamentos> List = new List<Medicamentos>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Medicamentos Data = new Medicamentos
+                    {
+                        name = row["Nombre"].ToString(),
+                        id = row["idMedicamento"].ToString(),
+                        // ...
+                    };
+
+                    List.Add(Data);
+                }
+                return List;
+            }
+            catch (Exception)
+            {
+                return new List<Medicamentos>();
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public List<Medicamentos> VerMedicamentosBebe(int idexp)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerMedicamentosBebe", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", idexp);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
 
                 DataTable dataTable = new DataTable();
@@ -275,7 +375,8 @@ namespace BabyGuide.Models.BD
         }
         public void Modificar(int id, int idexp, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, 
             double pes, List<AlergiasBebe> alergiasagregar, List<Alergias> alergiaseliminar,
-            List<VacunasBebe> vacunasagregar, List<Vacunas> vacunaseliminar)
+            List<VacunasBebe> vacunasagregar, List<Vacunas> vacunaseliminar,
+            List<Diagnosticos> diagnosticosagregar, List<Diagnosticos> diagnosticoseliminar)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -342,7 +443,29 @@ namespace BabyGuide.Models.BD
                         command.ExecuteNonQuery();
                     }
                 }
-
+                if (diagnosticosagregar != null)
+                {
+                    foreach (var elemento in diagnosticosagregar)
+                    {
+                        command = new SqlCommand("spIngresarDiagnosticos", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@pade", elemento.name);
+                        command.Parameters.AddWithValue("@fecha", elemento.fecha);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                if (diagnosticoseliminar != null)
+                {
+                    foreach (var elemento in diagnosticoseliminar)
+                    {
+                        command = new SqlCommand("spEliminarDiagnosticos", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@pade", elemento.name);
+                        command.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {

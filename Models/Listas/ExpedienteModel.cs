@@ -12,6 +12,8 @@ namespace BabyGuide.Models.Listas
         public List<Vacunas> Vacunas { get; set; }
         public List<VacunasBebe> VacunasBebe { get; set; }
         public List<Medicamentos> Medicamentos { get; set; }
+        public List<Medicamentos> MedicamentosBebe { get; set; }
+        public List<Diagnosticos> Diagnosticos { get; set; }
 
     }
 }

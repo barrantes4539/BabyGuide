@@ -79,11 +79,14 @@ namespace BabyGuide.Controllers
             {
                 expediente.Modificar(2, idexp, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes),
                     (List<AlergiasBebe>)Session["AlergiasAgregar"], (List<Alergias>)Session["AlergiasEliminar"],
-                    (List<VacunasBebe>)Session["VacunasAgregar"], (List<Vacunas>)Session["VacunasEliminar"]);
+                    (List<VacunasBebe>)Session["VacunasAgregar"], (List<Vacunas>)Session["VacunasEliminar"],
+                    (List<Diagnosticos>)Session["DiagnosticosAgregar"], (List<Diagnosticos>)Session["DiagnosticosEliminar"]);
                 Session["AlergiasAgregar"] = null;
                 Session["AlergiasEliminar"] = null;
                 Session["VacunasAgregar"] = null;
                 Session["VacunasEliminar"] = null;
+                Session["DiagnosticosAgregar"] = null;
+                Session["DiagnosticosEliminar"] = null;
             }
 
             var viewModel = new ExpedienteModel
@@ -92,7 +95,9 @@ namespace BabyGuide.Controllers
                 AlergiasBebe = expediente.VerAlergiasBebe(idexp),
                 Vacunas = expediente.VerVacunas(),
                 VacunasBebe = expediente.VerVacunasBebe(idexp),
+                Diagnosticos = expediente.VerDiagnosticosBebe(idexp),
                 Medicamentos = expediente.VerMedicamentos(),
+                MedicamentosBebe = expediente.VerMedicamentosBebe(idexp),
             };
 
 
@@ -208,6 +213,57 @@ namespace BabyGuide.Controllers
             {
                 // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
                 ((List<Vacunas>)Session["VacunasEliminar"]).Add(elemento);
+            }
+
+
+            // Devolver el resultado.
+            return Json(new { success = true });
+        }
+        [HttpPost]
+        public ActionResult AgregarDiagnostico(string nombre, string fecha)
+        {
+            // Aquí, simplemente creas un nuevo objeto ElementoModel con los valores recibidos
+            var elemento = new Diagnosticos
+            {
+                name = nombre,
+                fecha = fecha
+            };
+
+            if (Session["DiagnosticosAgregar"] == null)
+            {
+                // Si la sesión no tiene una lista de alergias, creamos una nueva lista y la asignamos a la sesión
+                List<Diagnosticos> alergiasLista = new List<Diagnosticos>();
+                alergiasLista.Add(elemento); // Agregamos el elemento a la lista
+                Session["DiagnosticosAgregar"] = alergiasLista;
+            }
+            else
+            {
+                // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
+                ((List<Diagnosticos>)Session["DiagnosticosAgregar"]).Add(elemento);
+            }
+
+            return Json(elemento);
+        }
+        [HttpPost]
+        public ActionResult EliminarDiagnostico(string nombre)
+        {
+            var elemento = new Diagnosticos
+            {
+                fecha = "",
+                name = nombre
+            };
+
+            if (Session["DiagnosticosEliminar"] == null)
+            {
+                // Si la sesión no tiene una lista de alergias, creamos una nueva lista y la asignamos a la sesión
+                List<Diagnosticos> alergiasLista = new List<Diagnosticos>();
+                alergiasLista.Add(elemento); // Agregamos el elemento a la lista
+                Session["DiagnosticosEliminar"] = alergiasLista;
+            }
+            else
+            {
+                // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
+                ((List<Diagnosticos>)Session["DiagnosticosEliminar"]).Add(elemento);
             }
 
 
