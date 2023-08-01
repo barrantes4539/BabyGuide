@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Net;
 using System.Web.Mvc;
 
 namespace BabyGuide.Models.BD
@@ -128,6 +130,96 @@ namespace BabyGuide.Models.BD
 
             return totalUsuarios;
         }
+        public string CodigoVerificacionLogin()
+        {
+            string clave = Guid.NewGuid().ToString("N").Substring(0, 6);
+            return clave;
+        }
+
+        public bool InsertarCodigoVerificacion(string correoUsuario, string codigoVerificacion, out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE BabyGuide.Usuarios SET CodigoVer = @codigoVerificacion WHERE CorreoE = @correoUsuario", oConexion);
+                    cmd.Parameters.AddWithValue("@codigoVerificacion", codigoVerificacion);
+                    cmd.Parameters.AddWithValue("@correoUsuario", correoUsuario);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    resultado = cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                mensaje = ex.Message;
+            }
+
+            return resultado;
+        }
+
+        public string CodigoVerificacion(string correoUsuario)
+        {
+            string codigoVerificacion = null;
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT CodigoVer FROM BabyGuide.Usuarios WHERE CorreoE = @correoUsuario", oConexion);
+                    cmd.Parameters.AddWithValue("@correoUsuario", correoUsuario);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        codigoVerificacion = reader["CodigoVer"].ToString();
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+            }
+
+            return codigoVerificacion;
+        }
+        public bool EliminarCodigo(string correoCliente)
+        {
+            bool resultado = false;
+
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE BabyGuide.Usuarios SET CodigoVer = NULL WHERE CorreoE = @CorreoUs", oConexion);
+                    cmd.Parameters.AddWithValue("@CorreoUs", correoCliente);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    resultado = cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+
+            }
+
+            return resultado;
+        }
+
+
 
 
     }
