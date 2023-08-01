@@ -36,9 +36,10 @@ namespace BabyGuide.Controllers
         public ActionResult Preguntas()
         {
 
-
             return View();
         }
+
+
         //[HttpPost]
         //public async Task<ActionResult> Resp(string inputText)
         //{

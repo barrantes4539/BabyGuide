@@ -80,6 +80,49 @@ namespace BabyGuide.Models.BD
             }
         }
 
+        public int idUsuarioLogueado(string correo)
+        {
+            int idUsuario = 0;
+
+            try
+            {
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
+                {
+                    oconexion.Open();
+
+                    // Utilizar una consulta parametrizada
+                    string consulta = "SELECT idUsuario FROM BabyGuide.Usuarios WHERE CorreoE = @CorreoE";
+                    SqlCommand ocmdContador = new SqlCommand(consulta, oconexion);
+
+                    // Agregar el parámetro al comando
+                    ocmdContador.Parameters.AddWithValue("@CorreoE", correo);
+
+                    // Ejecutar la consulta y obtener el resultado
+                    object resultado = ocmdContador.ExecuteScalar();
+
+                    // Verificar si el resultado es válido y asignarlo a la variable idUsuario
+                    if (resultado != null && int.TryParse(resultado.ToString(), out idUsuario))
+                    {
+                        // El valor se pudo convertir a un entero correctamente.
+                        // idUsuario ahora contiene el resultado de la consulta.
+                    }
+                    else
+                    {
+                        // No se encontró un usuario con el correo especificado.
+                        // Aquí puedes agregar la lógica necesaria en caso de que el correo no exista en la base de datos.
+                        idUsuario = 0; // Asignar 0 como valor por defecto si no se encontró el usuario.
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones aquí, si es necesario.
+                // Puedes registrar o mostrar un mensaje de error según tus necesidades.
+            }
+
+            return idUsuario;
+        }
+
 
 
     }
