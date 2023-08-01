@@ -22,23 +22,27 @@
 </head>
 
 <body>
-    <form class="form">
+    <form class="form" method="post" action="@Url.Action("Registro", "Acceso")">
         <p class="title">Registro </p>
         <p class="message">Regístrese y obtenga total acceso a las funcionalidades de la aplicación.</p>
         <div class="flex">
             <label>
-                <input required="" placeholder="" type="text" class="input">
+                <input required="" placeholder="" type="text" class="input" name="nombre">
                 <span>Nombre</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input">
-                <span>Apellidos</span>
+                <input required="" placeholder="" type="text" class="input" name="apellido1">
+                <span>Primer apellido</span>
+            </label>
+            <label>
+                <input required="" placeholder="" type="text" class="input" name="apellido2">
+                <span>Segundo apellido</span>
             </label>
         </div>
 
         <label>
-            <input required="" placeholder="" type="email" class="input">
+            <input required="" placeholder="" type="email" class="input" name="correoE">
             <span>Correo</span>
         </label>
         <!-- Div de regulaciones de contraseña -->
@@ -72,7 +76,7 @@
             </div>
         </div>
         <label>
-            <input required="" placeholder="" type="password" class="input">
+            <input required="" placeholder="" type="password" name="password" class="input">
             <span>Clave</span>
         </label>
         <label>
@@ -81,6 +85,15 @@
         </label>
         <button class="submit">Registrarme</button>
         <p class="loginIS">¿Ya tienes una cuenta? <a href="@Url.Action("Login", "Acceso")">Inicia Sesión</a> </p>
+
+        @{
+            if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.Error
+                </div>
+            }
+        }
     </form>
 
     <script src="../assets/js/main.js"></script>
