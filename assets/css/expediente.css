@@ -213,9 +213,20 @@ label{
     border: none;
 }
 
+#diagbebe .delete-button {
+    margin-left: 150px;
+    border: none;
+}
+#medibebe .delete-button {
+    margin-left: 200px;
+    border: none;
+}
+
 .delete-button {
     margin-left: 70%;
     border: none;
+    background-color: white;
+}
 }
 
 

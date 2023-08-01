@@ -376,7 +376,8 @@ namespace BabyGuide.Models.BD
         public void Modificar(int id, int idexp, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, 
             double pes, List<AlergiasBebe> alergiasagregar, List<Alergias> alergiaseliminar,
             List<VacunasBebe> vacunasagregar, List<Vacunas> vacunaseliminar,
-            List<Diagnosticos> diagnosticosagregar, List<Diagnosticos> diagnosticoseliminar)
+            List<Diagnosticos> diagnosticosagregar, List<Diagnosticos> diagnosticoseliminar,
+            List<Medicamentos> medicacionagregar, List<Medicamentos> medicacioneliminar)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -463,6 +464,28 @@ namespace BabyGuide.Models.BD
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@idexp", idexp);
                         command.Parameters.AddWithValue("@pade", elemento.name);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                if (medicacionagregar != null)
+                {
+                    foreach (var elemento in medicacionagregar)
+                    {
+                        command = new SqlCommand("spIngresarMedicamentos", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@idmedi", elemento.id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                if (medicacioneliminar != null)
+                {
+                    foreach (var elemento in medicacioneliminar)
+                    {
+                        command = new SqlCommand("spEliminarMedicamentos", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@idmedi", elemento.id);
                         command.ExecuteNonQuery();
                     }
                 }

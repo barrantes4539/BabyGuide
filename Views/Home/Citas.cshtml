@@ -10,34 +10,69 @@
 </head>
 <div class="body">
     <h1>Calendarización de Citas</h1>
-    <div class="main">
-        <div class="submain">
-            <div class="contenedor1">
-                <input type="text" class="input-item" placeholder="Escribir Título">
-                <input type="text" class="input-item" placeholder="Escribir Descripción" id="desc">
+    <form action="/Home/Citas" method="post">
+        <div class="main">
+
+            <div class="submain">
+                <div class="contenedor1">
+                    <input type="text" class="input-item" placeholder="Escribir Título" name="titu" maxlength="30">
+                    <input type="text" class="input-item" placeholder="Escribir Descripción" id="desc" name="desc" maxlength="50">
+                </div>
+                <div class="contenedor2">
+                    <input type="date" class="input-item" name="date">
+                    <input type="time" class="input-item" name="time">
+                </div>
             </div>
-            <div class="contenedor2">
-                <input type="date" class="input-item">
-                <input type="time" class="input-item">
+            <div class="submain2">
+                <img src="../assets/img/CitasPage/agenda.png" alt="" class="deco">
+                <button class="botongeneral" type="submit">Agregar Cita</button>
             </div>
         </div>
-        <div class="submain2">
-            <img src="../assets/img/CitasPage/agenda.png" alt="" class="deco">
-            <button class="botongeneral">Agregar Cita</button>
-        </div>
-    </div>
+    </form>
+
     <div class="main2">
-        <div class="cita">
-            <div class="citainfo">
-                <label for="">Titulo</label>
-                <label for="">Descripción</label>
+
+        @foreach (var i in Model)
+        {
+            <div class="cita">
+                <div class="citainfo">
+                    <label for="">@i.titulo</label>
+                    <label for="">@i.descripcion</label>
+                </div>
+                <div class="citainfo2">
+                    <label for="">@i.fecha</label>
+                    <img src="../assets/img/CitasPage/avion.png" alt="">
+                </div>
+                <button class="delete-button" data-id="@i.id"><img src="../assets/img/CitasPage/delete.png" alt=""></button>
             </div>
-            <div class="citainfo2">
-                <label for="">20/06/2023</label>
-                <label for="">15:00</label>
-                <img src="../assets/img/CitasPage/avion.png" alt="">
-            </div>
-            <a href="" class="delete-button"><img src="../assets/img/CitasPage/delete.png" alt=""></a>
-        </div>
+        }
+
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Manejar el clic en el botón de agregar
+        $(".cita").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+
+            eliminarElemento(itemId);
+        });
+        
+        function eliminarElemento(itemId) {
+            // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
+            $.ajax({
+                url: '@Url.Action("EliminarCita", "Home")',
+                type: 'POST',
+                data: { id: itemId}, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+                    $(".main2").find("[data-id='" + itemId + "']").parent().remove();
+                },
+                error: function () {
+                    alert("Error al eliminar el elemento.");
+                }
+            });
+        }
+    });
+</script>

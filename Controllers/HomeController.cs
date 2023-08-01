@@ -80,13 +80,16 @@ namespace BabyGuide.Controllers
                 expediente.Modificar(2, idexp, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes),
                     (List<AlergiasBebe>)Session["AlergiasAgregar"], (List<Alergias>)Session["AlergiasEliminar"],
                     (List<VacunasBebe>)Session["VacunasAgregar"], (List<Vacunas>)Session["VacunasEliminar"],
-                    (List<Diagnosticos>)Session["DiagnosticosAgregar"], (List<Diagnosticos>)Session["DiagnosticosEliminar"]);
+                    (List<Diagnosticos>)Session["DiagnosticosAgregar"], (List<Diagnosticos>)Session["DiagnosticosEliminar"],
+                    (List<Medicamentos>)Session["MedicacionAgregar"], (List<Medicamentos>)Session["MedicacionEliminar"]);
                 Session["AlergiasAgregar"] = null;
                 Session["AlergiasEliminar"] = null;
                 Session["VacunasAgregar"] = null;
                 Session["VacunasEliminar"] = null;
                 Session["DiagnosticosAgregar"] = null;
                 Session["DiagnosticosEliminar"] = null;
+                Session["MedicacionAgregar"] = null;
+                Session["MedicacionEliminar"] = null;
             }
 
             var viewModel = new ExpedienteModel
@@ -270,10 +273,90 @@ namespace BabyGuide.Controllers
             // Devolver el resultado.
             return Json(new { success = true });
         }
+        [HttpPost]
+        public ActionResult AgregarMedicacion(string id, string nombre)
+        {
+            // Aquí, simplemente creas un nuevo objeto ElementoModel con los valores recibidos
+            var elemento = new Medicamentos
+            {
+                id = id,
+                name = nombre,
+            };
+
+            if (Session["MedicacionAgregar"] == null)
+            {
+                // Si la sesión no tiene una lista de alergias, creamos una nueva lista y la asignamos a la sesión
+                List<Medicamentos> alergiasLista = new List<Medicamentos>();
+                alergiasLista.Add(elemento); // Agregamos el elemento a la lista
+                Session["MedicacionAgregar"] = alergiasLista;
+            }
+            else
+            {
+                // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
+                ((List<Medicamentos>)Session["MedicacionAgregar"]).Add(elemento);
+            }
+
+            return Json(elemento);
+        }
+        [HttpPost]
+        public ActionResult EliminarMedicacion(string id, string nombre)
+        {
+            var elemento = new Medicamentos
+            {
+                id = id,
+                name = nombre
+            };
+
+            if (Session["MedicacionEliminar"] == null)
+            {
+                // Si la sesión no tiene una lista de alergias, creamos una nueva lista y la asignamos a la sesión
+                List<Medicamentos> alergiasLista = new List<Medicamentos>();
+                alergiasLista.Add(elemento); // Agregamos el elemento a la lista
+                Session["MedicacionEliminar"] = alergiasLista;
+            }
+            else
+            {
+                // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
+                ((List<Medicamentos>)Session["MedicacionEliminar"]).Add(elemento);
+            }
+
+
+            // Devolver el resultado.
+            return Json(new { success = true });
+        }
         #endregion
         public ActionResult Citas()
         {
-            return View();
+            Citas citas = new Citas();
+
+            int idexp = citas.idExpediente(2);
+
+            string titu = Request.Form["titu"]?.ToString();
+            string desc = Request.Form["desc"]?.ToString();
+            string fecha = Request.Form["date"]?.ToString();
+            string hora = Request.Form["time"]?.ToString();
+
+
+            if (titu != null && desc != null && fecha != null && hora != null)
+            {
+                citas.CrearCita(idexp, titu, desc, fecha+" "+hora);
+            }
+
+            List<CitasM> lcitas = citas.VerCitasBebe(idexp);
+
+            return View(lcitas);
+        }
+        [HttpPost]
+        public ActionResult EliminarCita(string id)
+        {
+
+            Citas citas = new Citas();
+
+            int idexp = citas.idExpediente(2);
+
+            citas.EliminarCita(idexp, Convert.ToInt32(id));
+
+            return Json(new { success = true });
         }
         public ActionResult Alertas()
         {

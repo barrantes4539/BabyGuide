@@ -90,7 +90,9 @@
                         <li>
                             <span>@i.name</span>
                             <span>@i.fecha</span>
-                            <button class="delete-button" data-id="@i.id" data-name="@i.name">-</button>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
                         </li>
                     }
 
@@ -107,7 +109,7 @@
                     {
                         <li>
                             <span>@i.name</span>
-                            <button class="delete-button" data-id="@i.id" data-name="@i.name">-</button>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">+</button>
                         </li>
                     }
                 </ul>
@@ -119,7 +121,9 @@
                         <li>
                             <span>@i.name</span>
                             <span>@i.fecha</span>
-                            <button class="delete-button" data-id="@i.id" data-name="@i.name">-</button>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
                         </li>
                     }
                 </ul>
@@ -128,7 +132,7 @@
 
         <div id="Diagnosticos" class="tabcontent">
             <div class="item-list-container" id="diag">
-                <input type="text" class="input-item" placeholder="Padecimiento" id="txtpade">
+                <input type="text" class="input-item" placeholder="Padecimiento" id="txtpade" maxlength="30">
                 <input type="date" class="input-item" placeholder="Descripción" id="txtfecha">
                 <button class="botongeneral" id="save">Guardar</button>
             </div>
@@ -139,7 +143,9 @@
                         <li>
                             <span>@i.name</span>
                             <span>@i.fecha</span>
-                            <button class="delete-button" data-id="@i.id" data-name="@i.name">-</button>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
                         </li>
                     }
                 </ul>
@@ -148,19 +154,27 @@
 
         <div id="Medicamentos" class="tabcontent">
             <div class="item-list-container">
-                <ul class="item-list">
+                <ul class="item-list" id="medi">
                     @foreach (var i in Model.Medicamentos)
                     {
                         <li>
                             <span>@i.name</span>
-                            <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">+</button>
                         </li>
                     }
                 </ul>
             </div>
             <div class="item-list-container">
-                <ul class="item-list">
-                    
+                <ul class="item-list" id="medibebe">
+                    @foreach (var i in Model.MedicamentosBebe)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
+                        </li>
+                    }
 
                 </ul>
             </div>
@@ -369,4 +383,59 @@
         }
     });
     </script>
+    <script>
+    $(document).ready(function () {
+        // Manejar el clic en el botón de agregar
+        $("#medi").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+            var itemName = $(this).data("name"); // Supongamos que el nombre del elemento se guarda como atributo data-name en el botón
+            agregarElemento(itemId, itemName);
+        });
+
+        $("#medibebe").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+            var itemName = $(this).data("name");
+            eliminarElemento(itemId, itemName);
+        });
+        // Función para agregar el elemento a la lista seleccionada
+        function agregarElemento(itemId, itemName, fechaaler) {
+            var existe = $("#medibebe").find("[data-id='" + itemId + "']").length > 0;
+            if (existe) {
+                return;
+            }
+            // Llamada AJAX para enviar el ID y Nombre del elemento seleccionado al controlador
+            $.ajax({
+                url: '@Url.Action("AgregarMedicacion", "Home")',
+                type: 'POST',
+                data: { id: itemId, nombre: itemName}, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+                    // La respuesta del servidor debe ser el objeto del elemento seleccionado
+                    if (data !== null) {
+                        // Agregar el elemento a la lista seleccionada
+                        $("#medibebe").append("<li><span>" + data.name +"</span><button class='delete-button' data-id='" + data.id +"'>-</button></li>");
+                    }
+                },
+                error: function () {
+                    alert("Error al agregar el elemento.");
+                }
+            });
+        }
+        function eliminarElemento(itemId, itemName) {
+            // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
+            $.ajax({
+                url: '@Url.Action("EliminarMedicacion", "Home")',
+                type: 'POST',
+                data: { id: itemId, nombre: itemName }, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+
+                    $("#medibebe").find("[data-id='" + itemId + "']").parent().remove();
+                },
+                error: function () {
+                    alert("Error al eliminar el elemento.");
+                }
+            });
+        }
+    });
+    </script>
+
 </div>
