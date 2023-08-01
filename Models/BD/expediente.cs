@@ -1,5 +1,6 @@
 ﻿using BabyGuide.Models.Listas;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,6 +11,30 @@ namespace BabyGuide.Models.BD
 {
     public class Expediente
     {
+        public int idExpediente(int id)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVeridExpediente", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                int idexp = (int)command.ExecuteScalar();
+
+                return idexp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
         public List<Alergias> VerAlergias()
         {
             SqlConnection connection = new SqlConnection();
@@ -21,6 +46,46 @@ namespace BabyGuide.Models.BD
                 SqlCommand command = new SqlCommand("spVerAlergias", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 //command.Parameters.AddWithValue("@ced", ced);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<Alergias> List = new List<Alergias>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Alergias Data = new Alergias
+                    {
+                        name = row["Nombre"].ToString(),
+                        id = row["idAlergia"].ToString(),
+                        // ...
+                    };
+
+                    List.Add(Data);
+                }
+                return List;
+            }
+            catch (Exception)
+            {
+                return new List<Alergias>();
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public List<Alergias> VerAlergiasBebe(int idexp)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerAlergiasBebe", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", idexp);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
 
                 DataTable dataTable = new DataTable();
@@ -166,7 +231,8 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
-        public void Modificar(int id, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, double pes, List<Alergias> alergias)
+        public void Modificar(int id, int idexp, string nom, string ape1, string ape2, string nac, string gen, int gest, double alt, 
+            double pes, List<Alergias> alergiasagregar, List<Alergias> alergiaseliminar)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -185,11 +251,31 @@ namespace BabyGuide.Models.BD
                 command.Parameters.AddWithValue("@gest", gest);
                 command.Parameters.AddWithValue("@alt", alt);
                 command.Parameters.AddWithValue("@pes", pes);
-                int idexp = (int)command.ExecuteScalar();
+                command.ExecuteNonQuery();
 
-                //SqlCommand command = new SqlCommand("spModificarExpediente", connection);
-                //command.CommandType = CommandType.StoredProcedure;
-                //command.Parameters.AddWithValue("@id", idexp);
+                if (alergiasagregar != null)
+                {
+                    foreach (var elemento in alergiasagregar)
+                    {
+                        command = new SqlCommand("spIngresarAlergias", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@idaler", elemento.id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                if (alergiaseliminar != null)
+                {
+                    foreach (var elemento in alergiaseliminar)
+                    {
+                        command = new SqlCommand("spEliminarAlergias", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idexp", idexp);
+                        command.Parameters.AddWithValue("@idaler", elemento.id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                
             }
             catch (Exception ex)
             {

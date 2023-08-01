@@ -70,6 +70,8 @@
         <!-- Tab content -->
         <div id="Alergias" class="tabcontent">
             <div class="item-list-container">
+                <label for="fechaaler" id="lblaler">Fecha de Alergia</label>
+                <input type="date" id="fechaaler" class="input-item">
                 <ul class="item-list" id="aler">
                     @foreach (var i in Model.Alergias)
                     {
@@ -82,10 +84,13 @@
                 </ul>
             </div>
             <div class="item-list-container">
-                <ul class="item-list" id="selec">
-                    @foreach (var i in Model.Alergias)
+                <ul class="item-list" id="alerbebe">
+                    @foreach (var i in Model.AlergiasBebe)
                     {
-                        
+                        <li>
+                            <span>@i.name</span>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">-</button>
+                        </li>
                     }
 
                 </ul>
@@ -317,19 +322,25 @@
     <script>
     $(document).ready(function () {
         // Manejar el clic en el botón de agregar
-        $(".delete-button").on("click", function () {
+        $("#aler").on("click", ".delete-button", function () {
             var itemId = $(this).data("id");
             var itemName = $(this).data("name"); // Supongamos que el nombre del elemento se guarda como atributo data-name en el botón
+            var fechaaler = $("#fechaaler").val();
+            if (fechaaler === "" || fechaaler === null) {
+                
+                return;
+            }
             agregarElemento(itemId, itemName);
         });
 
-        $("#selec").on("click", ".delete-button", function () {
+        $("#alerbebe").on("click", ".delete-button", function () {
             var itemId = $(this).data("id");
-            eliminarElemento(itemId);
+            var itemName = $(this).data("name");
+            eliminarElemento(itemId, itemName);
         });
         // Función para agregar el elemento a la lista seleccionada
         function agregarElemento(itemId, itemName) {
-            var existe = $("#selec").find("[data-id='" + itemId + "']").length > 0;
+            var existe = $("#alerbebe").find("[data-id='" + itemId + "']").length > 0;
             if (existe) {
                 return;
             }
@@ -342,7 +353,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#selec").append("<li>" + data.name + "<button class='delete-button' data-id='" + data.id +"'>-</button></li>");
+                        $("#alerbebe").append("<li>" + data.name + "<button class='delete-button' data-id='" + data.id +"'>-</button></li>");
                     }
                 },
                 error: function () {
@@ -350,15 +361,15 @@
                 }
             });
         }
-        function eliminarElemento(itemId) {
+        function eliminarElemento(itemId, itemName) {
             // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
             $.ajax({
                 url: '@Url.Action("EliminarElemento", "Home")',
                 type: 'POST',
-                data: { id: itemId },
+                data: { id: itemId, nombre: itemName }, // Incluimos ambos datos en la solicitud
                 success: function (data) {
-                    // Remover el elemento de la lista seleccionada en el cliente
-                    $("#selec").find("[data-id='" + itemId + "']").parent().remove();
+
+                    $("#alerbebe").find("[data-id='" + itemId + "']").parent().remove();
                 },
                 error: function () {
                     alert("Error al eliminar el elemento.");

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
 
 namespace BabyGuide.Controllers
 {
@@ -63,6 +64,8 @@ namespace BabyGuide.Controllers
         {
             Expediente expediente = new Expediente();
 
+            int idexp = expediente.idExpediente(2);
+
             string nom = Request.Form["nom"]?.ToString();
             string ape1 = Request.Form["ape1"]?.ToString();
             string ape2 = Request.Form["ape2"]?.ToString();
@@ -74,19 +77,18 @@ namespace BabyGuide.Controllers
 
             if (nom != null && ape1 != null && ape2 != null && nac != null && alt != null && pes != null)
             {
-                expediente.Modificar(2, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes), (List<Alergias>)Session["Alergias"]);
+                expediente.Modificar(2, idexp, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes), 
+                    (List<Alergias>)Session["AlergiasAgregar"], (List<Alergias>)Session["AlergiasEliminar"]);
+                Session["AlergiasAgregar"] = null;
+                Session["AlergiasEliminar"] = null;
             }
 
-            List<Alergias> alergias = expediente.VerAlergias();
-            List<Vacunas> vacunas = expediente.VerVacunas();
-            List<Medicamentos> medicamentos = expediente.VerMedicamentos();
-            Session["Alergias"] = alergias;
             var viewModel = new ExpedienteModel
             {
-                Alergias = alergias,
-                AlergiasSelec = null,
-                Vacunas = vacunas,
-                Medicamentos = medicamentos,
+                Alergias = expediente.VerAlergias(),
+                AlergiasBebe = expediente.VerAlergiasBebe(idexp),
+                Vacunas = expediente.VerVacunas(),
+                Medicamentos = expediente.VerMedicamentos(),
             };
             
 
@@ -113,17 +115,42 @@ namespace BabyGuide.Controllers
                 name = nombre
             };
 
-            ((List<Alergias>)Session["Alergias"]).Add(elemento);
+            if (Session["AlergiasAgregar"] == null)
+            {
+                // Si la sesión no tiene una lista de alergias, creamos una nueva lista y la asignamos a la sesión
+                List<Alergias> alergiasLista = new List<Alergias>();
+                alergiasLista.Add(elemento); // Agregamos el elemento a la lista
+                Session["AlergiasAgregar"] = alergiasLista;
+            }
+            else
+            {
+                // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
+                ((List<Alergias>)Session["AlergiasAgregar"]).Add(elemento);
+            }
 
             return Json(elemento);
         }
         [HttpPost]
-        public ActionResult EliminarElemento(string id)
+        public ActionResult EliminarElemento(string id, string nombre)
         {
-            // Eliminar el elemento de la lista seleccionada.
-            // Suponiendo que 'ListaSeleccionados' es una lista en tu modelo.
+            var elemento = new Alergias
+            {
+                id = id,
+                name = nombre
+            };
 
-            ((List<Alergias>)Session["Alergias"]).RemoveAll(alergia => alergia.id == id);
+            if (Session["AlergiasEliminar"] == null)
+            {
+                // Si la sesión no tiene una lista de alergias, creamos una nueva lista y la asignamos a la sesión
+                List<Alergias> alergiasLista = new List<Alergias>();
+                alergiasLista.Add(elemento); // Agregamos el elemento a la lista
+                Session["AlergiasEliminar"] = alergiasLista;
+            }
+            else
+            {
+                // Si la sesión ya tiene una lista de alergias, simplemente agregamos el elemento a la lista existente
+                ((List<Alergias>)Session["AlergiasEliminar"]).Add(elemento);
+            }
 
 
             // Devolver el resultado.
