@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Mvc;
 
 namespace BabyGuide.Models.BD
 {
@@ -63,5 +64,39 @@ namespace BabyGuide.Models.BD
 
             return mensaje;
         }
+        public int IdUsuarioLogueado(string correoUsuarioLogueado)
+        {
+            int idUsuario = 0; // Inicializar a 0 como valor predeterminado.
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT idUsuario FROM BabyGuide.Usuarios WHERE CorreoE = @correoUsuario", oConexion);
+                    cmd.Parameters.AddWithValue("@correoUsuario", correoUsuarioLogueado);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        idUsuario = Convert.ToInt32(reader["idUsuario"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+
+                Console.WriteLine(ex.Message);
+            }
+
+            return idUsuario;
+        }
+
+
     }
 }

@@ -45,6 +45,9 @@ namespace BabyGuide.Controllers
             {
                 // Si el login es exitoso, almacenamos el correo electrónico del usuario en una variable de sesión.
                 Session["correoUsuario"] = correoE;
+                Console.WriteLine(usuarios.IdUsuarioLogueado(correoE));
+                Session["idUsuario"] = usuarios.IdUsuarioLogueado(correoE);
+     
                 return RedirectToAction("Index", "Home"); // Redireccionar a una página de bienvenida o dashboard después del login exitoso.
             }
             else
