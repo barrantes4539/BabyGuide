@@ -56,6 +56,12 @@
                         <ul>
                             <li><a href="@Url.Action("Perfil", "Home")">Mi perfil</a></li>
                             <li><a href="@Url.Action("ModuloConfiguracion", "Config")">Configuración</a></li>
+                            <li>
+                                @if (Session["correoUsuario"] != null)
+                                {
+                                    <a>@Session["correoUsuario"]</a>
+                                }
+                            </li>
                             <li><a href="#">Cerrar Sesión</a></li>
                         </ul>
                     </li>

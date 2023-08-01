@@ -92,10 +92,11 @@
                 </div>
             </div>
 
+            <!-- Mostrar el total de usuarios obtenido desde el controlador -->
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="count-box">
                     <i class="bi bi-people" style="background-color: #8bc0ce;"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="7671" data-purecounter-duration="1" class="purecounter" style="color: black;">0</span>
+                    <span id="contadorUsuarios" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter" style="color: black;"></span>
                     <p>Usuarios</p>
                 </div>
             </div>
@@ -224,13 +225,41 @@
 <script src="../assets/js/main.js"></script>
 
 <script>
+        // Función para actualizar el contador de usuarios
+    function actualizarContadorUsuarios() {
+        $.ajax({
+            url: '@Url.Action("ObtenerTotalUsuarios", "Home")',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                console.log(data);
+                // Actualizar el valor del contador con el valor recibido desde el controlador
+                var contadorUsuarios = $("#contadorUsuarios");
+                contadorUsuarios.attr("data-purecounter-end", data);
+                contadorUsuarios.text(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    // Llamar a la función para actualizar el contador de usuarios al cargar la página
+    actualizarContadorUsuarios();
+
+    // Actualizar el contador de usuarios cada 10 segundos (puedes ajustar el tiempo según tus necesidades)
+    setInterval(function() {
+        actualizarContadorUsuarios();
+    }, 10000); // 10000 milisegundos = 10 segundo
+
     function cargarConsejos() {
         $.ajax({
             type: 'GET',
             url: '/Home/ListarConsejos', // Ruta para obtener la lista de consejos
             dataType: 'json',
             success: function (data) {
-  
+
                 console.log(data)
                 // Procesar la lista de consejos y agregarlos al testimonial section
                 var consejosContainer = document.getElementById('consejosContainer');

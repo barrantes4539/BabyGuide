@@ -131,6 +131,7 @@
     <Compile Include="Models\BD\Expediente.cs" />
     <Compile Include="Models\BD\Perfil.cs" />
     <Compile Include="Models\BD\SigNombres_Consejos.cs" />
+    <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Listas\Citas.cs" />
     <Compile Include="Models\Listas\Diagnosticos.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Models\Listas\ExpedienteModel.cs" />
     <Compile Include="Models\Listas\Medicamentos.cs" />
     <Compile Include="Models\Listas\VacunasBebe.cs" />
+    <Compile Include="Models\Listas\UsuariosModel.cs" />
     <Compile Include="Models\Listas\Vacunas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

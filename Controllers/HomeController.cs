@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web.DynamicData;
@@ -37,9 +39,10 @@ namespace BabyGuide.Controllers
         public ActionResult Preguntas()
         {
 
-
             return View();
         }
+
+
         //[HttpPost]
         //public async Task<ActionResult> Resp(string inputText)
         //{
@@ -374,7 +377,7 @@ namespace BabyGuide.Controllers
             if (nom != null && ape1 != null && ape2 != null && gen != null && nac != null && gest != null)
             {
                 Perfil perfil = new Perfil();
-                perfil.AgregarBebe(nom, ape1, ape2, Convert.ToInt32(gen), nac, Convert.ToInt32(gest));
+                perfil.AgregarBebe(nom, ape1, ape2, Convert.ToInt32(gen), nac, Convert.ToInt32(gest), perfil.GenerarClave());
             }
 
             return View();
@@ -439,6 +442,16 @@ namespace BabyGuide.Controllers
             return Json(consejos, JsonRequestBehavior.AllowGet);
         }
 
+        //Indicador
+        [HttpGet]
+ 
+        public int ObtenerTotalUsuarios()
+        {
+            Usuarios usuarios = new Usuarios();
+            int totalUsuarios = usuarios.TotalUsuarios();
+
+            return totalUsuarios;
+        }
 
 
     }
