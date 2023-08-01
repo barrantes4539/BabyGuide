@@ -102,7 +102,6 @@
 
     </div>
 </section><!-- End Counts Section -->
-
 <!-- ======= Testimonials Section ======= -->
 <section id="testimonials" class="testimonials">
     <div class="container" data-aos="fade-up">
@@ -145,6 +144,7 @@
                         </p>
                     </div>
                 </div><!-- End testimonial item -->
+
 
                 <div class="swiper-slide">
                     <div class="testimonial-item">
@@ -199,7 +199,19 @@
         </div>
 
     </div>
-</section><!-- End Testimonials Section -->
+</section>
+<!-- End Testimonials Section -->
+<!--Nombres y significados -->
+
+<div class="container-nameMeaning">
+    <h1>Búsqueda de Significado de Nombres</h1>
+    <div class="form-container-nameMeaning">
+        <input type="text" id="nombreInput-nameM" placeholder="Ingresa un nombre...">
+        <button id="btnBuscarNombre">Buscar</button>
+    </div>
+    <div class="result-container-nameM" id="resultado"></div>
+</div>
+<!-- FIN Nombres y significados -->
 <!-- ======= Services Section ======= -->
 <section id="services" class="services">
 
@@ -293,6 +305,33 @@
 </script>
 <!-- Template Main JS File -->
 <script src="../assets/js/main.js"></script>
+
+<script>
+    function buscarSignificado() {
+        // Obtener el nombre ingresado por el usuario
+        var nombre = document.getElementById('nombreInput-nameM').value;
+
+        // Realizar la solicitud al controlador utilizando AJAX
+        $.ajax({
+            type: 'POST',
+            url: '/Home/ObtenerSignificadoPorNombre', // Ruta de la función en el controlador
+            data: { nombre: nombre },
+            dataType: 'json', // Especificamos que esperamos una respuesta JSON del servidor
+            success: function (data) {
+                // Actualizar el contenido del div con el resultado
+                var resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = '<h3>Resultado:</h3><p>' + data.significado + '</p>';
+            },
+            error: function () {
+                alert('Error al buscar el significado.');
+            }
+        });
+    }
+
+    // Asociar la función buscarSignificado al evento clic del botón
+    document.getElementById('btnBuscarNombre').addEventListener('click', buscarSignificado);
+</script>
+
 
 
 

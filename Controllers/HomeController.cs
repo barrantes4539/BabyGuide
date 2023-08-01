@@ -175,6 +175,16 @@ namespace BabyGuide.Controllers
             return Json(listaIngredientes, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult ObtenerSignificadoPorNombre(string nombre)
+        {
+            SigNombres_Consejos significadosController = new SigNombres_Consejos();
+            string significado = significadosController.ObtenerSignificadoPorNombre(nombre);
+
+            // Devuelve el resultado como una respuesta JSON
+            return Json(new { significado });
+        }
+
 
 
 
