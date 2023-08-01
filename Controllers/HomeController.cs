@@ -215,7 +215,16 @@ namespace BabyGuide.Controllers
             return Json(consejos, JsonRequestBehavior.AllowGet);
         }
 
+        //Indicador
+        [HttpGet]
+ 
+        public int ObtenerTotalUsuarios()
+        {
+            Usuarios usuarios = new Usuarios();
+            int totalUsuarios = usuarios.TotalUsuarios();
 
+            return totalUsuarios;
+        }
 
     }
 }
