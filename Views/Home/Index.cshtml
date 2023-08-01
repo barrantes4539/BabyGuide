@@ -121,10 +121,10 @@
 <!--Nombres y significados -->
 
 <div class="container-nameMeaning">
-    <h1>Búsqueda de Significado de Nombres</h1>
+    <h1>Encuentra el nombre perfecto para tu bebé</h1>
     <div class="form-container-nameMeaning">
         <input type="text" id="nombreInput-nameM" placeholder="Ingresa un nombre...">
-        <button id="btnBuscarNombre">Buscar</button>
+        <button id="btnBuscarNombre">Ver significado</button>
     </div>
     <div class="result-container-nameM" id="resultado"></div>
 </div>
@@ -230,7 +230,7 @@
             url: '/Home/ListarConsejos', // Ruta para obtener la lista de consejos
             dataType: 'json',
             success: function (data) {
-                debugger;
+  
                 console.log(data)
                 // Procesar la lista de consejos y agregarlos al testimonial section
                 var consejosContainer = document.getElementById('consejosContainer');
