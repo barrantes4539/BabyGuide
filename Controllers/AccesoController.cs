@@ -41,18 +41,21 @@ namespace BabyGuide.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(UsuariosModel obj)
+        public ActionResult Login(string correo, string password)
         {
             Usuarios usuarios = new Usuarios();
-            string mensaje = usuarios.VerificarCredenciales(obj.CorreoE, obj.Clave);
+            string mensaje = usuarios.VerificarCredenciales(correo, password);
 
             if (mensaje == "Acceso concedido")
             {
                 // Si el login es exitoso, almacenamos el correo electrónico del usuario en una variable de sesión.
-                Session["correoUsuario"] = obj.CorreoE;
-                Console.WriteLine(usuarios.IdUsuarioLogueado(obj.CorreoE));
-                Session["idUsuario"] = usuarios.IdUsuarioLogueado(obj.CorreoE);
-     
+                Session["correoUsuario"] = correo;
+                Console.WriteLine(usuarios.IdUsuarioLogueado(correo));
+                Session["idUsuario"] = usuarios.IdUsuarioLogueado(correo);
+
+            
+                bool respuesta = EnviarVerificacion(Session["correoUsuario"].ToString(), out mensaje);
+
                 return RedirectToAction("DobleVerificacion", "Acceso"); // Redireccionar a una página de bienvenida o dashboard después del login exitoso.
             }
             else
@@ -84,17 +87,18 @@ namespace BabyGuide.Controllers
 
 
         //Envío por correo
-        public static bool EnviarCorreo(string correo, string asunto, string mensaje)
+        public bool EnviarCorreo(string correo, string asunto, string mensaje)
         {
 
-            UsuariosModel objUsuario = new UsuariosModel();
-            objUsuario.CorreoE = correo;
+           
+            // Acceder al valor de la variable de sesión "correoUsuario".
+            string correoUsuario = Session["correoUsuario"] as string;
             bool resultado = false;
 
             try
             {
                 MailMessage mail = new MailMessage();
-                mail.To.Add(objUsuario.CorreoE);
+                mail.To.Add(correoUsuario);
                 mail.From = new MailAddress("babyguide3@gmail.com");
                 mail.Subject = asunto;
                 mail.Body = mensaje;
@@ -118,15 +122,19 @@ namespace BabyGuide.Controllers
             return resultado;
         }
 
-        public bool EnviarVerificacion(UsuariosModel obj, out string mensaje)
+        public bool EnviarVerificacion(string correoUsuario, out string mensaje)
         {
-          
-            Usuarios objUsuarios = null;
-          
-            mensaje = string.Empty;
-            obj.CodigoVerificacion = objUsuarios.CodigoVerificacionLogin();
+            Usuarios negocioUsuarios = new Usuarios();
+            UsuariosModel datosUsuario = new UsuariosModel();
+            // Acceder al valor de la variable de sesión "correoUsuario".
+            correoUsuario = Session["correoUsuario"] as string;
+            datosUsuario.CodigoVerificacion = negocioUsuarios.CodigoVerificacionLogin();
 
-            bool codigoInsertado = objUsuarios.InsertarCodigoVerificacion(obj.CorreoE, obj.CodigoVerificacion, out mensaje);
+
+            mensaje = string.Empty;
+              
+
+            bool codigoInsertado = negocioUsuarios.InsertarCodigoVerificacion(correoUsuario, datosUsuario.CodigoVerificacion, out mensaje);
 
             //Verificacion codigo insertado en la base de datos
             if (codigoInsertado)
@@ -196,7 +204,7 @@ namespace BabyGuide.Controllers
     
                                                 <div class=""content"">
                                                   <p>¡Gracias por elegir nuestros servicios! Estamos encantados de atender sus necesidades.</p>
-                                                  <p>Su código para acceder es: " + obj.CodigoVerificacion + @"</p>
+                                                  <p>Su código para acceder es: " + datosUsuario.CodigoVerificacion + @"</p>
                                                 </div>
     
                                                 <div class=""footer"">
@@ -205,7 +213,7 @@ namespace BabyGuide.Controllers
                                               </div>
                                             </body>
                                             </html>";
-                bool respuesta = EnviarCorreo(obj.CorreoE, asunto, mensajeCorreo);
+                bool respuesta = EnviarCorreo(correoUsuario, asunto, mensajeCorreo);
 
                 //Verificacion envio de correo
                 if (respuesta)
@@ -229,17 +237,17 @@ namespace BabyGuide.Controllers
         [HttpPost]
         public ActionResult DobleVerificacion(string codigoVerificacion)
         {
-            UsuariosModel oCliente = (UsuariosModel)Session["correoUsuario"];
+            string correoUsuario = Session["correoUsuario"] as string;
             Usuarios negocios = new Usuarios();
-            TempData["correoUs"] = oCliente.CorreoE;
+     
 
             string mensaje = string.Empty;
-            string codigoGenerado = negocios.CodigoVerificacion(oCliente.CorreoE);
+            string codigoGenerado = negocios.CodigoVerificacion(correoUsuario);
 
             if (codigoGenerado != null && codigoGenerado.Equals(codigoVerificacion))
             {
           
-                negocios.EliminarCodigo(oCliente.CorreoE);
+                negocios.EliminarCodigo(correoUsuario);
                
 
                 return RedirectToAction("Index", "Home");
