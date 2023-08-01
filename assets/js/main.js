@@ -194,7 +194,6 @@
             clickable: true
         }
     });
-
   /**
    * Porfolio isotope and filter
    */
