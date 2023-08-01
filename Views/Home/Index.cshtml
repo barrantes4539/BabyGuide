@@ -27,6 +27,8 @@
 
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
@@ -107,93 +109,8 @@
     <div class="container" data-aos="fade-up">
 
         <div class="testimonials-slider swiper">
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="#" class="testimonial-img" alt="">
-                        <h3>Nutrición cariñosa</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            Ya sea que amamantes o utilices biberón, alimenta a tu bebé con amor y regularidad, proporcionando los nutrientes fundamentales para un crecimiento saludable. Disfruta de este vínculo especial mientras alimentas a tu pequeño.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                        <h3>Sueño reparador</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            Establece rutinas calmadas para la hora de dormir, creando un ambiente tranquilo y seguro para que tu bebé pueda descansar adecuadamente. Una buena noche de sueño es esencial para su desarrollo y bienestar.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="#" class="testimonial-img" alt="">
-                        <h3>Higiene Tierna</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            Los baños deben ser momentos placenteros para tu bebé. Utiliza productos suaves y adecuados para su piel delicada. Cuida su higiene con cariño, haciendo de este momento algo agradable y relajante.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
-
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                        <h3>Vigilancia amorosa</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            Mantén un ojo atento a las necesidades de tu bebé. Observa su comportamiento y lenguaje corporal para detectar cualquier señal de incomodidad o malestar. Tu cuidado y atención son fundamentales para su seguridad y bienestar.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                        <h3>Caricias y Abrazos</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            El contacto piel con piel es esencial para establecer un fuerte vínculo emocional con tu bebé. Los abrazos, caricias y arrullos transmiten seguridad, afecto y calma, promoviendo su desarrollo emocional positivo.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                        <h3>Ropa Cómoda</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            Viste a tu bebé con prendas suaves y cómodas, adecuadas para la temporada. Asegúrate de que su ropa no sea demasiado apretada y que le permita moverse libremente.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div>
-                <!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                    <div class="testimonial-item">
-                        <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                        <h3>Explorando el Mundo Juntos</h3>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            Estimula los sentidos de tu bebé con actividades apropiadas para su edad y desarrollo. Juega con él, cántale canciones, muestra objetos de colores brillantes y texturas diversas. Descubrir el mundo juntos fortalecerá vuestro lazo y su aprendizaje.
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
+            <div class="swiper-wrapper" id="consejosContainer">
+                <!-- Los consejos se agregarán aquí mediante JavaScript -->
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -307,6 +224,49 @@
 <script src="../assets/js/main.js"></script>
 
 <script>
+    function cargarConsejos() {
+        $.ajax({
+            type: 'GET',
+            url: '/Home/ListarConsejos', // Ruta para obtener la lista de consejos
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                console.log(data)
+                // Procesar la lista de consejos y agregarlos al testimonial section
+                var consejosContainer = document.getElementById('consejosContainer');
+                consejosContainer.innerHTML = '';
+
+                data.forEach(function (consejo) {
+                    var testimonialItem = document.createElement('div');
+                    testimonialItem.className = 'swiper-slide';
+                    testimonialItem.innerHTML = `
+                        <div class="testimonial-item">
+                            <img src="#" class="testimonial-img" alt="">
+                            <h3>${consejo.Titulo}</h3>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                ${consejo.Descripcion}
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
+                        </div>
+                    `;
+
+                    consejosContainer.appendChild(testimonialItem);
+                });
+
+                // Inicializar el slider swiper después de agregar los consejos
+                new Swiper('.testimonials-slider', {
+                    // Configuración del slider swiper
+                });
+            },
+            error: function () {
+                alert('Error al cargar los consejos.');
+            }
+        });
+    }
+
+    // Llamar a la función cargarConsejos al cargar la página
+    cargarConsejos();
     function buscarSignificado() {
         // Obtener el nombre ingresado por el usuario
         var nombre = document.getElementById('nombreInput-nameM').value;
@@ -325,6 +285,7 @@
             error: function () {
                 alert('Error al buscar el significado.');
             }
+
         });
     }
 

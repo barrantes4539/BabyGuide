@@ -185,6 +185,18 @@ namespace BabyGuide.Controllers
             return Json(new { significado });
         }
 
+        [HttpGet]
+        public JsonResult ListarConsejos()
+        {
+            // Crear una instancia de la clase SigNombres_Consejos
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+
+            // Obtener la lista de consejos utilizando el método ListarConsejos
+            List<Consejos> consejos = sigNombresConsejos.ListarConsejos();
+
+            // Devolver la lista de consejos como resultado JSON
+            return Json(consejos, JsonRequestBehavior.AllowGet);
+        }
 
 
 
