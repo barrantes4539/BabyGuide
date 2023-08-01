@@ -193,6 +193,7 @@ label{
 
 .item-list li {
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
   border-radius: 20px;
@@ -203,10 +204,29 @@ label{
 .item-list li span {
   margin-left: 5px;
 }
+#alerbebe .delete-button {
+    margin-left: 150px;
+    border: none;
+}
+#vacbebe .delete-button {
+    margin-left: 150px;
+    border: none;
+}
+
+#diagbebe .delete-button {
+    margin-left: 150px;
+    border: none;
+}
+#medibebe .delete-button {
+    margin-left: 200px;
+    border: none;
+}
 
 .delete-button {
     margin-left: 70%;
     border: none;
+    background-color: white;
+}
 }
 
 

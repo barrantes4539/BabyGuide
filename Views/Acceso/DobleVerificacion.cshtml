@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="../assets/css/DobleVerificacion.css">
 </head>
 <body>
-    <form class="auth-form" action="@Url.Action("DobleFactorAut", "Acceso")" method="post">
+    <form class="auth-form" action="@Url.Action("DobleVerificacion", "Acceso")" method="post">
         <h2 id="heading">Verificación de doble factor</h2>
-        <input class="input-field-auth" type="hidden" value="@TempData["IdCliente"]" style="width: 100%; text-align: left" name="idcliente">
+        <input class="input-field-auth" type="hidden" value="@TempData["correoUs"]" style="width: 100%; text-align: left" name="CorreoE">
 
         <div class="field-auth">Ingrese el código que se le ha enviado a su correo electrónico.</div>
 

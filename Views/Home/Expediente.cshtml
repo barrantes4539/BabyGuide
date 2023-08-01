@@ -70,6 +70,8 @@
         <!-- Tab content -->
         <div id="Alergias" class="tabcontent">
             <div class="item-list-container">
+                <label for="fechaaler" id="lblaler">Fecha de Alergia</label>
+                <input type="date" id="fechaaler" class="input-item">
                 <ul class="item-list" id="aler">
                     @foreach (var i in Model.Alergias)
                     {
@@ -82,9 +84,16 @@
                 </ul>
             </div>
             <div class="item-list-container">
-                <ul class="item-list" id="selec">
-                    @foreach (var i in Model.Alergias)
+                <ul class="item-list" id="alerbebe">
+                    @foreach (var i in Model.AlergiasBebe)
                     {
+                        <li>
+                            <span>@i.name</span>
+                            <span>@i.fecha</span>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
+                        </li>
 
                     }
 
@@ -94,193 +103,79 @@
 
         <div id="Vacunas" class="tabcontent">
             <div class="item-list-container">
-                <ul class="item-list">
+                <label for="fechavac" id="lblvac">Fecha de Vacunación</label>
+                <input type="date" id="fechavac" class="input-item">
+                <ul class="item-list" id="vac">
                     @foreach (var i in Model.Vacunas)
                     {
                         <li>
                             <span>@i.name</span>
-                            <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">+</button>
                         </li>
                     }
                 </ul>
             </div>
             <div class="item-list-container">
-                <ul class="item-list">
-                    <li>
-                        <span>Item 1</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 2</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-
+                <ul class="item-list" id="vacbebe">
+                    @foreach (var i in Model.VacunasBebe)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <span>@i.fecha</span>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
 
         <div id="Diagnosticos" class="tabcontent">
-            <div class="item-list-container">
-                <input type="text" class="input-item" placeholder="Padecimiento">
-                <input type="text" class="input-item" placeholder="Descripción">
-                <button class="botongeneral">Guardar</button>
+            <div class="item-list-container" id="diag">
+                <input type="text" class="input-item" placeholder="Padecimiento" id="txtpade" maxlength="30">
+                <input type="date" class="input-item" placeholder="Descripción" id="txtfecha">
+                <button class="botongeneral" id="save">Guardar</button>
             </div>
             <div class="item-list-container">
-                <ul class="item-list">
-                    <li>
-                        <span>Item 1</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 2</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-
+                <ul class="item-list" id="diagbebe">
+                    @foreach (var i in Model.Diagnosticos)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <span>@i.fecha</span>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
 
         <div id="Medicamentos" class="tabcontent">
             <div class="item-list-container">
-                <ul class="item-list">
+                <ul class="item-list" id="medi">
                     @foreach (var i in Model.Medicamentos)
                     {
                         <li>
                             <span>@i.name</span>
-                            <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">+</button>
                         </li>
                     }
+                </ul>
             </div>
             <div class="item-list-container">
-                <ul class="item-list">
-                    <li>
-                        <span>Item 1</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 2</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
-                    <li>
-                        <span>Item 3</span>
-                        <a href="" class="delete-button"><img src="img/delete.png" alt=""></a>
-                    </li>
+                <ul class="item-list" id="medibebe">
+                    @foreach (var i in Model.MedicamentosBebe)
+                    {
+                        <li>
+                            <span>@i.name</span>
+                            <button class="delete-button" data-id="@i.id" data-name="@i.name">
+                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                            </button>
+                        </li>
+                    }
 
                 </ul>
             </div>
@@ -319,33 +214,37 @@
     <script>
     $(document).ready(function () {
         // Manejar el clic en el botón de agregar
-        $(".delete-button").on("click", function () {
+        $("#aler").on("click", ".delete-button", function () {
             var itemId = $(this).data("id");
             var itemName = $(this).data("name"); // Supongamos que el nombre del elemento se guarda como atributo data-name en el botón
-            agregarElemento(itemId, itemName);
+            var fechaaler = $("#fechaaler").val();
+            if (fechaaler === "" || fechaaler === null) {
+                return;
+            }
+            agregarElemento(itemId, itemName, fechaaler);
         });
 
-        $("#selec").on("click", ".delete-button", function () {
+        $("#alerbebe").on("click", ".delete-button", function () {
             var itemId = $(this).data("id");
-            eliminarElemento(itemId);
+            var itemName = $(this).data("name");
+            eliminarElemento(itemId, itemName);
         });
         // Función para agregar el elemento a la lista seleccionada
-        function agregarElemento(itemId, itemName) {
-            var existe = $("#selec").find("[data-id='" + itemId + "']").length > 0;
+        function agregarElemento(itemId, itemName, fechaaler) {
+            var existe = $("#alerbebe").find("[data-id='" + itemId + "']").length > 0;
             if (existe) {
                 return;
             }
             // Llamada AJAX para enviar el ID y Nombre del elemento seleccionado al controlador
             $.ajax({
-                url: '@Url.Action("AgregarElemento", "Home")',
+                url: '@Url.Action("AgregarAlergia", "Home")',
                 type: 'POST',
-                data: { id: itemId, nombre: itemName }, // Incluimos ambos datos en la solicitud
+                data: { id: itemId, nombre: itemName, fecha: fechaaler }, // Incluimos ambos datos en la solicitud
                 success: function (data) {
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#selec").append("<li>" + data.name + "<button class='delete-button' data-id='" + data.id + "'>-</button></li>");
-                        swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
+                        $("#alerbebe").append("<li><span>" + data.name +"</span>  <span>Fecha:"+data.fecha+ "</span><button class='delete-button' data-id='" + data.id +"'>-</button></li>");
                     }
                 },
                 error: function () {
@@ -353,15 +252,15 @@
                 }
             });
         }
-        function eliminarElemento(itemId) {
+        function eliminarElemento(itemId, itemName) {
             // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
             $.ajax({
-                url: '@Url.Action("EliminarElemento", "Home")',
+                url: '@Url.Action("EliminarAlergia", "Home")',
                 type: 'POST',
-                data: { id: itemId },
+                data: { id: itemId, nombre: itemName }, // Incluimos ambos datos en la solicitud
                 success: function (data) {
-                    // Remover el elemento de la lista seleccionada en el cliente
-                    $("#selec").find("[data-id='" + itemId + "']").parent().remove();
+
+                    $("#alerbebe").find("[data-id='" + itemId + "']").parent().remove();
                 },
                 error: function () {
                     alert("Error al eliminar el elemento.");
@@ -370,4 +269,179 @@
         }
     });
     </script>
+    <script>
+    $(document).ready(function () {
+        // Manejar el clic en el botón de agregar
+        $("#vac").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+            var itemName = $(this).data("name"); // Supongamos que el nombre del elemento se guarda como atributo data-name en el botón
+            var fechavac = $("#fechavac").val();
+            if (fechavac === "" || fechavac === null) {
+                return;
+            }
+            agregarElemento(itemId, itemName, fechavac);
+        });
+
+        $("#vacbebe").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+            var itemName = $(this).data("name");
+            eliminarElemento(itemId, itemName);
+        });
+        // Función para agregar el elemento a la lista seleccionada
+        function agregarElemento(itemId, itemName, fechavac) {
+            var existe = $("#vacbebe").find("[data-id='" + itemId + "']").length > 0;
+            if (existe) {
+                return;
+            }
+            // Llamada AJAX para enviar el ID y Nombre del elemento seleccionado al controlador
+            $.ajax({
+                url: '@Url.Action("AgregarVacuna", "Home")',
+                type: 'POST',
+                data: { id: itemId, nombre: itemName, fecha: fechavac }, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+                    // La respuesta del servidor debe ser el objeto del elemento seleccionado
+                    if (data !== null) {
+                        // Agregar el elemento a la lista seleccionada
+                        $("#vacbebe").append("<li><span>" + data.name +"</span>  <span>Fecha:"+data.fecha+ "</span><button class='delete-button' data-id='" + data.id +"'>-</button></li>");
+                    }
+                },
+                error: function () {
+                    alert("Error al agregar el elemento.");
+                }
+            });
+        }
+        function eliminarElemento(itemId, itemName) {
+            // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
+            $.ajax({
+                url: '@Url.Action("EliminarVacuna", "Home")',
+                type: 'POST',
+                data: { id: itemId, nombre: itemName }, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+
+                    $("#vacbebe").find("[data-id='" + itemId + "']").parent().remove();
+                },
+                error: function () {
+                    alert("Error al eliminar el elemento.");
+                }
+            });
+        }
+    });
+    </script>
+    <script>
+    $(document).ready(function () {
+        // Manejar el clic en el botón de agregar
+        $("#diag").on("click", "#save", function () {
+            var fecha = $("#txtfecha").val();
+            var pade = $("#txtpade").val();
+            if (fecha === "" || fecha === null) {
+                return;
+            }
+            if (pade === "" || pade === null) {
+                return;
+            }
+            agregarElemento(pade, fecha);
+        });
+
+        $("#diagbebe").on("click", ".delete-button", function () {
+            var Name = $(this).data("name");
+            eliminarElemento(Name);
+        });
+        // Función para agregar el elemento a la lista seleccionada
+        function agregarElemento(pade, fecha) {
+            var existe = $("#diagbebe").find("[data-name='" + pade + "']").length > 0;
+            if (existe) {
+                return;
+            }
+            // Llamada AJAX para enviar el ID y Nombre del elemento seleccionado al controlador
+            $.ajax({
+                url: '@Url.Action("AgregarDiagnostico", "Home")',
+                type: 'POST',
+                data: { nombre: pade, fecha: fecha }, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+                    // La respuesta del servidor debe ser el objeto del elemento seleccionado
+                    if (data !== null) {
+                        // Agregar el elemento a la lista seleccionada
+                        $("#diagbebe").append("<li><span>" + data.name +"</span>  <span>Fecha:"+data.fecha+ "</span><button class='delete-button' data-name='" + data.name +"'>-</button></li>");
+                    }
+                },
+                error: function () {
+                    alert("Error al agregar el elemento.");
+                }
+            });
+        }
+        function eliminarElemento(Name) {
+            // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
+            $.ajax({
+                url: '@Url.Action("EliminarDiagnostico", "Home")',
+                type: 'POST',
+                data: { nombre: Name }, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+
+                    $("#diagbebe").find("[data-name='" + Name + "']").parent().remove();
+                },
+                error: function () {
+                    alert("Error al eliminar el elemento.");
+                }
+            });
+        }
+    });
+    </script>
+    <script>
+    $(document).ready(function () {
+        // Manejar el clic en el botón de agregar
+        $("#medi").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+            var itemName = $(this).data("name"); // Supongamos que el nombre del elemento se guarda como atributo data-name en el botón
+            agregarElemento(itemId, itemName);
+        });
+
+        $("#medibebe").on("click", ".delete-button", function () {
+            var itemId = $(this).data("id");
+            var itemName = $(this).data("name");
+            eliminarElemento(itemId, itemName);
+        });
+        // Función para agregar el elemento a la lista seleccionada
+        function agregarElemento(itemId, itemName, fechaaler) {
+            var existe = $("#medibebe").find("[data-id='" + itemId + "']").length > 0;
+            if (existe) {
+                return;
+            }
+            // Llamada AJAX para enviar el ID y Nombre del elemento seleccionado al controlador
+            $.ajax({
+                url: '@Url.Action("AgregarMedicacion", "Home")',
+                type: 'POST',
+                data: { id: itemId, nombre: itemName}, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+                    // La respuesta del servidor debe ser el objeto del elemento seleccionado
+                    if (data !== null) {
+                        // Agregar el elemento a la lista seleccionada
+
+                        $("#medibebe").append("<li><span>" + data.name +"</span><button class='delete-button' data-id='" + data.id +"'>-</button></li>");
+                        swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
+
+                    }
+                },
+                error: function () {
+                    alert("Error al agregar el elemento.");
+                }
+            });
+        }
+        function eliminarElemento(itemId, itemName) {
+            // Llamada AJAX para enviar el ID del elemento seleccionado al controlador para eliminarlo
+            $.ajax({
+                url: '@Url.Action("EliminarMedicacion", "Home")',
+                type: 'POST',
+                data: { id: itemId, nombre: itemName }, // Incluimos ambos datos en la solicitud
+                success: function (data) {
+
+                    $("#medibebe").find("[data-id='" + itemId + "']").parent().remove();
+                },
+                error: function () {
+                    alert("Error al eliminar el elemento.");
+                }
+            });
+        }
+    });
+    </script>
+
 </div>

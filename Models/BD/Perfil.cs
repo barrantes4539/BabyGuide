@@ -19,7 +19,7 @@ namespace BabyGuide.Models.BD
     }
     public class Perfil
     {
-        public void AgregarBebe(string nom, string ape1, string ape2, int gen, string nac, int gest)
+        public void AgregarBebe(string nom, string ape1, string ape2, int gen, string nac, int gest, string claveBebe)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -35,6 +35,7 @@ namespace BabyGuide.Models.BD
                 command.Parameters.AddWithValue("@gen", gen);
                 command.Parameters.AddWithValue("@nac", nac);
                 command.Parameters.AddWithValue("@gest", gest);
+                command.Parameters.AddWithValue("@claveBebe", claveBebe);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -45,6 +46,12 @@ namespace BabyGuide.Models.BD
             {
                 connection.Close();
             }
+        }
+
+        public string GenerarClave()
+        {
+            string clave = Guid.NewGuid().ToString("N").Substring(0, 6);
+            return clave;
         }
     }
 }
