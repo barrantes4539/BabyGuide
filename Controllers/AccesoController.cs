@@ -49,12 +49,12 @@ namespace BabyGuide.Controllers
             if (mensaje == "Acceso concedido")
             {
                 // Si el login es exitoso, almacenamos el correo electrónico del usuario en una variable de sesión.
-                Session["correoUsuario"] = correo;
+                Session["correoUsuarioTemporal"] = correo;
                 Console.WriteLine(usuarios.IdUsuarioLogueado(correo));
                 Session["idUsuario"] = usuarios.IdUsuarioLogueado(correo);
 
             
-                bool respuesta = EnviarVerificacion(Session["correoUsuario"].ToString(), out mensaje);
+                bool respuesta = EnviarVerificacion(Session["correoUsuarioTemporal"].ToString(), out mensaje);
 
                 return RedirectToAction("DobleVerificacion", "Acceso"); // Redireccionar a una página de bienvenida o dashboard después del login exitoso.
             }
@@ -92,7 +92,7 @@ namespace BabyGuide.Controllers
 
            
             // Acceder al valor de la variable de sesión "correoUsuario".
-            string correoUsuario = Session["correoUsuario"] as string;
+            string correoUsuario = Session["correoUsuarioTemporal"] as string;
             bool resultado = false;
 
             try
@@ -127,7 +127,7 @@ namespace BabyGuide.Controllers
             Usuarios negocioUsuarios = new Usuarios();
             UsuariosModel datosUsuario = new UsuariosModel();
             // Acceder al valor de la variable de sesión "correoUsuario".
-            correoUsuario = Session["correoUsuario"] as string;
+            correoUsuario = Session["correoUsuarioTemporal"] as string;
             datosUsuario.CodigoVerificacion = negocioUsuarios.CodigoVerificacionLogin();
 
 
@@ -198,7 +198,7 @@ namespace BabyGuide.Controllers
                                             <body>
                                               <div class=""container"">
                                                 <div class=""header"">
-                                                  <img class=""logo"" src=""https://xarpexpress.com/wp-content/uploads/2023/05/logo-xarpe-blanco-02-1-2048x1484.png"" alt=""Logo"">
+                                                  <img class=""logo"" alt=""Logo"">
                                                   <h1 class=""company-name"">BabyGuide</h1>
                                                 </div>
     
@@ -237,7 +237,7 @@ namespace BabyGuide.Controllers
         [HttpPost]
         public ActionResult DobleVerificacion(string codigoVerificacion)
         {
-            string correoUsuario = Session["correoUsuario"] as string;
+            string correoUsuario = Session["correoUsuarioTemporal"] as string;
             Usuarios negocios = new Usuarios();
      
 
@@ -248,6 +248,7 @@ namespace BabyGuide.Controllers
             {
           
                 negocios.EliminarCodigo(correoUsuario);
+                Session["correoUsuario"] = Session["correoUsuarioTemporal"];
                
 
                 return RedirectToAction("Index", "Home");
