@@ -46,6 +46,11 @@ namespace BabyGuide.Controllers
             return View();
         }
 
+        public ActionResult EtapasDesarrollo()
+        {
+            return View();
+        }
+
 
         //[HttpPost]
         //public async Task<ActionResult> Resp(string inputText)

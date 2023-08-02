@@ -157,6 +157,7 @@
     <Content Include="assets\css\BabyGaleria.css" />
     <Content Include="assets\css\citas.css" />
     <Content Include="assets\css\DobleVerificacion.css" />
+    <Content Include="assets\css\EtapasDesarrollo.css" />
     <Content Include="assets\css\expediente.css" />
     <Content Include="assets\css\familia.css" />
     <Content Include="assets\css\ModuloConfiguracion\AgregarDietas.css" />
@@ -384,6 +385,7 @@
     <Content Include="Views\Home\Perfil.cshtml" />
     <Content Include="Views\Home\PerfilModificar.cshtml" />
     <Content Include="Views\Home\GestionFamilia.cshtml" />
+    <Content Include="Views\Home\EtapasDesarrollo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -421,7 +423,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\APIRegistroNacional\" />
   </ItemGroup>
-
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
