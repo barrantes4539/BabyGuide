@@ -14,6 +14,9 @@ using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.Security;
+using static System.Net.Mime.MediaTypeNames;
+using System.Drawing.Printing;
+using System.Web.UI.WebControls;
 
 namespace BabyGuide.Controllers
 {
@@ -140,77 +143,77 @@ namespace BabyGuide.Controllers
             if (codigoInsertado)
             {
                 string asunto = "Verificación de cuenta";
-                string mensajeCorreo = @"<!DOCTYPE html>
+                string mensajeCorreo = $@"<!DOCTYPE html>
                                             <html>
                                             <head>
-                                              <title>Plantilla de Correo Electrónico</title>
-                                              <style>
+                                                <title>Plantilla de Correo Electrónico</title>
+                                                <style>
                                                 /* Estilos generales */
-                                                body {
-                                                  font-family: Arial, sans-serif;
-                                                  background-color: #f5f5f5;
-                                                  margin: 0;
-                                                  padding: 0;
-                                                }
-    
-                                                .container {
-                                                  max-width: 600px;
-                                                  margin: 0 auto;
-                                                  background-color: #fff;
-                                                  padding: 20px;
-                                                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                                                }
-    
+                                                body {{
+                                                    font-family: Arial, sans-serif;
+                                                    background-color: #f5f5f5;
+                                                    margin: 0;
+                                                    padding: 0;
+                                                }}
+
+                                                .container {{
+                                                    max-width: 600px;
+                                                    margin: 0 auto;
+                                                    background-color: #fff;
+                                                    padding: 20px;
+                                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                                }}
+
                                                 /* Encabezado */
-                                                .header {
-                                                  text-align: center;
-                                                  margin-bottom: 20px;
-                                                }
-    
-                                                .logo {
-                                                  max-width: 200px;
-                                                  height: auto;
-                                                }
-    
-                                                .company-name {
-                                                  font-size: 24px;
-                                                  font-weight: bold;
-                                                  margin-top: 10px;
-                                                }
-    
+                                                .header {{
+                                                    text-align: center;
+                                                    margin-bottom: 20px;
+                                                }}
+
+                                                .logo {{
+                                                    max-width: 200px;
+                                                    height: auto;
+                                                }}
+
+                                                .company-name {{
+                                                    font-size: 24px;
+                                                    font-weight: bold;
+                                                    margin-top: 10px;
+                                                }}
+
                                                 /* Contenido */
-                                                .content {
-                                                  margin-bottom: 20px;
-                                                }
-    
-                                                .content p {
-                                                  margin-bottom: 10px;
-                                                }
-    
+                                                .content {{
+                                                    margin-bottom: 20px;
+                                                }}
+
+                                                .content p {{
+                                                    margin-bottom: 10px;
+                                                }}
+
                                                 /* Pie de página */
-                                                .footer {
-                                                  text-align: center;
-                                                  font-size: 14px;
-                                                  color: #999;
-                                                }
-                                              </style>
+                                                .footer {{
+                                                    text-align: center;
+                                                    font-size: 14px;
+                                                    color: #999;
+                                                }}
+                                                </style>
                                             </head>
                                             <body>
-                                              <div class=""container"">
+                                                <div class=""container"">
                                                 <div class=""header"">
-                                                  <img class=""logo"" alt=""Logo"">
-                                                  <h1 class=""company-name"">BabyGuide</h1>
+                                                   <img class=""logo"" src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/newLogo.png"" alt=""BabyGuide Logo"">
                                                 </div>
-    
+
                                                 <div class=""content"">
-                                                  <p>¡Gracias por elegir nuestros servicios! Estamos encantados de atender sus necesidades.</p>
-                                                  <p>Su código para acceder es: " + datosUsuario.CodigoVerificacion + @"</p>
+                                                    <p>Bienvenido/a de nuevo!!</p>
+                                                    <p>Si tienes alguna pregunta o necesitas ayuda con algo, no dudes en contactarnos. Estamos aquí para ayudarte en todo momento y asegurarnos de que tengas la mejor experiencia posible con nuestra aplicación.</p>
+                                                    <p>Tu código para acceder es: <strong>{datosUsuario.CodigoVerificacion}</strong></p>
                                                 </div>
-    
+
                                                 <div class=""footer"">
-                                                  <p>&copy; 2023 BabyGuide. Todos los derechos reservados.</p>
+                                                    <p>&copy; 2023 BabyGuide. Todos los derechos reservados.</p>
                                                 </div>
-                                              </div>
+                                                </div>
                                             </body>
                                             </html>";
                 bool respuesta = EnviarCorreo(correoUsuario, asunto, mensajeCorreo);
