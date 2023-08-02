@@ -393,15 +393,19 @@ namespace BabyGuide.Controllers
             }
 
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
-            DataRow fila = dataTable.Rows[0];
-
-            ViewBag.nom = fila["Nombre"];
-            ViewBag.ape = fila["Apellidos"];
-            ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
-            if (Convert.ToString(fila["idBebe"])  != "")
+            if (dataTable.Rows.Count > 0)
             {
-                Session["idBebe"] = fila["idBebe"];
+                DataRow fila = dataTable.Rows[0];
+
+                ViewBag.nom = fila["Nombre"];
+                ViewBag.ape = fila["Apellidos"];
+                ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
+                if (Convert.ToString(fila["idBebe"]) != "")
+                {
+                    Session["idBebe"] = fila["idBebe"];
+                }
             }
+            
 
             List<BebesP> List = new List<BebesP>();
 

@@ -25,7 +25,9 @@
 
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
-  
+    @{
+        var viewName = ViewContext.RouteData.Values["Action"].ToString();
+    }
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -36,7 +38,14 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <a href="#" class="logo">
-                <img src="../assets/img/newLogo.png" alt="Logo" style="width: 150px; height: auto; border-radius: 50%;">
+                @if (viewName == "Index")
+                {
+                    <img src="@Url.Content("../BabyGuide/assets/img/newLogo.png")" alt="Logo" style="width: 150px; height: auto; border-radius: 50%;">
+                }
+                else
+                {
+                    <img src="@Url.Content("../assets/img/newLogo.png")" alt="Logo" style="width: 150px; height: auto; border-radius: 50%;">
+                }
 
             </a>
             <!-- Uncomment below if you prefer to use an image logo -->
