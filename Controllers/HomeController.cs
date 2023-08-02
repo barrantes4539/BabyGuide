@@ -71,7 +71,7 @@ namespace BabyGuide.Controllers
         {
             Expediente expediente = new Expediente();
 
-            int idexp = expediente.idExpediente(2);
+            int idexp = expediente.idExpediente(Convert.ToInt32(Session["idBebe"]));
 
             string nom = Request.Form["nom"]?.ToString();
             string ape1 = Request.Form["ape1"]?.ToString();
@@ -84,7 +84,7 @@ namespace BabyGuide.Controllers
 
             if (nom != null && ape1 != null && ape2 != null && nac != null && alt != null && pes != null)
             {
-                expediente.Modificar(2, idexp, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes),
+                expediente.Modificar(Convert.ToInt32(Session["idBebe"]), idexp, nom, ape1, ape2, nac, gen, gest, Convert.ToDouble(alt), Convert.ToDouble(pes),
                     (List<AlergiasBebe>)Session["AlergiasAgregar"], (List<Alergias>)Session["AlergiasEliminar"],
                     (List<VacunasBebe>)Session["VacunasAgregar"], (List<Vacunas>)Session["VacunasEliminar"],
                     (List<Diagnosticos>)Session["DiagnosticosAgregar"], (List<Diagnosticos>)Session["DiagnosticosEliminar"],
@@ -111,7 +111,7 @@ namespace BabyGuide.Controllers
             };
 
 
-            DataTable dt = expediente.CargarExpediente();
+            DataTable dt = expediente.CargarExpediente(Convert.ToInt32(Session["idBebe"]));
             DataRow fila = dt.Rows[0];
             ViewBag.nom = fila["Nombre"];
             ViewBag.ape1 = fila["Apellido1"];
@@ -336,7 +336,7 @@ namespace BabyGuide.Controllers
         {
             Citas citas = new Citas();
 
-            int idexp = citas.idExpediente(2);
+            int idexp = citas.idExpediente(Convert.ToInt32(Session["idBebe"]));
 
             string titu = Request.Form["titu"]?.ToString();
             string desc = Request.Form["desc"]?.ToString();
@@ -359,7 +359,7 @@ namespace BabyGuide.Controllers
 
             Citas citas = new Citas();
 
-            int idexp = citas.idExpediente(2);
+            int idexp = citas.idExpediente(Convert.ToInt32(Session["idBebe"]));
 
             citas.EliminarCita(idexp, Convert.ToInt32(id));
 
@@ -371,6 +371,9 @@ namespace BabyGuide.Controllers
         }
         public ActionResult Perfil()
         {
+            Perfil perfil = new Perfil();
+            
+            string id = Request.Form["id"]?.ToString();
             string nom = Request.Form["nom"]?.ToString();
             string ape1 = Request.Form["ape1"]?.ToString();
             string ape2 = Request.Form["ape2"]?.ToString();
@@ -378,13 +381,44 @@ namespace BabyGuide.Controllers
             string nac = Request.Form["nac"]?.ToString();
             string gest = Request.Form["gest"]?.ToString();
 
-            if (nom != null && ape1 != null && ape2 != null && gen != null && nac != null && gest != null)
+            if (nom != null && ape1 != null && ape2 != null && gen != null && nac != null && gest != null && id != null)
             {
-                Perfil perfil = new Perfil();
-                perfil.AgregarBebe(nom, ape1, ape2, Convert.ToInt32(gen), nac, Convert.ToInt32(gest), perfil.GenerarClave());
+                
+                perfil.AgregarBebe(Convert.ToInt32(id), Convert.ToInt32(Session["idUsuario"]),nom, ape1, ape2, gen, nac, Convert.ToInt32(gest), perfil.GenerarClave());
             }
 
-            return View();
+            DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
+            DataRow fila = dataTable.Rows[0];
+
+            ViewBag.nom = fila["Nombre"];
+            ViewBag.ape = fila["Apellidos"];
+            ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
+            if (Convert.ToString(fila["idBebe"])  != "")
+            {
+                Session["idBebe"] = fila["idBebe"];
+            }
+
+            List<BebesP> List = new List<BebesP>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                BebesP Data = new BebesP
+                {
+                    name = row["NombreB"].ToString(),
+                    id = row["idBebe"].ToString(),
+                    apellidos = row["ApellidosB"].ToString(),
+                    rol = row["idRoll"].ToString(),
+                    clave = row["Clave"].ToString(),
+                    roln = row["Rol"].ToString(),
+                    // ...
+                };
+                if (Data.id != "")
+                {
+                    List.Add(Data);
+                }
+            }
+
+            return View(List);
         }
         public ActionResult PerfilModificar()
         {
@@ -392,6 +426,17 @@ namespace BabyGuide.Controllers
         }
         public ActionResult GestionFamilia()
         {
+
+            //GestionarFamilia gestionarFamilia = new GestionarFamilia();
+
+            //gestionarFamilia.VerFamilia(Convert.ToInt32(Session["idBebe"]));
+            //var viewModel = new FamiliaModel
+            //{
+            //    familia = gestionarFamilia.VerFamilia(),
+            //    roles = expediente.VerAlergiasBebe(idexp),
+            //};
+
+
             return View();
         }
 
@@ -483,7 +528,40 @@ namespace BabyGuide.Controllers
             return Json(usuarios);
 
         }
+        [HttpPost]
+        public ActionResult CambioBebe(string valor)
+        {
+            Session["idBebe"] = valor;
+            Perfil perfil = new Perfil();
+            DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
+            DataRow fila = dataTable.Rows[0];
 
+            ViewBag.nom = fila["Nombre"];
+            ViewBag.ape = fila["Apellidos"];
+            ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
+
+            List<BebesP> List = new List<BebesP>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                BebesP Data = new BebesP
+                {
+                    name = row["NombreB"].ToString(),
+                    id = row["idBebe"].ToString(),
+                    apellidos = row["ApellidosB"].ToString(),
+                    rol = row["idRoll"].ToString(),
+                    clave = row["Clave"].ToString(),
+                    roln = row["Rol"].ToString(),
+                    // ...
+                };
+                if (Data.id != "")
+                {
+                    List.Add(Data);
+                }
+            }
+            return View("Perfil", List);
+
+        }
 
     }
 }

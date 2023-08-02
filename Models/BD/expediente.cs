@@ -337,7 +337,7 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
-        public DataTable CargarExpediente()
+        public DataTable CargarExpediente(int id)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -347,7 +347,7 @@ namespace BabyGuide.Models.BD
                 connection.Open();
                 SqlCommand command = new SqlCommand("spVerExpediente", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@id", 2);
+                command.Parameters.AddWithValue("@id", id);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
 
                 DataTable dataTable = new DataTable();
