@@ -17,9 +17,23 @@
             <div class="bebes">
                 <img src="../assets/img/PerfilPage/perfil.png" alt="" class="deco">
                 <div class="infobebe">
-                    <label for="">Nombre</label>
-                    <label for="">Edad</label>
-                    <label for="">Clave bebé</label>
+                    @foreach (var i in Model)
+                    {
+                        if (Convert.ToString(Session["idBebe"]) == i.id)
+                        {
+                            <label for="">@i.name</label>
+                            <label for="">@i.apellidos</label>
+                            <br>
+                        }
+
+                    }
+                    <select id="miSelect" class="input-item">
+                        @foreach (var i in Model)
+                        {
+                            <option value="@i.id">@i.name @i.apellidos</option>
+                        }
+
+                    </select>
                 </div>
             </div>
 
@@ -39,14 +53,14 @@
                         <span class="close" id="closeModal">&times;</span>
                         <h2>Registrar bebé</h2>
                         <label for="idBebe">Identificación:</label>
-                        <input type="text" id="idBebe" name="id" class="input-item" placeholder="Ingrese la identificación del bebé">
+                        <input type="text" id="idBebe" name="id" class="input-item" placeholder="Ingrese la identificación del bebé" required pattern="[0-9]+">
                         <button class="botongeneral" type="button" id="btnCargarDatos">Buscar Bebe</button>
                         <label for="nombreBebe">Nombre:</label>
-                        <input type="text" id="nombreBebe" name="nom" class="input-item" placeholder="Ingrese el nombre del bebé"><br>
+                        <input type="text" id="nombreBebe" name="nom" class="input-item" placeholder="Ingrese el nombre del bebé" required maxlength="30"><br>
                         <label for="apellido1Bebe">Apellido 1:</label>
-                        <input type="text" id="apellido1Bebe" name="ape1" class="input-item" placeholder="Ingrese el primer apellido del bebé"><br>
+                        <input type="text" id="apellido1Bebe" name="ape1" class="input-item" placeholder="Ingrese el primer apellido del bebé" required maxlength="30"><br>
                         <label for="apellido2Bebe">Apellido 2:</label>
-                        <input type="text" id="apellido2Bebe" name="ape2" class="input-item" placeholder="Ingrese el segundo apellido del bebé"><br>
+                        <input type="text" id="apellido2Bebe" name="ape2" class="input-item" placeholder="Ingrese el segundo apellido del bebé" required maxlength="30"><br>
                         <label for="genero">Género:</label>
                         <select id="genero" class="input-item" name="gen">
                             <option value="True">Masculino</option>
@@ -58,6 +72,16 @@
                         <select id="gestacion" name="gest" class="input-item">
                             <option value="1">1 mes</option>
                             <option value="2">2 meses</option>
+                            <option value="3">3 meses</option>
+                            <option value="4">4 meses</option>
+                            <option value="5">5 meses</option>
+                            <option value="6">6 meses</option>
+                            <option value="7">7 meses</option>
+                            <option value="8">8 meses</option>
+                            <option value="9">9 meses</option>
+                            <option value="10">10 meses</option>
+                            <option value="11">11 meses</option>
+                            <option value="12">12 meses</option>
                         </select>
                         <button class="botongeneral" type="submit">Registrar</button>
                     </form>
@@ -73,11 +97,19 @@
             <img src="../assets/img/PerfilPage/perfil.png" alt="" class="deco">
 
             <div class="infoperfil">
-                <label for="">Nombre</label>
-                <label for="">Apellidos</label>
-                <label for="">Email</label>
+                <label for="">@ViewBag.nom</label>
+                <label for="">@ViewBag.ape</label>
+                <label for="">@ViewBag.correo</label>
             </div>
-            <label for="" class="rol">Rol</label>
+            @foreach (var i in Model)
+            {
+                if (Convert.ToString(Session["idBebe"]) == i.id)
+                {
+                    <label for="" class="rol">@i.roln</label>
+                }
+
+            }
+            
 
             <div class="botonperfil">
                 <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
@@ -151,4 +183,32 @@
         $('#generoInput').val('');
         $('#FechaNacBebe').val('');
     };
+</script>
+<script>
+    // Función para manejar el cambio en el select
+    $(document).ready(function () {
+        $("#miSelect").on("change", function () {
+            var nuevoValor = $(this).val();
+            actualizarVariableSession(nuevoValor);
+        });
+    });
+
+    // Función para actualizar la variable de sesión
+    function actualizarVariableSession(nuevoValor) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("CambioBebe", "Home")",
+            data: { valor: nuevoValor },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Variable de sesión actualizada correctamente.");
+                } else {
+                    console.error("Error al actualizar la variable de sesión.");
+                }
+            },
+            error: function (error) {
+                console.error("Error en la solicitud AJAX:", error);
+            }
+        });
+    }
 </script>

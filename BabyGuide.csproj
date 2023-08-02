@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BD\GestionarFamilia.cs" />
     <Compile Include="Models\BD\Dietas.cs" />
     <Compile Include="Models\BD\Citas.cs" />
     <Compile Include="Models\BD\Expediente.cs" />
@@ -140,6 +141,10 @@
     <Compile Include="Models\BD\SigNombres_Consejos.cs" />
     <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
+    <Compile Include="Models\Listas\FamiliaModel.cs" />
+    <Compile Include="Models\Listas\Roles.cs" />
+    <Compile Include="Models\Listas\Familia.cs" />
+    <Compile Include="Models\Listas\Bebes.cs" />
     <Compile Include="Models\Listas\Citas.cs" />
     <Compile Include="Models\Listas\Diagnosticos.cs" />
     <Compile Include="Models\Listas\AlergiasBebe.cs" />
