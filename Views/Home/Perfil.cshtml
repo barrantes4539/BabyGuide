@@ -17,16 +17,11 @@
             <div class="bebes">
                 <img src="../assets/img/PerfilPage/perfil.png" alt="" class="deco">
                 <div class="infobebe">
-                    @foreach (var i in Model)
-                    {
-                        if (Convert.ToString(Session["idBebe"]) == i.id)
-                        {
-                            <label for="">@i.name</label>
-                            <label for="">@i.apellidos</label>
-                            <br>
-                        }
 
-                    }
+                    <label for="" id="lblnom">@ViewBag.nombebe</label>
+                    <label for="" id="lblape">@ViewBag.apebebe</label>
+                    <br>
+
                     <select id="miSelect" class="input-item">
                         @foreach (var i in Model)
                         {
@@ -101,15 +96,10 @@
                 <label for="">@ViewBag.ape</label>
                 <label for="">@ViewBag.correo</label>
             </div>
-            @foreach (var i in Model)
-            {
-                if (Convert.ToString(Session["idBebe"]) == i.id)
-                {
-                    <label for="" class="rol">@i.roln</label>
-                }
 
-            }
-            
+            <label for="" class="rol" id="lblrol">@ViewBag.rol</label>
+
+
 
             <div class="botonperfil">
                 <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
@@ -201,7 +191,10 @@
             data: { valor: nuevoValor },
             success: function (response) {
                 if (response.success) {
-                    console.log("Variable de sesión actualizada correctamente.");
+                    // jQuery
+                    $('#lblnom').text(response.nombre);
+                    $('#lblape').text(response.apellido);
+                    $('#lblrol').text(response.rol);
                 } else {
                     console.error("Error al actualizar la variable de sesión.");
                 }

@@ -12,30 +12,29 @@
 <div class="body">
     <h2>Gestiona tu Familia</h2>
     <div class="main">
-        <div class="personas">
-            <label for="">Nombre</label>
-            <label for="" class="rol">Rol</label>
-        </div>
-        <div class="personas">
-            <label for="">Nombre</label>
-            <label for="" class="rol">Rol</label>
-        </div>
-        <div class="personas">
-            <label for="">Nombre</label>
-            <label for="" class="rol">Rol</label>
-        </div>
-        <div class="personas">
-            <label for="">Nombre</label>
-            <label for="" class="rol">Rol</label>
-        </div>
+        @foreach (var i in Model.familia)
+        {
+            <div class="personas">
+                <label for="">Nombre</label>
+                <label for="" class="rol">Rol</label>
+            </div>
+        }
     </div>
     <img src="../assets/img/GestionarFamiliaPage/encargado.png" alt="" class="deco">
     <div class="main2">
         <select name="" id="">
+            @foreach (var i in Model.familia)
+            {
+
+            }
             <option value="1">Persona1</option>
             <option value="2">Persona2</option>
         </select>
         <select name="" id="">
+            @foreach (var i in Model.roles)
+            {
+
+            }
             <option value="1">Rol1</option>
             <option value="2">Rol2</option>
         </select>
@@ -43,4 +42,3 @@
     </div>
 
 </div>
-    </div>

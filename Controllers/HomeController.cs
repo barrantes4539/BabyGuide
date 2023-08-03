@@ -400,6 +400,9 @@ namespace BabyGuide.Controllers
                 ViewBag.nom = fila["Nombre"];
                 ViewBag.ape = fila["Apellidos"];
                 ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
+                ViewBag.nombebe = fila["NombreB"];
+                ViewBag.apebebe = fila["ApellidosB"];
+                ViewBag.rol = fila["Rol"];
                 if (Convert.ToString(fila["idBebe"]) != "")
                 {
                     Session["idBebe"] = fila["idBebe"];
@@ -436,17 +439,16 @@ namespace BabyGuide.Controllers
         public ActionResult GestionFamilia()
         {
 
-            //GestionarFamilia gestionarFamilia = new GestionarFamilia();
+            GestionarFamilia gestionarFamilia = new GestionarFamilia();
 
-            //gestionarFamilia.VerFamilia(Convert.ToInt32(Session["idBebe"]));
-            //var viewModel = new FamiliaModel
-            //{
-            //    familia = gestionarFamilia.VerFamilia(),
-            //    roles = expediente.VerAlergiasBebe(idexp),
-            //};
+            gestionarFamilia.VerFamilia(Convert.ToInt32(Session["idBebe"]));
+            var viewModel = new FamiliaModel
+            {
+                familia = gestionarFamilia.VerFamilia(Convert.ToInt32(Session["idBebe"])),
+                roles = gestionarFamilia.VerRoles(),
+            };
 
-
-            return View();
+            return View(viewModel);
         }
 
 
@@ -544,32 +546,22 @@ namespace BabyGuide.Controllers
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
             DataRow fila = dataTable.Rows[0];
-
-            ViewBag.nom = fila["Nombre"];
-            ViewBag.ape = fila["Apellidos"];
-            ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
-
-            List<BebesP> List = new List<BebesP>();
-
+            var resultado = new {success = false, nombre = "", apellido = "", rol = ""};
             foreach (DataRow row in dataTable.Rows)
             {
-                BebesP Data = new BebesP
+                if (row["idBebe"].ToString() == valor)
                 {
-                    name = row["NombreB"].ToString(),
-                    id = row["idBebe"].ToString(),
-                    apellidos = row["ApellidosB"].ToString(),
-                    rol = row["idRoll"].ToString(),
-                    clave = row["Clave"].ToString(),
-                    roln = row["Rol"].ToString(),
-                    // ...
-                };
-                if (Data.id != "")
-                {
-                    List.Add(Data);
+                    resultado = new
+                    {
+                        success = true,
+                        nombre = row["NombreB"].ToString(),
+                        apellido = row["ApellidosB"].ToString(),
+                        rol = row["Rol"].ToString(),
+                    };
                 }
             }
-            return View("Perfil", List);
-
+            // Devolver el objeto anónimo como respuesta JSON
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
     }
