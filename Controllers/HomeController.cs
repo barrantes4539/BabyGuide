@@ -520,6 +520,27 @@ namespace BabyGuide.Controllers
             return totalBebes;
         }
 
+        [HttpGet]
+        //Indicador Total Dietas Controller
+        public int ObtenerTotalDietas()
+        {
+            Usuarios bebes = new Usuarios();
+            int totalDietas = bebes.TotalDietasBebes();
+
+            return totalDietas;
+        }
+
+
+        [HttpGet]
+        //Indicador Total Bebes Controller
+        public int ObtenerTotalCitas()
+        {
+            Usuarios bebes = new Usuarios();
+            int totalCitas = bebes.TotalCitasRegistradas();
+
+            return totalCitas;
+        }
+
         [HttpPost]
         public ActionResult DetalleBebe(int idBebe)
         {
