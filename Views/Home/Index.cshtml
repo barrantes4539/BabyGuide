@@ -86,9 +86,9 @@
 
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="count-box">
-                    <i class="bi bi-headset" style="background-color: #8bc0ce;"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="34002" data-purecounter-duration="1" class="purecounter" style="color: black;">0</span>
-                    <p>Audios guardados</p>
+                    <i class="bx bxl-ok-ru" style="background-color: #8bc0ce;"></i>
+                    <span id="contadorBebes" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter" style="color: black;"></span>
+                    <p>Bebés registrados</p>
                 </div>
             </div>
 
@@ -225,32 +225,36 @@
 <script src="../assets/js/main.js"></script>
 
 <script>
-        // Función para actualizar el contador de usuarios
-    function actualizarContadorUsuarios() {
+    // Función para actualizar un contador
+    function actualizarContador(endpoint, contadorId) {
         $.ajax({
-            url: '@Url.Action("ObtenerTotalUsuarios", "Home")',
+            url: endpoint,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
                 console.log(data);
                 // Actualizar el valor del contador con el valor recibido desde el controlador
-                var contadorUsuarios = $("#contadorUsuarios");
-                contadorUsuarios.attr("data-purecounter-end", data);
-                contadorUsuarios.text(data);
+                var contadorElement = $("#" + contadorId);
+                contadorElement.attr("data-purecounter-end", data);
+                contadorElement.text(data);
             },
-            error: function(error) {
+            error: function (error) {
                 console.log(error);
             }
         });
     }
 
-    // Llamar a la función para actualizar el contador de usuarios al cargar la página
-    actualizarContadorUsuarios();
+    // Llamar a la función para actualizar los contadores al cargar la página
+    $(document).ready(function () {
+        actualizarContador('@Url.Action("ObtenerTotalUsuarios", "Home")', "contadorUsuarios");
+        actualizarContador('@Url.Action("ObtenerTotalBebes", "Home")', "contadorBebes");
+    });
 
-    // Actualizar el contador de usuarios cada 10 segundos (puedes ajustar el tiempo según tus necesidades)
-    setInterval(function() {
-        actualizarContadorUsuarios();
-    }, 10000); // 10000 milisegundos = 10 segundo
+    // Actualizar los contadores cada 10 segundos (puedes ajustar el tiempo según tus necesidades)
+    setInterval(function () {
+        actualizarContador('@Url.Action("ObtenerTotalUsuarios", "Home")', "contadorUsuarios");
+        actualizarContador('@Url.Action("ObtenerTotalBebes", "Home")', "contadorBebes");
+    }, 10000); // 10000 milisegundos = 10 segundos
 
     function cargarConsejos() {
         $.ajax({

@@ -496,15 +496,24 @@ namespace BabyGuide.Controllers
             return Json(consejos, JsonRequestBehavior.AllowGet);
         }
 
-        //Indicador
+        //Indicador Total Usuarios controller
         [HttpGet]
-
         public int ObtenerTotalUsuarios()
         {
             Usuarios usuarios = new Usuarios();
             int totalUsuarios = usuarios.TotalUsuarios();
 
             return totalUsuarios;
+        }
+
+        [HttpGet]
+        //Indicador Total Bebes Controller
+        public int ObtenerTotalBebes()
+        {
+            Usuarios bebes = new Usuarios();
+            int totalBebes = bebes.TotalBebes();
+
+            return totalBebes;
         }
 
         [HttpPost]
