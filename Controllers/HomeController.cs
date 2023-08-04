@@ -351,7 +351,7 @@ namespace BabyGuide.Controllers
 
             if (titu != null && desc != null && fecha != null && hora != null)
             {
-                citas.CrearCita(idexp, titu, desc, fecha+" "+hora);
+                citas.CrearCita(idexp, titu, desc, fecha + " " + hora);
             }
 
             List<CitasM> lcitas = citas.VerCitasBebe(idexp);
@@ -377,7 +377,7 @@ namespace BabyGuide.Controllers
         public ActionResult Perfil()
         {
             Perfil perfil = new Perfil();
-            
+
             string id = Request.Form["id"]?.ToString();
             string nom = Request.Form["nom"]?.ToString();
             string ape1 = Request.Form["ape1"]?.ToString();
@@ -388,8 +388,8 @@ namespace BabyGuide.Controllers
 
             if (nom != null && ape1 != null && ape2 != null && gen != null && nac != null && gest != null && id != null)
             {
-                
-                perfil.AgregarBebe(Convert.ToInt32(id), Convert.ToInt32(Session["idUsuario"]),nom, ape1, ape2, gen, nac, Convert.ToInt32(gest), perfil.GenerarClave());
+
+                perfil.AgregarBebe(Convert.ToInt32(id), Convert.ToInt32(Session["idUsuario"]), nom, ape1, ape2, gen, nac, Convert.ToInt32(gest), perfil.GenerarClave());
             }
 
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
@@ -403,12 +403,13 @@ namespace BabyGuide.Controllers
                 ViewBag.nombebe = fila["NombreB"];
                 ViewBag.apebebe = fila["ApellidosB"];
                 ViewBag.rol = fila["Rol"];
+                ViewBag.clave = fila["Clave"];
                 if (Convert.ToString(fila["idBebe"]) != "")
                 {
                     Session["idBebe"] = fila["idBebe"];
                 }
             }
-            
+
 
             List<BebesP> List = new List<BebesP>();
 
@@ -441,7 +442,14 @@ namespace BabyGuide.Controllers
 
             GestionarFamilia gestionarFamilia = new GestionarFamilia();
 
-            gestionarFamilia.VerFamilia(Convert.ToInt32(Session["idBebe"]));
+            string fam = Request.Form["fam"]?.ToString();
+            string rol = Request.Form["rol"]?.ToString();
+
+            if (fam != null && rol != null)
+            {
+                gestionarFamilia.ModificarRol(Convert.ToInt32(fam), Convert.ToInt32(rol), Convert.ToInt32(Session["idBebe"]));
+            }
+
             var viewModel = new FamiliaModel
             {
                 familia = gestionarFamilia.VerFamilia(Convert.ToInt32(Session["idBebe"])),
@@ -524,15 +532,15 @@ namespace BabyGuide.Controllers
 
             var usuarios = JsonConvert.DeserializeObject<List<Bebes>>(jsonResult);
 
-                foreach (var usuario in usuarios)
+            foreach (var usuario in usuarios)
             {
-            DateTime fechaDateTime = DateTime.Parse(usuario.FechaNacimiento);
+                DateTime fechaDateTime = DateTime.Parse(usuario.FechaNacimiento);
 
-            // Formatear la fecha como una cadena con el formato deseado ("dd/MM/yyyy")
-            string fechaFormateada = fechaDateTime.ToString("MM/dd/yyyy");
+                // Formatear la fecha como una cadena con el formato deseado ("dd/MM/yyyy")
+                string fechaFormateada = fechaDateTime.ToString("MM/dd/yyyy");
 
-            // Luego, puedes asignar la fecha formateada de vuelta a la propiedad "fecha" en tu objeto "Data"
-            usuario.FechaNacimiento = fechaFormateada;
+                // Luego, puedes asignar la fecha formateada de vuelta a la propiedad "fecha" en tu objeto "Data"
+                usuario.FechaNacimiento = fechaFormateada;
             }
 
 
@@ -546,7 +554,7 @@ namespace BabyGuide.Controllers
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
             DataRow fila = dataTable.Rows[0];
-            var resultado = new {success = false, nombre = "", apellido = "", rol = ""};
+            var resultado = new { success = false, nombre = "", apellido = "", rol = "" };
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row["idBebe"].ToString() == valor)
@@ -563,6 +571,116 @@ namespace BabyGuide.Controllers
             // Devolver el objeto anónimo como respuesta JSON
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult Compartirclave(string clave, string correo, string bebe, string ape)
+        {
+            bool resultado = EnviarCorreo(correo, clave, bebe + " " + ape);
+            // Devolver el objeto anónimo como respuesta JSON
+            return Json(new { success = resultado });
 
+        }
+        public bool EnviarCorreo(string correo, string clave, string bebe)
+        {
+            string asunto = "Clave Bebé en BabyGuide";
+            string mensaje = $@"<!DOCTYPE html>
+                                            <html>
+                                            <head>
+                                                <title>Plantilla de Correo Electrónico</title>
+                                                <style>
+                                                /* Estilos generales */
+                                                body {{
+                                                    font-family: Arial, sans-serif;
+                                                    background-color: #f5f5f5;
+                                                    margin: 0;
+                                                    padding: 0;
+                                                }}
+
+                                                .container {{
+                                                    max-width: 600px;
+                                                    margin: 0 auto;
+                                                    background-color: #fff;
+                                                    padding: 20px;
+                                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                                }}
+
+                                                /* Encabezado */
+                                                .header {{
+                                                    text-align: center;
+                                                    margin-bottom: 20px;
+                                                }}
+
+                                                .logo {{
+                                                    max-width: 200px;
+                                                    height: auto;
+                                                }}
+
+                                                .company-name {{
+                                                    font-size: 24px;
+                                                    font-weight: bold;
+                                                    margin-top: 10px;
+                                                }}
+
+                                                /* Contenido */
+                                                .content {{
+                                                    margin-bottom: 20px;
+                                                }}
+
+                                                .content p {{
+                                                    margin-bottom: 10px;
+                                                }}
+
+                                                /* Pie de página */
+                                                .footer {{
+                                                    text-align: center;
+                                                    font-size: 14px;
+                                                    color: #999;
+                                                }}
+                                                </style>
+                                            </head>
+                                            <body>
+                                                <div class=""container"">
+                                                <div class=""header"">
+                                                   <img class=""logo"" src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/newLogo.png"" alt=""BabyGuide Logo"">
+                                                </div>
+
+                                                <div class=""content"">
+                                                    <p>Se ha compartido una clave bebé contigo!!</p>
+                                                    <p>Si tu no esperabas este código, solo ignoralo. Se ha compartido la clave del bebé: {bebe} para formar parte de su familia y disfrutar de nuestros servicios. Puedes usarlo cuando inicies sesión en nuestra página web https://tiusr2pl.cuc-carrera-ti.ac.cr/BabyGuide/Acceso/Login</p>
+                                                    <p>La clave es: <strong>{clave}</strong></p>
+                                                </div>
+
+                                                <div class=""footer"">
+                                                    <p>&copy; 2023 BabyGuide. Todos los derechos reservados.</p>
+                                                </div>
+                                                </div>
+                                            </body>
+                                            </html>";
+            bool resultado;
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.To.Add(correo);
+                mail.From = new MailAddress("babyguide3@gmail.com");
+                mail.Subject = asunto;
+                mail.Body = mensaje;
+                mail.IsBodyHtml = true;
+
+                var smtp = new SmtpClient()
+                {
+                    Credentials = new NetworkCredential("babyguide3@gmail.com", "inqdqakkpulstxrh"),
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true
+                };
+
+                smtp.Send(mail);
+                resultado = true;
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+            }
+            return resultado;
+        }
     }
 }

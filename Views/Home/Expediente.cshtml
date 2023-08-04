@@ -244,7 +244,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#alerbebe").append("<li><span>" + data.name + "</span> <span>Fecha: " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
+                        $("#alerbebe").append("<li><span>" + data.name + "</span> <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
                     }
 
                 },
@@ -303,7 +303,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#vacbebe").append("<li><span>" + data.name + "</span>  <span>Fecha:" + data.fecha + "</span><button class='delete-button' data-id='" + data.id +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
+                        $("#vacbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
                     }
                 },
                 error: function () {
@@ -362,7 +362,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#diagbebe").append("<li><span>" + data.name + "</span>  <span>Fecha:" + data.fecha + "</span><button class='delete-button' data-name='" + data.name +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
+                        $("#diagbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-name='" + data.name +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
                     }
                 },
                 error: function () {

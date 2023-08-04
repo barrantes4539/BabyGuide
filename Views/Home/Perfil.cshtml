@@ -25,19 +25,20 @@
                     <select id="miSelect" class="input-item">
                         @foreach (var i in Model)
                         {
-                            <option value="@i.id">@i.name @i.apellidos</option>
+                            <option value="@i.id" @(i.id == Convert.ToString(Session["idBebe"]) ? "selected" : "")>@i.name @i.apellidos</option>
                         }
 
                     </select>
+                    <button class="botongeneral" id="btnclave">Compartir Clave</button>
                 </div>
             </div>
 
             <div class="bebe2">
                 <button class="botongeneral" id="registrarBebeBtn">Registrar bebé</button>
-                o
+                
                 <div class="agregar">
                     <input type="text" class="input-item" placeholder="Ingrese clave bebé">
-                    <button class="botongeneral">Confirmar</button>
+                    <button class="botongeneral">Confirmar clave</button>
                 </div>
             </div>
 
@@ -83,6 +84,15 @@
 
                 </div>
             </div>
+            <div class="modal" id="compartirclave">
+                <div class="modal-content">
+                    <span class="close" id="closeModalclave">&times;</span>
+                    <h2>Compartir clave</h2>
+                    <label id="lblclave">@ViewBag.clave</label>
+                    <input type="email" name="name" value="" placeholder="Ingresa un Email" id="txtcorreo"/>
+                    <button class="botongeneral" id="btncompartir">Compartir</button>
+                </div>
+            </div>
         </div>
     </div>
     <img src="../assets/img/PerfilPage/familia.png" alt="" class="deco2">
@@ -121,6 +131,19 @@
     // Ocultar el modal de registro del bebé al hacer clic en la "X" de cerrar
     document.getElementById('closeModal').addEventListener('click', function () {
         document.getElementById('registroBebeModal').style.display = 'none';
+    });
+
+</script>
+
+<script>
+    // Mostrar el modal de registro del bebé al hacer clic en el botón "Registrar bebé"
+    document.getElementById('btnclave').addEventListener('click', function () {
+        document.getElementById('compartirclave').style.display = 'block';
+    });
+
+    // Ocultar el modal de registro del bebé al hacer clic en la "X" de cerrar
+    document.getElementById('closeModalclave').addEventListener('click', function () {
+        document.getElementById('compartirclave').style.display = 'none';
     });
 
 </script>
@@ -201,6 +224,37 @@
             },
             error: function (error) {
                 console.error("Error en la solicitud AJAX:", error);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        // Asociar el botón al evento click y llamar a la función obtenerDetalleBebe con el valor del campo de bebé
+        $('#btncompartir').on('click', function () {
+            var clave = $('#lblclave').text();
+            var correo = $('#txtcorreo').val();
+            var bebe = $('#lblnom').text();
+            var bebe = $('#lblape').text();
+            compartirclave(clave, correo, bebe, ape);
+        });
+    });
+
+    function compartirclave(clave, correo, bebe, ape) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Compartirclave", "Home")',
+            data: { clave: clave, correo: correo, bebe : bebe, ape: ape },
+            success: function (response) {
+                if (response.success) {
+                    document.getElementById('compartirclave').style.display = 'none';
+                } else {
+
+                }
+                
+            },
+            error: function () {
+                alert('Datos del bebe no encontrados.');
             }
         });
     }

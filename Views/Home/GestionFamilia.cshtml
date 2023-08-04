@@ -15,30 +15,28 @@
         @foreach (var i in Model.familia)
         {
             <div class="personas">
-                <label for="">Nombre</label>
-                <label for="" class="rol">Rol</label>
+                <label for="" class="nombre">@i.name</label>
+                <label for="" class="rol">@i.rol</label>
             </div>
         }
     </div>
     <img src="../assets/img/GestionarFamiliaPage/encargado.png" alt="" class="deco">
-    <div class="main2">
-        <select name="" id="">
-            @foreach (var i in Model.familia)
-            {
+    <form action="@Url.Action("GestionFamilia", "Home")" method="post">
+        <div class="main2">
+            <select name="fam" id="">
+                @foreach (var i in Model.familia)
+                {
+                    <option value="@i.id">@i.name</option>
+                }
+            </select>
+            <select name="rol" id="">
+                @foreach (var i in Model.roles)
+                {
+                    <option value="@i.id">@i.name</option>
+                }
 
-            }
-            <option value="1">Persona1</option>
-            <option value="2">Persona2</option>
-        </select>
-        <select name="" id="">
-            @foreach (var i in Model.roles)
-            {
-
-            }
-            <option value="1">Rol1</option>
-            <option value="2">Rol2</option>
-        </select>
-        <button class="botongeneral">Guardar</button>
-    </div>
-
+            </select>
+            <button class="botongeneral" type="submit">Guardar</button>
+        </div>
+    </form>
 </div>
