@@ -66,22 +66,22 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="count-box">
-                    <i class="bi bi-emoji-smile" style="background-color: #8bc0ce;"></i>
-                    <span data-purecounter-start="0"
-                          data-purecounter-end="100"
+                    <i class="bx bxs-book-bookmark" style="background-color: #8bc0ce;"></i>
+                    <span id="contadorCitas" data-purecounter-start="0"
+                          data-purecounter-end="0"
                           data-purecounter-legacy="true"
                           class="purecounter">
-                        0
+                        
                     </span>
-                    <p>Familias felices</p>
+                    <p>Citas registradas</p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                 <div class="count-box">
-                    <i class="bi bi-journal-richtext" style="background-color: #8bc0ce;"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="7459" data-purecounter-duration="1" class="purecounter" style="color: black;">0</span>
-                    <p>Valor de permanencia</p>
+                    <i class="bx bx-bowl-hot" style="background-color: #8bc0ce;"></i>
+                    <span id="contadorDietas" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter" style="color: black;"></span>
+                    <p>Variedad de dietas</p>
                 </div>
             </div>
 
@@ -249,12 +249,16 @@
     $(document).ready(function () {
         actualizarContador('@Url.Action("ObtenerTotalUsuarios", "Home")', "contadorUsuarios");
         actualizarContador('@Url.Action("ObtenerTotalBebes", "Home")', "contadorBebes");
+        actualizarContador('@Url.Action("ObtenerTotalDietas", "Home")', "contadorDietas");
+        actualizarContador('@Url.Action("ObtenerTotalCitas", "Home")', "contadorCitas");
     });
 
     // Actualizar los contadores cada 10 segundos (puedes ajustar el tiempo según tus necesidades)
     setInterval(function () {
         actualizarContador('@Url.Action("ObtenerTotalUsuarios", "Home")', "contadorUsuarios");
         actualizarContador('@Url.Action("ObtenerTotalBebes", "Home")', "contadorBebes");
+        actualizarContador('@Url.Action("ObtenerTotalDietas", "Home")', "contadorDietas");
+        actualizarContador('@Url.Action("ObtenerTotalCitas", "Home")', "contadorCitas");
     }, 10000); // 10000 milisegundos = 10 segundos
 
     function cargarConsejos() {
