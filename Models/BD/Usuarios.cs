@@ -99,7 +99,7 @@ namespace BabyGuide.Models.BD
             return idUsuario;
         }
 
-        //Indicador 
+        //Indicador total usuarios
         public int TotalUsuarios()
         {
             int totalUsuarios = 0; // Inicializar a 0 como valor predeterminado.
@@ -129,6 +129,38 @@ namespace BabyGuide.Models.BD
             }
 
             return totalUsuarios;
+        }
+
+        //Indicador total bebes
+        public int TotalBebes()
+        {
+            int totalBebes = 0; // Inicializar a 0 como valor predeterminado.
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("select COUNT(idBebe) as TotalBebes from [BabyGuide].[Bebes]", oConexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        totalBebes = Convert.ToInt32(reader["TotalBebes"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine(ex.Message);
+            }
+
+            return totalBebes;
         }
         public string CodigoVerificacionLogin()
         {
@@ -218,7 +250,7 @@ namespace BabyGuide.Models.BD
 
             return resultado;
         }
-
+       
 
 
 
