@@ -15,19 +15,19 @@
 </head>
 
 <div class="body">
-    <form action="/Home/Expediente" method="post">
+    <form action="@Url.Action("Expediente", "Home")" method="post">
         <h1>Expediente de tu Bendición</h1>
         <div class="cuerpo">
             <img class="deco" src="../assets/img/ExpedientePage/chupon.png" alt="">
             <div class="containerex">
                 <label for="nom">Nombre</label>
-                <input type="text" id="nom" name="nom" class="input-item" placeholder="Nombre" value="@ViewBag.nom" maxlength="30">
+                <input type="text" id="nom" name="nom" class="input-item" placeholder="Nombre" value="@ViewBag.nom" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
                 <label for="nac" id="lblnac">Fecha Nacimiento</label>
                 <input type="date" id="nac" name="nac" class="input-item" value="@ViewBag.nac.ToString("yyyy-MM-dd")">
                 <label for="ape1" id="lblape1">Primer Apellido</label>
-                <input type="text" id="ape1" name="ape1" class="input-item" placeholder="Apellidos" value="@ViewBag.ape1" maxlength="30">
+                <input type="text" id="ape1" name="ape1" class="input-item" placeholder="Apellidos" value="@ViewBag.ape1" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
                 <label for="ape2" id="lblape2">Segundo Apellido</label>
-                <input type="text" id="ape2" name="ape2" class="input-item" placeholder="Apellidos" value="@ViewBag.ape2" maxlength="30">
+                <input type="text" id="ape2" name="ape2" class="input-item" placeholder="Apellidos" value="@ViewBag.ape2" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
 
             </div>
             <button class="botongeneral">Guardar</button>
@@ -244,7 +244,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#alerbebe").append("<li><span>" + data.name + "</span> <span>Fecha: " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
+                        $("#alerbebe").append("<li><span>" + data.name + "</span> <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
                     }
 
                 },
@@ -303,7 +303,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#vacbebe").append("<li><span>" + data.name + "</span>  <span>Fecha:" + data.fecha + "</span><button class='delete-button' data-id='" + data.id +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
+                        $("#vacbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
                     }
                 },
                 error: function () {
@@ -362,7 +362,7 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#diagbebe").append("<li><span>" + data.name + "</span>  <span>Fecha:" + data.fecha + "</span><button class='delete-button' data-name='" + data.name +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
+                        $("#diagbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-name='" + data.name +"'> <img src='/assets/img/ExpedientePage/delete.png' /></button></li>");
                     }
                 },
                 error: function () {

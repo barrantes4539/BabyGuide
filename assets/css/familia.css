@@ -61,9 +61,15 @@ button:hover {
     min-width: 40%;
     margin-left: 5%;
     margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
 }
 .rol{
-    margin-left: 70%;
+    width: 10%;
+    margin-left: 25%;
+}
+.nombre{
+    width: 50%;
 }
 .body h2{
     color: white;

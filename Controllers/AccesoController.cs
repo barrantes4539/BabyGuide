@@ -56,7 +56,7 @@ namespace BabyGuide.Controllers
                 Console.WriteLine(usuarios.IdUsuarioLogueado(correo));
                 Session["idUsuario"] = usuarios.IdUsuarioLogueado(correo);
 
-            
+
                 bool respuesta = EnviarVerificacion(Session["correoUsuarioTemporal"].ToString(), out mensaje);
 
                 return RedirectToAction("DobleVerificacion", "Acceso"); // Redireccionar a una página de bienvenida o dashboard después del login exitoso.
@@ -93,7 +93,7 @@ namespace BabyGuide.Controllers
         public bool EnviarCorreo(string correo, string asunto, string mensaje)
         {
 
-           
+
             // Acceder al valor de la variable de sesión "correoUsuario".
             string correoUsuario = Session["correoUsuarioTemporal"] as string;
             bool resultado = false;
@@ -135,7 +135,7 @@ namespace BabyGuide.Controllers
 
 
             mensaje = string.Empty;
-              
+
 
             bool codigoInsertado = negocioUsuarios.InsertarCodigoVerificacion(correoUsuario, datosUsuario.CodigoVerificacion, out mensaje);
 
@@ -242,17 +242,18 @@ namespace BabyGuide.Controllers
         {
             string correoUsuario = Session["correoUsuarioTemporal"] as string;
             Usuarios negocios = new Usuarios();
-     
+
 
             string mensaje = string.Empty;
             string codigoGenerado = negocios.CodigoVerificacion(correoUsuario);
 
             if (codigoGenerado != null && codigoGenerado.Equals(codigoVerificacion))
             {
-          
+
                 negocios.EliminarCodigo(correoUsuario);
                 Session["correoUsuario"] = Session["correoUsuarioTemporal"];
-               
+                Session["idBebe"] = negocios.idBebe(Convert.ToInt32(Session["idUsuario"]));
+
 
                 return RedirectToAction("Index", "Home");
             }

@@ -10,32 +10,33 @@
 </head>
 
 <div class="body">
-    <div class="main">
-        <h2>Perfil</h2>
-        <div class="perfiles">
-            <div class="perfil1">
-                <label for="" class="rol">Rol</label>
-                <img src="../assets/img/PModificarPage/cubos.png" alt="" class="deco3">
-            </div>
-            <div class="perfil2">
-                <img src="../assets/img/PModificarPage/perfil.png" alt="" class="deco">
-                <button class="botongeneral">Guardar</button>
-            </div>
-        </div>
-    </div>
-    <img src="../assets/img/PModificarPage/familia.png" alt="" class="deco2">
-    <div class="main2">
-        <div class="perfil">
-            <div class="infoperfil1">
-                <input type="text" class="input-item" placeholder="Nombre">
-                <input type="text" class="input-item" placeholder="Email">
-            </div>
-            <div class="infoperfil2">
-                <input type="text" class="input-item" placeholder="Apellido 1">
-                <input type="text" class="input-item" placeholder="Apellido 2">
+    <form action="@Url.Action("PerfilModificar", "Home")" method="post">
+        <div class="main">
+            <h2>Perfil</h2>
+            <div class="perfiles">
+                <div class="perfil1">
+                    <img src="../assets/img/PModificarPage/cubos.png" alt="" class="deco3">
+                </div>
+                <div class="perfil2">
+                    <img src="../assets/img/PModificarPage/perfil.png" alt="" class="deco">
+                    <button class="botongeneral" type="submit">Guardar</button>
+                </div>
             </div>
         </div>
+        <img src="../assets/img/PModificarPage/familia.png" alt="" class="deco2">
+        <div class="main2">
 
-    </div>
+            <div class="perfil">
+                <div class="infoperfil1">
+                    <input type="text" class="input-item" placeholder="Nombre" value="@ViewBag.nom" maxlength="30" name="nom" required pattern="[A-Za-z]+" title="Solo se permiten letras">
+                    <input type="email" class="input-item" placeholder="Email" value="@ViewBag.email" maxlength="50" name="email" required> 
+                </div>
+                <div class="infoperfil2">
+                    <input type="text" class="input-item" placeholder="Apellido 1" value="@ViewBag.ape1" maxlength="30" name="ape1" required pattern="[A-Za-z]+" title="Solo se permiten letras">
+                    <input type="text" class="input-item" placeholder="Apellido 2" value="@ViewBag.ape2" maxlength="30" name="ape2" required pattern="[A-Za-z]+" title="Solo se permiten letras">
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 

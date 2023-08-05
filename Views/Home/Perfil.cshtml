@@ -15,34 +15,34 @@
         <h2>Bebé(s) asociado(s)</h2>
         <div class="bebe">
             <div class="bebes">
-                <img src="../assets/img/PerfilPage/perfil.png" alt="" class="deco">
-                <div class="infobebe">
-                    @foreach (var i in Model)
-                    {
-                        if (Convert.ToString(Session["idBebe"]) == i.id)
-                        {
-                            <label for="">@i.name</label>
-                            <label for="">@i.apellidos</label>
-                            <br>
-                        }
+                @if (Session["idBebe"] != null)
+                {
+                    <img src="../assets/img/PerfilPage/perfil.png" alt="" class="deco">
+                    <div class="infobebe">
 
-                    }
-                    <select id="miSelect" class="input-item">
-                        @foreach (var i in Model)
-                        {
-                            <option value="@i.id">@i.name @i.apellidos</option>
-                        }
+                        <label for="" id="lblnom">@ViewBag.nombebe</label>
+                        <label for="" id="lblape">@ViewBag.apebebe</label>
+                        <br>
 
-                    </select>
-                </div>
+                        <select id="miSelect" class="input-item">
+                            @foreach (var i in Model)
+                            {
+                                <option value="@i.id" @(i.id == Convert.ToString(Session["idBebe"]) ? "selected" : "")>@i.name @i.apellidos</option>
+                            }
+
+                        </select>
+                        <button class="botongeneral" id="btnclave">Compartir Clave</button>
+                    </div>
+                }
+
             </div>
 
             <div class="bebe2">
                 <button class="botongeneral" id="registrarBebeBtn">Registrar bebé</button>
-                o
+                
                 <div class="agregar">
-                    <input type="text" class="input-item" placeholder="Ingrese clave bebé">
-                    <button class="botongeneral">Confirmar</button>
+                    <input type="text" class="input-item" placeholder="Ingrese clave bebé" id="txtclaveu">
+                    <button class="botongeneral" id="btnunir">Confirmar clave</button>
                 </div>
             </div>
 
@@ -53,14 +53,14 @@
                         <span class="close" id="closeModal">&times;</span>
                         <h2>Registrar bebé</h2>
                         <label for="idBebe">Identificación:</label>
-                        <input type="text" id="idBebe" name="id" class="input-item" placeholder="Ingrese la identificación del bebé" required pattern="[0-9]+">
+                        <input type="text" id="idBebe" name="id" class="input-item" placeholder="Ingrese la identificación del bebé" required pattern="[0-9]+" title="Solo se permiten digitos">
                         <button class="botongeneral" type="button" id="btnCargarDatos">Buscar Bebe</button>
                         <label for="nombreBebe">Nombre:</label>
-                        <input type="text" id="nombreBebe" name="nom" class="input-item" placeholder="Ingrese el nombre del bebé" required maxlength="30"><br>
+                        <input type="text" id="nombreBebe" name="nom" class="input-item" placeholder="Ingrese el nombre del bebé" required maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras"><br>
                         <label for="apellido1Bebe">Apellido 1:</label>
-                        <input type="text" id="apellido1Bebe" name="ape1" class="input-item" placeholder="Ingrese el primer apellido del bebé" required maxlength="30"><br>
+                        <input type="text" id="apellido1Bebe" name="ape1" class="input-item" placeholder="Ingrese el primer apellido del bebé" required maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras"><br>
                         <label for="apellido2Bebe">Apellido 2:</label>
-                        <input type="text" id="apellido2Bebe" name="ape2" class="input-item" placeholder="Ingrese el segundo apellido del bebé" required maxlength="30"><br>
+                        <input type="text" id="apellido2Bebe" name="ape2" class="input-item" placeholder="Ingrese el segundo apellido del bebé" required maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras"><br>
                         <label for="genero">Género:</label>
                         <select id="genero" class="input-item" name="gen">
                             <option value="True">Masculino</option>
@@ -88,6 +88,16 @@
 
                 </div>
             </div>
+            <div class="modal" id="compartirclave">
+                <div class="modal-content">
+                    <span class="close" id="closeModalclave">&times;</span>
+                    <h2>Compartir clave</h2>
+                    <label id="lblclave" for="txtclave">Clave bebé</label>
+                    <input type="text" name="name" value="@ViewBag.clave" id="txtclave" disabled/>
+                    <input type="email" name="name" value="" placeholder="Ingresa un Email" id="txtcorreo" />
+                    <button class="botongeneral" id="btncompartir">Compartir</button>
+                </div>
+            </div>
         </div>
     </div>
     <img src="../assets/img/PerfilPage/familia.png" alt="" class="deco2">
@@ -101,15 +111,11 @@
                 <label for="">@ViewBag.ape</label>
                 <label for="">@ViewBag.correo</label>
             </div>
-            @foreach (var i in Model)
+            @if (Session["idBebe"] != null)
             {
-                if (Convert.ToString(Session["idBebe"]) == i.id)
-                {
-                    <label for="" class="rol">@i.roln</label>
-                }
-
+                <label for="" class="rol" id="lblrol">@ViewBag.rol</label>
             }
-            
+
 
             <div class="botonperfil">
                 <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
@@ -131,6 +137,19 @@
     // Ocultar el modal de registro del bebé al hacer clic en la "X" de cerrar
     document.getElementById('closeModal').addEventListener('click', function () {
         document.getElementById('registroBebeModal').style.display = 'none';
+    });
+
+</script>
+
+<script>
+    // Mostrar el modal de registro del bebé al hacer clic en el botón "Registrar bebé"
+    document.getElementById('btnclave').addEventListener('click', function () {
+        document.getElementById('compartirclave').style.display = 'block';
+    });
+
+    // Ocultar el modal de registro del bebé al hacer clic en la "X" de cerrar
+    document.getElementById('closeModalclave').addEventListener('click', function () {
+        document.getElementById('compartirclave').style.display = 'none';
     });
 
 </script>
@@ -201,13 +220,76 @@
             data: { valor: nuevoValor },
             success: function (response) {
                 if (response.success) {
-                    console.log("Variable de sesión actualizada correctamente.");
+                    // jQuery
+                    $('#lblnom').text(response.nombre);
+                    $('#lblape').text(response.apellido);
+                    $('#lblrol').text(response.rol);
+                    $('#txtclave').val(response.clave);
                 } else {
                     console.error("Error al actualizar la variable de sesión.");
                 }
             },
             error: function (error) {
                 console.error("Error en la solicitud AJAX:", error);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        // Asociar el botón al evento click y llamar a la función obtenerDetalleBebe con el valor del campo de bebé
+        $('#btncompartir').on('click', function () {
+            var clave = $('#txtclave').val();
+            var correo = $('#txtcorreo').val();
+            var bebe = $('#lblnom').text();
+            var ape = $('#lblape').text();
+            compartirclave(clave, correo, bebe, ape);
+        });
+    });
+
+    function compartirclave(clave, correo, bebe, ape) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Compartirclave", "Home")',
+            data: { clave: clave, correo: correo, bebe : bebe, ape: ape },
+            success: function (response) {
+                if (response.success) {
+                    document.getElementById('compartirclave').style.display = 'none';
+                } else {
+
+                }
+                
+            },
+            error: function () {
+                alert('Datos del bebe no encontrados.');
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        // Asociar el botón al evento click y llamar a la función obtenerDetalleBebe con el valor del campo de bebé
+        $('#btnunir').on('click', function () {
+            var clave = $('#txtclaveu').val();
+            confirmarclave(clave);
+        });
+    });
+
+    function confirmarclave(clave) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Confirmarclave", "Home")',
+            data: { clave: clave },
+            success: function (response) {
+                if (response.success) {
+                    
+                } else {
+
+                }
+
+            },
+            error: function () {
+                alert('Datos del bebe no encontrados.');
             }
         });
     }
