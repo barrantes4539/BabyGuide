@@ -219,7 +219,30 @@ namespace BabyGuide.Models.BD
             return resultado;
         }
 
+        public int? idBebe(int id)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVeridBebe", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                int? idexp = (int?)command.ExecuteScalar();
 
+                return idexp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
 
     }

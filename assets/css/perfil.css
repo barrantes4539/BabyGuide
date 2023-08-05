@@ -35,6 +35,9 @@ body::-webkit-scrollbar-thumb {
         background-color: white;
         color: #00DDBD;
     }
+#btnunir{
+    height:55px;
+}
 
 .input-item {
     padding-left: 10px;

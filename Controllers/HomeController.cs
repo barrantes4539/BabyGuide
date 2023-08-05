@@ -396,7 +396,6 @@ namespace BabyGuide.Controllers
             if (dataTable.Rows.Count > 0)
             {
                 DataRow fila = dataTable.Rows[0];
-
                 ViewBag.nom = fila["Nombre"];
                 ViewBag.ape = fila["Apellidos"];
                 ViewBag.correo = Convert.ToString(Session["correoUsuario"]);
@@ -435,6 +434,30 @@ namespace BabyGuide.Controllers
         }
         public ActionResult PerfilModificar()
         {
+
+            PerfilModificar perfil = new PerfilModificar();
+            string nom = Request.Form["nom"]?.ToString();
+            string ape1 = Request.Form["ape1"]?.ToString();
+            string ape2 = Request.Form["ape2"]?.ToString();
+            string email = Request.Form["email"]?.ToString();
+
+            if (nom != null &&  ape1 != null && ape2 != null && email != null)
+            {
+                perfil.ModificarPerfil(Convert.ToInt32(Session["idUsuario"]), nom, ape1, ape2, email);
+            }
+
+            DataTable dt = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                ViewBag.nom = row["Nombre"].ToString();
+                ViewBag.ape1 = row["Apellido1"].ToString();
+                ViewBag.ape2 = row["Apellido2"].ToString();
+            }
+            
+            ViewBag.email = Convert.ToString(Session["correoUsuario"]);
+
+
             return View();
         }
         public ActionResult GestionFamilia()
@@ -554,7 +577,7 @@ namespace BabyGuide.Controllers
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
             DataRow fila = dataTable.Rows[0];
-            var resultado = new { success = false, nombre = "", apellido = "", rol = "" };
+            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "" };
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row["idBebe"].ToString() == valor)
@@ -565,6 +588,7 @@ namespace BabyGuide.Controllers
                         nombre = row["NombreB"].ToString(),
                         apellido = row["ApellidosB"].ToString(),
                         rol = row["Rol"].ToString(),
+                        clave = row["Clave"].ToString()
                     };
                 }
             }
@@ -578,6 +602,37 @@ namespace BabyGuide.Controllers
             // Devolver el objeto anónimo como respuesta JSON
             return Json(new { success = resultado });
 
+        }
+        [HttpPost]
+        public ActionResult Confirmarclave(string clave)
+        {
+            Perfil perfil = new Perfil();
+
+            perfil.AgregarFamiliar(Convert.ToInt32(Session["idUsuario"]), clave);
+            // Devolver el objeto anónimo como respuesta JSON
+            DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
+
+            List<BebesP> List = new List<BebesP>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                BebesP Data = new BebesP
+                {
+                    name = row["NombreB"].ToString(),
+                    id = row["idBebe"].ToString(),
+                    apellidos = row["ApellidosB"].ToString(),
+                    rol = row["idRoll"].ToString(),
+                    clave = row["Clave"].ToString(),
+                    roln = row["Rol"].ToString(),
+                    // ...
+                };
+                if (Data.id != "")
+                {
+                    List.Add(Data);
+                }
+            }
+
+            return View("Perfil", List);
         }
         public bool EnviarCorreo(string correo, string clave, string bebe)
         {
