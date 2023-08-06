@@ -370,10 +370,7 @@ namespace BabyGuide.Controllers
 
             return Json(new { success = true });
         }
-        public ActionResult Alertas()
-        {
-            return View();
-        }
+
         public ActionResult Perfil()
         {
             string nom = Request.Form["nom"]?.ToString();
@@ -489,6 +486,17 @@ namespace BabyGuide.Controllers
 
         }
 
+        //Metodo para alertas
+        public ActionResult Alertas()
+        {
+            Alertas alertas = new Alertas();
+
+            int idBebe = 305340319;
+
+            List<AlertasBebe> ListaAlertas = alertas.VerAlertas();
+
+            return View(ListaAlertas);
+        }
 
     }
 }

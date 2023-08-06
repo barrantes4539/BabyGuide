@@ -15,24 +15,28 @@
     </div>
 </div>
 <div class="grid-container">
-    <div class="grid-item" id="categoria-alerta">
-        <img src="~/assets/img/CategoriasAlertas/panal.png" />
-    </div>
-    <div class="grid-item" id="info-alerta">
-        <p>Tiempo restante: </p>
-        <p>Dar almuerzo al bebe</p>
-    </div>
-    <div class="grid-item" id="botones-alerta">
-        <div class="switch">
-            <input type="checkbox" id="switch-checkbox">
-            <label for="switch-checkbox" class="switch-label"></label>
+    @foreach (var i in Model)
+    {
+        <div class="grid-item" id="categoria-alerta">
+            <img src="~/assets/img/CategoriasAlertas/panal.png" />
         </div>
-        <button class="delete"></button>
-    </div>
-    <div class="grid-item" id="hora-alerta">
-        <img src="~/assets/img/Alertas/despertador.png" />
-        <p>12:00</p>
-    </div>
+        <div class="grid-item" id="info-alerta">
+            <p>Tiempo restante: </p>
+            <p>@i.Titulo</p>
+        </div>
+        <div class="grid-item" id="botones-alerta">
+            <div class="switch">
+                <input type="checkbox" id="switch-checkbox">
+                <label for="switch-checkbox" class="switch-label"></label>
+            </div>
+            <button class="delete"></button>
+        </div>
+        <div class="grid-item" id="hora-alerta">
+            <img src="~/assets/img/Alertas/despertador.png" />
+            <p>@i.Hora</p>
+        </div>
+
+    }
 </div>
 
 <div class="nuevo-evento">
