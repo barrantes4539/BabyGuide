@@ -88,6 +88,12 @@ body {
     font-size: 48px;
   
 }
+#hero .hero-img {
+    display: flex;
+    margin-top: -320px;
+    margin-right: 20px;
+}
+
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
@@ -423,15 +429,56 @@ body {
 
 @media (max-width: 991px) {
   #hero .hero-img {
-    display: none
+    display: flex;
   }
 
   #hero .hero-img img {
     width: 50%;
   }
+  .hero-img{
+      margin-bottom: 50px;
+  }
   .titleDietas{
       font-size: 25px;
   }
+    #hero {
+        text-align: center;
+    }
+
+        #hero strong {
+            font-size: 25px;
+        }
+
+        #hero ul {
+            text-align: left;
+            font-size: 20px;
+        }
+
+            #hero ul li {
+                text-align: left;
+                font-size: 20px;
+            }
+
+        #hero .hero-img img {
+            display: flex;
+            margin: 0 auto;
+            margin-top: 350px;
+        }
+
+    #about p {
+        font-size: 20px;
+    }
+
+    .tablinks {
+        font-size: 16px;
+    }
+
+    #hero .btn-get-started,
+    #hero .btn-get-quote {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -445,10 +492,86 @@ body {
     line-height: 24px;
     margin-bottom: 30px;
   }
+    #hero {
+        text-align: center;
+    }
+
+        #hero strong {
+            font-size: 25px;
+        }
+
+        #hero ul {
+            text-align: left;
+            font-size: 20px;
+        }
+
+            #hero ul li {
+                text-align: left;
+                font-size: 20px;
+            }
+
+        #hero .hero-img img {
+            display: flex;
+            margin: 0 auto;
+            margin-top: 350px;
+        }
+
+    #about p {
+        font-size: 20px;
+    }
+
+    .tablinks {
+        font-size: 16px;
+    }
+
+    #hero .btn-get-started,
+    #hero .btn-get-quote {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 20px;
+    }
 
   #hero .hero-img img {
-    display: none;
+    display: flex;
   }
+    #hero {
+        text-align: center;
+    }
+
+        #hero strong {
+            font-size: 25px;
+        }
+
+        #hero ul {
+            text-align: left;
+            font-size: 20px;
+        }
+
+            #hero ul li {
+                text-align: left;
+                font-size: 20px;
+            }
+
+        #hero .hero-img img {
+            display: flex;
+            margin: 0 auto;
+            margin-top: 350px;
+        }
+
+    #about p {
+        font-size: 20px;
+    }
+
+    .tablinks {
+        font-size: 16px;
+    }
+
+    #hero .btn-get-started,
+    #hero .btn-get-quote {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -460,26 +583,86 @@ body {
         font-size: 10px;
         width: 20px;
     }
+    #hero {
+        text-align: center;
+    }
+
+        #hero strong {
+            font-size: 25px;
+        }
+
+        #hero ul {
+            text-align: left;
+            font-size: 20px;
+        }
+
+            #hero ul li {
+                text-align: left;
+                font-size: 20px;
+            }
+
+        #hero .hero-img img {
+            display: flex;
+            margin: 0 auto;
+            margin-top: 350px;
+        }
+
+    #about p {
+        font-size: 20px;
+    }
+
+    .tablinks {
+        font-size: 16px;
+    }
+
+    #hero .btn-get-started,
+    #hero .btn-get-quote {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 575px) {
   #hero {
     text-align: center;
+ 
+    
   }
+
+    #hero strong {
+        font-size: 25px;
+    }
 
   #hero ul {
     text-align: left;
-    font-size: 14px;
+    font-size: 20px;
   }
+    #hero ul li {
+        text-align: left;
+        font-size: 20px;
+    }
 
-  #hero .hero-img img {
-    display: none;
-  }
+    #hero .hero-img img {
+        display: flex;
+        margin: 0 auto;
+        margin-top: 350px;
+    }
 
-  #hero .btn-get-started,
-  #hero .btn-get-quote {
-    padding-left: 18px;
-    padding-right: 18px;
-    font-size: 14px;
-  }
+    #about p {
+        font-size: 20px;
+    }
+    
+    .tablinks{
+        font-size: 16px;
+    }
+
+    #hero .btn-get-started,
+    #hero .btn-get-quote {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 20px;
+    }
+   
+
 }

@@ -168,6 +168,7 @@
     <Content Include="assets\css\expediente.css" />
     <Content Include="assets\css\familia.css" />
     <Content Include="assets\css\ModuloConfiguracion\AgregarDietas.css" />
+    <Content Include="assets\css\ModuloConfiguracion\ConfiguracionSistema.css" />
     <Content Include="assets\css\ModuloConfiguracion\Dashboard.css" />
     <Content Include="assets\css\ModuloConfiguracion\TablaUsuarios.css" />
     <Content Include="assets\css\NuevaAventura.css" />
