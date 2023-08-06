@@ -90,7 +90,9 @@ body::-webkit-scrollbar-thumb {
     width: 60%;
     height: 60%;
 }
-
+.bebes select{
+    width: 100%;
+}
 .infobebe {
     display: flex;
     flex-direction: column;
