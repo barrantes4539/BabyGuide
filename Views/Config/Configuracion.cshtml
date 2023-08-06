@@ -4,5 +4,66 @@
     Layout = "~/Views/Shared/_LayoutConfig.cshtml";
 }
 
-<h2>Configuracion</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración del Sistema de Padres Primerizos</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link href="../assets/css/ModuloConfiguracion/ConfiguracionSistema.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    
 
+</head>
+<body>
+    <div class="container-config">
+        <h2>Configuración del Sistema</h2>
+        <form>
+            <div class="form-group-config">
+                <label for="nombre_sistema">Nombre del Sistema</label>
+                <input type="text" id="nombre_sistema" placeholder="Ingrese el nombre del sistema">
+            </div>
+
+            <div class="form-group-config">
+                <label for="idioma">Idioma</label>
+                <select id="idioma">
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                    <option value="fr">Francés</option>
+                </select>
+            </div>
+
+            <div class="form-group-config">
+                <label for="zona_horaria">Zona Horaria</label>
+                <select id="zona_horaria">
+                    <option value="GMT-5">GMT-5 (Hora Estándar del Este)</option>
+                    <option value="GMT-6">GMT-6 (Hora Central)</option>
+                    <option value="GMT-7">GMT-7 (Hora del Pacífico)</option>
+                </select>
+            </div>
+
+            <div class="form-group-config">
+                <label for="mostrar_notificaciones">Mostrar Notificaciones</label>
+                <input type="checkbox" id="mostrar_notificaciones">
+            </div>
+
+            <div class="form-group-config">
+                <label for="tema">Tema</label>
+                <select id="tema">
+                    <option value="default">Predeterminado</option>
+                    <option value="dark">Oscuro</option>
+                    <option value="light">Claro</option>
+                </select>
+            </div>
+
+            <button type="submit">Guardar Configuración</button>
+        </form>
+    </div>
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
+
+
+</body>
+</html>
