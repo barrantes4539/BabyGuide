@@ -6,6 +6,8 @@ function verificarRegulacionesContraseña() {
     const crossmarks = document.querySelectorAll('.crossmark');
     const formulario = document.querySelector('.auth-form');
     const botonRegistrar = document.querySelector('.submit');
+    const confirmarContraseña = document.querySelector('input[name="confirmPassword"]').value;
+
 
     // Verificar longitud de la contraseña
     if (contraseña.length >= 8) {
@@ -40,9 +42,24 @@ function verificarRegulacionesContraseña() {
     } else {
         botonRegistrar.disabled = true;
     }
+
+    if (
+        checkmarks[0].style.display === 'block' &&
+        checkmarks[1].style.display === 'block' &&
+        checkmarks[2].style.display === 'block' &&
+        contraseña === confirmarContraseña
+    ) {
+        botonRegistrar.disabled = false;
+    } else {
+        botonRegistrar.disabled = true;
+    }
 }
 
 // Agregar evento de escucha al campo de contraseña
 const contraseñaInput = document.querySelector('input[type="password"]');
 contraseñaInput.addEventListener('input', verificarRegulacionesContraseña);
+
+// Agregar evento de escucha al campo de confirmar contraseña
+const confirmarContraseñaInput = document.querySelector('input[name="confirmPassword"]');
+confirmarContraseñaInput.addEventListener('input', verificarRegulacionesContraseña);
 
