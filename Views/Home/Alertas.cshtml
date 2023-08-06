@@ -4,5 +4,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Alertas</h2>
+<head>
+    <link href="~/assets/css/Alertas.css" rel="stylesheet" />
+</head>
 
+<div class="info-bebe">
+    <div class="info-text">
+        <h2>Camila Jiménez</h2>
+        <h3>7 meses 15 días</h3>
+    </div>
+</div>
+<div class="grid-container">
+    <div class="grid-item" id="categoria-alerta">
+        <img src="~/assets/img/CategoriasAlertas/panal.png" />
+    </div>
+    <div class="grid-item" id="info-alerta">
+        <p>Tiempo restante: </p>
+        <p>Dar almuerzo al bebe</p>
+    </div>
+    <div class="grid-item" id="botones-alerta">
+        <div class="switch">
+            <input type="checkbox" id="switch-checkbox">
+            <label for="switch-checkbox" class="switch-label"></label>
+        </div>
+        <button class="delete"></button>
+    </div>
+    <div class="grid-item" id="hora-alerta">
+        <img src="~/assets/img/Alertas/despertador.png" />
+        <p>12:00</p>
+    </div>
+</div>
+
+<div class="nuevo-evento">
+    <h2>Nuevo Evento</h2>
+    <div class="evento-titulo">
+        <label class="lbl-titulo">Evento</label>
+        <input type="text" id="input-evento" />
+    </div>
+    <div class="evento-labels">
+        <label class="lbl-hora">Seleccione una hora</label>
+        <label class="lbl-categoria">Seleccione una Categoria</label>
+    </div>
+    <div class="evento-inputs">
+        <input type="time" id="input-hora" />
+        <select class="slc-categoria"></select>
+    </div>
+    <button class="btn-guardar-evento">Agregar Evento</button>
+
+</div>
+
+<div class="leyenda">
+    <p>“Porque cada paso en la vida de tu bebé es un momento lleno de amor y orgullo”.</p>
+    <img src="~/assets/img/Alertas/planetas.png" class="planeta" />
+    <img src="~/assets/img/Alertas/cohete.png" class="cohete" />
+    <img src="~/assets/img/Alertas/estrella.png" class="estrellas" id="e1" />
+    <img src="~/assets/img/Alertas/estrella.png" class="estrellas" id="e2" />
+    <img src="~/assets/img/Alertas/estrella.png" class="estrellas" id="e3" />
+</div>

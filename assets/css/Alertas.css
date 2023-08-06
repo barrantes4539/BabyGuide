@@ -1,0 +1,284 @@
+﻿body {
+    margin-top: 10%;
+}
+
+.info-bebe {
+    /* ... otros estilos existentes ... */
+    position: relative; /* Asegura que el contenido absoluto esté posicionado relativo a este contenedor */
+    background-image: url('../../assets/img/alertas/yuri.jpg');
+    background-size: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-bottom: 15%;
+    margin-left: 2%;
+    width: 52%;
+}
+
+.info-text {
+    position: absolute;
+    bottom: 0; /* Coloca el contenido en la parte inferior del contenedor .info-bebe */
+    left: 0; /* Alinea el contenido a la izquierda */
+    width: 100%; /* Asegura que el contenido ocupe todo el ancho del contenedor .info-bebe */
+    background-color: rgba(0, 221, 189, 0.8); /* Color y opacidad para el fondo del texto */
+    padding: 1%;
+    padding-left: 3%;
+    color: white;
+    font-weight: bold;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 10% 30% 15% 10%); /* Puedes ajustar el número de columnas aquí */
+    gap: 0; /* Espacio entre celdas */
+    width: 80%;
+    margin-left: 2%;
+}
+
+.grid-item {
+    border-top: 2px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: 70%;
+}
+
+#categoria-alerta {
+    border-left: 2px solid #ccc;
+    display: flex; /* Agregar display flex para centrar la imagen */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+    #categoria-alerta img {
+        width: 60%;
+        height: auto;
+    }
+
+#info-alerta {
+    display: flex; /* Agregar display flex para centrar la imagen */
+    flex-direction: column;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+    #info-alerta p {
+        width: 100%;
+        margin-left: 10%;
+        border: 2px solid #ccc;
+        font-family: 'Poppins', sans-serif;
+    }
+
+#botones-alerta {
+    display: flex; /* Agregar display flex para centrar la imagen */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+    #botones-alerta button {
+        background-image: url('../img/trash.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: transparent; /* Establecer el fondo como transparente para que solo se vea la imagen */
+        border: none;
+        width: 20%;
+        height: 35%;
+    }
+
+#hora-alerta {
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    display: flex; /* Agregar display flex para centrar la imagen */
+    flex-direction: column;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+    #hora-alerta img {
+        width: 40%;
+        height: auto;
+        margin-top: 15%;
+    }
+
+    #hora-alerta p {
+        text-align: center;
+        font-size: 120%;
+        font-weight: bold;
+        width: 60%;
+        color: #426E77;
+    }
+
+/* Estilos del contenedor del switch */
+.switch {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-right: 10%;
+}
+
+    /* Estilos del interruptor (checkbox) oculto */
+    .switch input[type="checkbox"] {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* Estilos del indicador del switch */
+.switch-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #00DDBD;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease;
+}
+
+/* Estilos para el estado ON del switch */
+.switch input[type="checkbox"]:checked + .switch-label {
+    left: 30px;
+}
+
+.nuevo-evento {
+    display: flex;
+    flex-direction: column;
+    margin-left: 57%;
+    margin-top: -22.5%;
+    border: 2px dashed #00DDBD;
+    border-radius: 15px;
+    width: 40%;
+}
+
+    .nuevo-evento h2 {
+        width: 90%;
+        text-align: center;
+        margin-top: 2%;
+        margin-bottom: 5%;
+        margin-left: 5%;
+        /*border: 1px solid;*/
+    }
+
+    .nuevo-evento .evento-titulo {
+        position: relative;
+        margin-bottom: 2%;
+        margin-left: 5%;
+    }
+
+    .nuevo-evento .lbl-titulo {
+        position: absolute;
+        background-color: white;
+        padding-left: 1%;
+        padding-right: 1%;
+        top: -50%;
+        left: 3%;
+    }
+
+    .nuevo-evento #input-evento {
+        border: 2px solid #89C0CF;
+        border-radius: 10px;
+        width: 100%;
+    }
+
+    .nuevo-evento .evento-labels {
+        margin-bottom: 1%;
+        margin-left: 6%;
+    }
+
+    .nuevo-evento .lbl-hora {
+        margin-right: 25%;
+    }
+
+    .nuevo-evento .evento-inputs {
+        margin-bottom: 5%;
+        margin-left: 5%;
+    }
+
+    .nuevo-evento .lbl-categoria {
+    }
+
+    .nuevo-evento #input-hora {
+        border: 2px solid #89C0CF;
+        border-radius: 10px;
+        width: 40%;
+        margin-right: 9%;
+    }
+
+    .nuevo-evento .slc-categoria {
+        border: 2px solid #89C0CF;
+        border-radius: 10px;
+        width: 40%;
+        top: 55%;
+        left: 50%;
+    }
+
+    .nuevo-evento button {
+        background-color: #6CA5B1;
+        border: none;
+        opacity: 70%;
+        font-size: 120%;
+        color: white;
+        font-weight: bold;
+        border-radius: 50px;
+        margin-bottom: 3%;
+        margin-left: 25%;
+        padding: 1%;
+        width: 50%;
+    }
+
+.leyenda {
+    position: relative;
+    width: 40%;
+    padding-bottom: 16%;
+    margin-top: 2%;
+    margin-left: 57%;
+}
+
+    .leyenda p {
+        position: absolute;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-size: 120%;
+        color: #325359;
+        width: 50%;
+        bottom: 20%;
+        left: 25%;
+    }
+
+    .leyenda .cohete {
+        position: absolute;
+        width: 20%;
+        height: auto;
+        bottom: 0;
+        right: 15%;
+    }
+
+    .leyenda .planeta {
+        position: absolute;
+        width: 15%;
+        height: auto;
+        top: 0;
+        left: 42.5%;
+    }
+
+    .leyenda .estrellas {
+        position: absolute;
+        width: 7%;
+        height: auto;
+    }
+
+    .leyenda #e1 {
+        left: 20%;
+    }
+
+    .leyenda #e2 {
+        top: 10%;
+        right: 15%;
+    }
+
+    .leyenda #e3 {
+        left: 40%;
+        bottom: 0;
+    }
