@@ -74,6 +74,10 @@ namespace BabyGuide.Controllers
         //}
         public ActionResult Expediente()
         {
+            if (Session["idBebe"] == null)
+            {
+                return View("Index");
+            }
             Expediente expediente = new Expediente();
 
             int idexp = expediente.idExpediente(Convert.ToInt32(Session["idBebe"]));
@@ -339,6 +343,10 @@ namespace BabyGuide.Controllers
         #endregion
         public ActionResult Citas()
         {
+            if (Session["idBebe"] == null)
+            {
+                return View("Index");
+            }
             Citas citas = new Citas();
 
             int idexp = citas.idExpediente(Convert.ToInt32(Session["idBebe"]));
@@ -376,6 +384,10 @@ namespace BabyGuide.Controllers
         }
         public ActionResult Perfil()
         {
+            if (Session["idUsuario"] == null)
+            {
+                return View("Index");
+            }
             Perfil perfil = new Perfil();
 
             string id = Request.Form["id"]?.ToString();
@@ -434,7 +446,10 @@ namespace BabyGuide.Controllers
         }
         public ActionResult PerfilModificar()
         {
-
+            if (Session["idUsuario"] == null)
+            {
+                return View("Index");
+            }
             PerfilModificar perfil = new PerfilModificar();
             string nom = Request.Form["nom"]?.ToString();
             string ape1 = Request.Form["ape1"]?.ToString();
@@ -462,7 +477,10 @@ namespace BabyGuide.Controllers
         }
         public ActionResult GestionFamilia()
         {
-
+            if (Session["idBebe"] == null)
+            {
+                return View("Index");
+            }
             GestionarFamilia gestionarFamilia = new GestionarFamilia();
 
             string fam = Request.Form["fam"]?.ToString();
