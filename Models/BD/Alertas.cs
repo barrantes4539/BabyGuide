@@ -11,7 +11,7 @@ namespace BabyGuide.Models.BD
     public class Alertas
     {
 
-        public List<AlertasBebe> VerAlertas()
+        public List<AlertasBebe> VerAlertas(int idBebe)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -21,7 +21,7 @@ namespace BabyGuide.Models.BD
                 connection.Open();
                 SqlCommand command = new SqlCommand("spVerAlertas", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@id", 305340319);
+                command.Parameters.AddWithValue("@idBebe", idBebe);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
 
                 DataTable dataTable = new DataTable();

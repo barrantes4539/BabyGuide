@@ -15,20 +15,48 @@
     </div>
 </div>
 <div class="grid-container">
+    @{ int cont = 0; }
     @foreach (var i in Model)
     {
-        <div class="grid-item" id="categoria-alerta">
-            <img src="~/assets/img/CategoriasAlertas/panal.png" />
+
+        string borderColor = (cont % 2 == 0) ? "#6CA5B1" : "#00DDBD";
+
+        <div class="grid-item" id="categoria-alerta" style="border-left: 10px solid @borderColor;">
+
+            @if (i.idCategoria == "1")
+            {
+                <img src="~/assets/img/CategoriasAlertas/biberon.png" />
+            }
+            else if (i.idCategoria == "2")
+            {
+                <img src="~/assets/img/CategoriasAlertas/panal.png" />
+            }
+            else if (i.idCategoria == "3")
+            {
+                <img src="~/assets/img/CategoriasAlertas/jarabe.png" />
+            }
+            else if (i.idCategoria == "4")
+            {
+                <img src="~/assets/img/CategoriasAlertas/cuna-de-bebe.png" />
+            }
+            else if (i.idCategoria == "5")
+            {
+                <img src="~/assets/img/CategoriasAlertas/patio-de-juegos.png" />
+            }
         </div>
+
+        cont++;
+
         <div class="grid-item" id="info-alerta">
             <p>Tiempo restante: </p>
             <p>@i.Titulo</p>
         </div>
         <div class="grid-item" id="botones-alerta">
-            <div class="switch">
-                <input type="checkbox" id="switch-checkbox">
-                <label for="switch-checkbox" class="switch-label"></label>
-            </div>
+            <!-- Agregar el switch con la clase "switch" -->
+            <label class="switch">
+                <input type="checkbox">
+                <span class="switch-label"></span>
+            </label>
             <button class="delete"></button>
         </div>
         <div class="grid-item" id="hora-alerta">

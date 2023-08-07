@@ -493,7 +493,7 @@ namespace BabyGuide.Controllers
 
             int idBebe = 305340319;
 
-            List<AlertasBebe> ListaAlertas = alertas.VerAlertas();
+            List<AlertasBebe> ListaAlertas = alertas.VerAlertas(idBebe);
 
             return View(ListaAlertas);
         }

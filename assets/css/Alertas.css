@@ -28,20 +28,29 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(1, 10% 30% 15% 10%); /* Puedes ajustar el número de columnas aquí */
-    gap: 0; /* Espacio entre celdas */
-    width: 80%;
+    grid-template-columns: repeat(1, 15% 45% 25% 15%); /* Puedes ajustar el número de columnas aquí */
+    grid-row-gap: 0; /* Espacio entre celdas */
+    width: 52%;
     margin-left: 2%;
+    overflow: auto;
+    min-height: 300px;
+    max-height: 300px;
 }
 
+    .grid-container::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .grid-container::-webkit-scrollbar-thumb {
+        background-color: #00DDBD;
+        border-radius: 5px;
+    }
 .grid-item {
-    border-top: 2px solid #ccc;
+    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    height: 70%;
 }
 
-#categoria-alerta {
-    border-left: 2px solid #ccc;
+#categoria-alerta {    
     display: flex; /* Agregar display flex para centrar la imagen */
     align-items: center; /* Centrar verticalmente */
     justify-content: center; /* Centrar horizontalmente */
@@ -94,7 +103,6 @@
     #hora-alerta img {
         width: 40%;
         height: auto;
-        margin-top: 15%;
     }
 
     #hora-alerta p {
@@ -104,6 +112,18 @@
         width: 60%;
         color: #426E77;
     }
+
+/* Estilos del contenedor del switch */
+.switch {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-right: 10%;
+}
 
 /* Estilos del contenedor del switch */
 .switch {
@@ -145,8 +165,8 @@
 .nuevo-evento {
     display: flex;
     flex-direction: column;
+    margin-top: -35%;
     margin-left: 57%;
-    margin-top: -22.5%;
     border: 2px dashed #00DDBD;
     border-radius: 15px;
     width: 40%;
