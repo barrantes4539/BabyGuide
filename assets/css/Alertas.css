@@ -290,6 +290,7 @@
         margin-top: 200px; /* Ajustar el margen superior para pantallas más grandes */
     }
 
+
     .info-bebe {
         margin-bottom: 40px;
         width: auto; /* Reducir el ancho del contenedor .info-bebe para pantallas más grandes */
@@ -318,7 +319,5 @@
         display: none
     }
 }
-    
-
 
 
