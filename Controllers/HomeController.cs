@@ -673,21 +673,7 @@ namespace BabyGuide.Controllers
                 }
             }
 
-
-        //Metodo para alertas
-        public ActionResult Alertas()
-        {
-            Alertas alertas = new Alertas();
-
-            int idBebe = 305340319;
-
-            List<AlertasBebe> ListaAlertas = alertas.VerAlertas(idBebe);
-
-            return View(ListaAlertas);
-        }
-
             List<BebesP> List = new List<BebesP>();
-
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -709,6 +695,20 @@ namespace BabyGuide.Controllers
 
             return View("Perfil", List);
         }
+
+        //Metodo para alertas
+        public ActionResult Alertas()
+        {
+            Alertas alertas = new Alertas();
+
+            int idBebe = 305340319;
+
+            List<AlertasBebe> ListaAlertas = alertas.VerAlertas(idBebe);
+
+            return View(ListaAlertas);
+        }
+
+            
         public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";
