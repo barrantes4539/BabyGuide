@@ -23,7 +23,7 @@
 
         string borderColor = (cont % 2 == 0) ? "#6CA5B1" : "#00DDBD";
 
-        <div class="grid-item" id="categoria-alerta" style="border-left: 10px solid @borderColor;">
+        <div class="grid-item" id="categoria-alerta" style="border-left: 10px solid @borderColor;" data-id="@i.idAlerta">
 
             @if (i.idCategoria == "1")
             {
@@ -48,11 +48,11 @@
         </div>
         cont++;
 
-        <div class="grid-item" id="info-alerta">
+        <div class="grid-item" id="info-alerta" data-id="@i.idAlerta">
             <p>Tiempo restante: </p>
             <p>@i.Titulo</p>
         </div>
-        <div class="grid-item" id="botones-alerta">
+        <div class="grid-item" id="botones-alerta" data-id="@i.idAlerta">
             <!-- Agregar el switch con la clase "switch" -->
             <label class="switch">
                 <input type="checkbox" data-id="@i.idAlerta" @(i.Estado == "True" ? "checked" : "")>
@@ -60,7 +60,7 @@
             </label>
             <button type="button" class="delete" data-id="@i.idAlerta"></button>
         </div>
-        <div class="grid-item" id="hora-alerta">
+        <div class="grid-item" id="hora-alerta" data-id="@i.idAlerta">
             <img src="~/assets/img/Alertas/despertador.png" />
             <p>@i.Hora</p>
         </div>
@@ -137,10 +137,10 @@
                 type: 'POST',
                 data: { idAlerta: idAlerta },
                 success: function (result) {
-                    // Si la eliminación fue exitosa, puedes realizar cualquier acción adicional aquí si lo deseas.
-                    console.log("Eliminación exitosa");
-                    // Por ejemplo, puedes ocultar el elemento eliminado de la interfaz después de la eliminación.
-                    $(".grid-container .grid-item[data-id='" + idAlerta + "']").siblings(".grid-item").addBack().remove();
+                    var $elementosAEliminar = $(".grid-container .grid-item[data-id='" + idAlerta + "']");
+
+                    // Eliminar todos los elementos que forman la fila
+                    $elementosAEliminar.remove();
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     // Manejar cualquier error que pueda ocurrir durante la eliminación.
