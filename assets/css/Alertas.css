@@ -285,7 +285,7 @@
     
 
 /* Agregar estilos responsive */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     body {
         margin-top: 200px; /* Ajustar el margen superior para pantallas más grandes */
     }
@@ -319,4 +319,5 @@
         display: none
     }
 }
+
 
