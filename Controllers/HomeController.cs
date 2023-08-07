@@ -378,10 +378,7 @@ namespace BabyGuide.Controllers
 
             return Json(new { success = true });
         }
-        public ActionResult Alertas()
-        {
-            return View();
-        }
+
         public ActionResult Perfil()
         {
             if (Session["idUsuario"] == null)
@@ -676,7 +673,21 @@ namespace BabyGuide.Controllers
                 }
             }
 
+
+        //Metodo para alertas
+        public ActionResult Alertas()
+        {
+            Alertas alertas = new Alertas();
+
+            int idBebe = 305340319;
+
+            List<AlertasBebe> ListaAlertas = alertas.VerAlertas(idBebe);
+
+            return View(ListaAlertas);
+        }
+
             List<BebesP> List = new List<BebesP>();
+
 
             foreach (DataRow row in dataTable.Rows)
             {
