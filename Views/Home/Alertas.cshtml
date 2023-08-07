@@ -18,7 +18,7 @@
 <div class="grid-container">
 
     @{ int cont = 0; }
-    @foreach (var i in Model)
+    @foreach (var i in Model.Alertas)
     {
 
         string borderColor = (cont % 2 == 0) ? "#6CA5B1" : "#00DDBD";
@@ -55,35 +55,40 @@
         <div class="grid-item" id="botones-alerta">
             <!-- Agregar el switch con la clase "switch" -->
             <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" data-id="@i.idAlerta" @(i.Estado == "True" ? "checked" : "")>
                 <span class="switch-label"></span>
             </label>
-            <button class="delete"></button>
+            <button type="button" class="delete" data-id="@i.idAlerta"></button>
         </div>
         <div class="grid-item" id="hora-alerta">
             <img src="~/assets/img/Alertas/despertador.png" />
             <p>@i.Hora</p>
         </div>
-
     }
 </div>
 
 <div class="nuevo-evento">
     <h2>Nuevo Evento</h2>
-    <div class="evento-titulo">
-        <label class="lbl-titulo">Evento</label>
-        <input type="text" id="input-evento" />
-    </div>
-    <div class="evento-labels">
-        <label class="lbl-hora">Seleccione una hora</label>
-        <label class="lbl-categoria">Seleccione una Categoria</label>
-    </div>
-    <div class="evento-inputs">
-        <input type="time" id="input-hora" />
-        <select class="slc-categoria"></select>
-    </div>
-    <button class="btn-guardar-evento">Agregar Evento</button>
-
+    <form method="post" action="@Url.Action("Alertas", "Home")">
+        <div class="evento-titulo">
+            <label class="lbl-titulo">Evento</label>
+            <input type="text" id="input-evento" name="iptTitulo" required maxlength="50" />
+        </div>
+        <div class="evento-labels">
+            <label class="lbl-hora">Seleccione una hora</label>
+            <label class="lbl-categoria">Seleccione una Categoria</label>
+        </div>
+        <div class="evento-inputs">
+            <input type="time" id="input-hora" name="iptHora" required />
+            <select class="slc-categoria" name="slcCategoria" required>
+                @foreach (var i in Model.Categorias)
+                {
+                    <option value="@i.idCategoria">@i.Nombre</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn-guardar-evento">Agregar Evento</button>
+    </form>
 </div>
 
 <div class="leyenda">
@@ -95,5 +100,53 @@
     <img src="~/assets/img/Alertas/estrella.png" class="estrellas" id="e3" />
 </div>
 
-<!-- Template Main JS File -->
-<script src="../assets/js/main.js"></script>
+<!-- Agregar jQuery si aún no lo tienes en la página -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    // Esperar a que el DOM esté listo
+    $(document).ready(function () {
+        // Manejar el cambio del checkbox
+        $("input[type='checkbox']").on("change", function () {
+            var idAlerta = $(this).data("id");
+            var estado = $(this).prop("checked");
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: '@Url.Action("ActualizarEstado", "Home")',
+                type: 'POST',
+                data: { idAlerta: idAlerta, estado: estado },
+                success: function (result) {
+                    // Si la actualización fue exitosa, puedes realizar cualquier acción adicional aquí si lo deseas.
+                    console.log("Actualización exitosa");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Manejar cualquier error que pueda ocurrir durante la actualización.
+                    console.error("Error en la actualización:", errorThrown);
+                }
+            });
+        });
+
+        // Manejar el clic en el botón de eliminación
+        $(".delete").on("click", function () {
+            var idAlerta = $(this).data("id");
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: '@Url.Action("EliminarAlerta", "Home")',
+                type: 'POST',
+                data: { idAlerta: idAlerta },
+                success: function (result) {
+                    // Si la eliminación fue exitosa, puedes realizar cualquier acción adicional aquí si lo deseas.
+                    console.log("Eliminación exitosa");
+                    // Por ejemplo, puedes ocultar el elemento eliminado de la interfaz después de la eliminación.
+                    $(".grid-container .grid-item[data-id='" + idAlerta + "']").siblings(".grid-item").addBack().remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Manejar cualquier error que pueda ocurrir durante la eliminación.
+                    console.error("Error en la eliminación:", errorThrown);
+                }
+            });
+        });
+    });
+</script>

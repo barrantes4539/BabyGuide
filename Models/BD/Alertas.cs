@@ -53,5 +53,121 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
+
+        public List<CategoriasAlertas> VerCategoriasAlertas()
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerCategoriasAlertas", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<CategoriasAlertas> List = new List<CategoriasAlertas>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    CategoriasAlertas Data = new CategoriasAlertas
+                    {
+                        idCategoria = row["idCategoria"].ToString(),
+                        Nombre = row["Nombre"].ToString(),
+                        // ...
+                    };
+                    List.Add(Data);
+                }
+                return List;
+            }
+            catch (Exception)
+            {
+                return new List<CategoriasAlertas>();
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void IngresarAlerta(string Titulo, string Hora, int idCategoria, int idBebe)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spIngresarAlerta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Titulo", Titulo);
+                command.Parameters.AddWithValue("@Hora", Hora);
+                command.Parameters.AddWithValue("@idCategoria", idCategoria);
+                command.Parameters.AddWithValue("@idBebe", idBebe);
+                command.Parameters.AddWithValue("@Estado", 1);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void EliminarAlerta(int idAlerta)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spEliminarAlerta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@idAlerta", idAlerta);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void ModificarEstado(int idAlerta, int Estado)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spModificarEstadoAlerta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@idAlerta", idAlerta);
+                command.Parameters.AddWithValue("@Estado", Estado);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }

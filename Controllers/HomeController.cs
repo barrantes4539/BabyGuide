@@ -699,17 +699,52 @@ namespace BabyGuide.Controllers
         //Metodo para alertas
         public ActionResult Alertas()
         {
-            Alertas alertas = new Alertas();
+            //if (Session["idBebe"] == null)
+            //{
+            //    return View("Index");
+            //}
 
+            Alertas alertas = new Alertas();
             int idBebe = 305340319;
 
-            List<AlertasBebe> ListaAlertas = alertas.VerAlertas(idBebe);
+            string Titulo = Request.Form["iptTitulo"]?.ToString();
+            string Hora = Request.Form["iptHora"]?.ToString();
+            string idCategoria = Request.Form["slcCategoria"]?.ToString();                       
 
-            return View(ListaAlertas);
+            if(Titulo != null && Hora != null && idCategoria != null)
+            {
+                alertas.IngresarAlerta(Titulo, Hora, Convert.ToInt32(idCategoria), idBebe);
+            }
+
+            var viewModel = new AlertasModel
+            {
+                Alertas = alertas.VerAlertas(idBebe),
+                Categorias = alertas.VerCategoriasAlertas()
+            };
+
+            return View(viewModel);
         }
 
-            
-        public bool EnviarCorreo(string correo, string clave, string bebe)
+        [HttpPost]
+        public ActionResult ActualizarEstado(int idAlerta, bool estado)
+        {
+            Alertas alertas = new Alertas();
+            // Llamamos al método para actualizar el estado en la base de datos
+            alertas.ModificarEstado(idAlerta, Convert.ToInt32(estado));
+
+            return Json(new { success = true }); // Enviar una respuesta JSON para indicar el éxito de la operación
+        }
+
+        public ActionResult EliminarAlerta(int idAlerta)
+        {
+            Alertas alertas = new Alertas();
+            // Llamamos al método para eliminar la alerta en la base de datos
+            alertas.EliminarAlerta(idAlerta);
+
+            return Json(new { success = true }); // Enviar una respuesta JSON para indicar el éxito de la operación
+        }
+
+            public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";
             string mensaje = $@"<!DOCTYPE html>
