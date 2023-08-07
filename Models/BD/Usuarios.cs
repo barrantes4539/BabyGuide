@@ -99,7 +99,7 @@ namespace BabyGuide.Models.BD
             return idUsuario;
         }
 
-        //Indicador 
+        //Indicador total usuarios
         public int TotalUsuarios()
         {
             int totalUsuarios = 0; // Inicializar a 0 como valor predeterminado.
@@ -129,6 +129,102 @@ namespace BabyGuide.Models.BD
             }
 
             return totalUsuarios;
+        }
+
+        //Indicador total bebes
+        public int TotalBebes()
+        {
+            int totalBebes = 0; // Inicializar a 0 como valor predeterminado.
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("select COUNT(idBebe) as TotalBebes from [BabyGuide].[Bebes]", oConexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        totalBebes = Convert.ToInt32(reader["TotalBebes"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine(ex.Message);
+            }
+
+            return totalBebes;
+        }
+
+        //Indicador total bebes
+        public int TotalDietasBebes()
+        {
+            int totalDietas = 0; // Inicializar a 0 como valor predeterminado.
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("select COUNT(DISTINCT Ingredientes) as IngredientesUnicos from [BabyGuide].[Dietas]", oConexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        totalDietas = Convert.ToInt32(reader["IngredientesUnicos"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine(ex.Message);
+            }
+
+            return totalDietas;
+        }
+
+        //Indicador total bebes
+        public int TotalCitasRegistradas()
+        {
+            int totalCitas = 0; // Inicializar a 0 como valor predeterminado.
+
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("select COUNT(idACita) as totalCitas from [BabyGuide].[AuditoriaCitas]", oConexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    oConexion.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        totalCitas = Convert.ToInt32(reader["totalCitas"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine(ex.Message);
+            }
+
+            return totalCitas;
         }
         public string CodigoVerificacionLogin()
         {
@@ -219,7 +315,31 @@ namespace BabyGuide.Models.BD
             return resultado;
         }
 
+        public int? idBebe(int id)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVeridBebe", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                int? idexp = (int?)command.ExecuteScalar();
 
+
+                return idexp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
 
     }

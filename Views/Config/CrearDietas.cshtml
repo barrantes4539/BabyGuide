@@ -7,6 +7,8 @@
     <link href="../assets/css/ModuloConfiguracion/AgregarDietas.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <link href="../assets/css/style.css" rel="stylesheet">
+
 
 </head>
 <h1>Nueva Dieta</h1>
@@ -38,40 +40,64 @@
         <button type="submit" class="crearDietaButton">Crear Dieta</button>
     </form>
 </div>
+
+
 <script src="../assets/js/CreacionDietasEtapas.js"></script>
 <!-- Include SweetAlert library -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-      $(document).ready(function () {
-        // Agregar un evento de clic al botón "Crear Dieta"
-        $(".crearDietaButton").click(function (event) {
-            event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-
-            // Obtener los valores del formulario
+    $(document).ready(function () {
+        // Function to validate and submit the form
+        function submitForm() {
+            // Get the values of the form fields
             var nombreDieta = $(".input").val();
             var pasosDieta = $(".textarea").val();
-            var etapaDieta = parseInt($(".etapaSelect").val()); // Obtener el valor de la etapa seleccionada desde el select
+            var etapaDieta = parseInt($(".etapaSelect").val());
 
-            // Realizar la solicitud AJAX para insertar la dieta
+            // Check if any field is empty
+            if (nombreDieta.trim() === "" || pasosDieta.trim() === "") {
+                // Display an error message using SweetAlert
+                swal("Error", "Por favor, rellena todos los campos.", "error");
+                return; // Stop the form submission
+            }
+
+            // Make the AJAX request to insert the dieta
             $.ajax({
                 url: '@Url.Action("CrearDieta", "Config")',
                 type: "POST",
                 data: { ingrediente: nombreDieta, pasos: pasosDieta, anioDieta: etapaDieta },
                 dataType: "json",
                 success: function (data) {
-                    debugger;
-                    console.log(data)
-                    // La dieta se insertó correctamente, puedes realizar alguna acción adicional si es necesario
-                    swal("Dieta creada exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
+                    // The dieta was inserted successfully, you can perform any additional actions if needed
+                    swal("Dieta creada exitosamente", "Presiona OK para continuar", "success");
                 },
                 error: function (data) {
                     alert("Error al insertar la dieta.");
                 }
             });
+        }
+
+        // Add a click event to the "Crear Dieta" button
+        $(".crearDietaButton").click(function (event) {
+            event.preventDefault(); // Prevent the form from submitting by default
+
+            // Call the submitForm function for validation and form submission
+            submitForm();
+        });
+
+        // If you want to validate the form on form submit (Enter key press), you can use the following code
+        $(".addDietasContainer").submit(function (event) {
+            event.preventDefault(); // Prevent the form from submitting by default
+
+            // Call the submitForm function for validation and form submission
+            submitForm();
         });
     });
-
 </script>
+
+<!-- Template Main JS File -->
+<script src="../assets/js/main.js"></script>
+
 
 
 

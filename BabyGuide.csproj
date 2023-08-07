@@ -133,15 +133,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+
     <Compile Include="Models\BD\Alertas.cs" />
+
+    <Compile Include="Models\BD\GestionarFamilia.cs" />
+
     <Compile Include="Models\BD\Dietas.cs" />
     <Compile Include="Models\BD\Citas.cs" />
     <Compile Include="Models\BD\Expediente.cs" />
+    <Compile Include="Models\BD\PerfilModificar.cs" />
     <Compile Include="Models\BD\Perfil.cs" />
     <Compile Include="Models\BD\SigNombres_Consejos.cs" />
     <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
+
     <Compile Include="Models\Listas\Alertas.cs" />
+
+    <Compile Include="Models\Listas\FamiliaModel.cs" />
+    <Compile Include="Models\Listas\Roles.cs" />
+    <Compile Include="Models\Listas\Familia.cs" />
+    <Compile Include="Models\Listas\Bebes.cs" />
+
     <Compile Include="Models\Listas\Citas.cs" />
     <Compile Include="Models\Listas\Diagnosticos.cs" />
     <Compile Include="Models\Listas\AlergiasBebe.cs" />
@@ -164,6 +176,7 @@
     <Content Include="assets\css\expediente.css" />
     <Content Include="assets\css\familia.css" />
     <Content Include="assets\css\ModuloConfiguracion\AgregarDietas.css" />
+    <Content Include="assets\css\ModuloConfiguracion\ConfiguracionSistema.css" />
     <Content Include="assets\css\ModuloConfiguracion\Dashboard.css" />
     <Content Include="assets\css\ModuloConfiguracion\TablaUsuarios.css" />
     <Content Include="assets\css\NuevaAventura.css" />
@@ -455,7 +468,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49990</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49990/</IISUrl>
+          <IISUrl>http://localhost:3000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

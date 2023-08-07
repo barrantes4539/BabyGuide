@@ -8,18 +8,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BabyGuide.Models.BD
 {
-    public class Bebes
+    public class PerfilModificar
     {
-        public int IdUsuario { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido1 { get; set; }
-        public string Apellido2 { get; set; }
-        public bool Genero { get; set; }
-        public string FechaNacimiento { get; set; }
-    }
-    public class Perfil
-    {
-        public void AgregarBebe(int idb, int idu,string nom, string ape1, string ape2, string gen, string nac, int gest, string claveBebe)
+        public void ModificarPerfil(int id,string nom, string ape1, string ape2, string email)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -27,40 +18,14 @@ namespace BabyGuide.Models.BD
                 string connectionString = Conexion.cn;
                 connection = new SqlConnection(connectionString);
                 connection.Open();
-                SqlCommand command = new SqlCommand("spIngresarBebe", connection);
+                SqlCommand command = new SqlCommand("spModificarPerfil", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@idb", idb);
+                command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@nom", nom);
                 command.Parameters.AddWithValue("@ape1", ape1);
                 command.Parameters.AddWithValue("@ape2", ape2);
-                command.Parameters.AddWithValue("@gen", gen);
-                command.Parameters.AddWithValue("@nac", nac);
-                command.Parameters.AddWithValue("@gest", gest);
-                command.Parameters.AddWithValue("@idu", idu);
-                command.Parameters.AddWithValue("@claveBebe", claveBebe);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-        public void AgregarFamiliar(int id, string clave)
-        {
-            SqlConnection connection = new SqlConnection();
-            try
-            {
-                string connectionString = Conexion.cn;
-                connection = new SqlConnection(connectionString);
-                connection.Open();
-                SqlCommand command = new SqlCommand("spIngresarFamiliar", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@id", id);
-                command.Parameters.AddWithValue("@clave", clave);
+                command.Parameters.AddWithValue("@correo", email);
+
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -80,7 +45,7 @@ namespace BabyGuide.Models.BD
                 string connectionString = Conexion.cn;
                 connection = new SqlConnection(connectionString);
                 connection.Open();
-                SqlCommand command = new SqlCommand("spVerUsuario", connection);
+                SqlCommand command = new SqlCommand("spVerModificarPerfil", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@id", id);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -107,12 +72,6 @@ namespace BabyGuide.Models.BD
             {
                 connection.Close();
             }
-        }
-
-        public string GenerarClave()
-        {
-            string clave = Guid.NewGuid().ToString("N").Substring(0, 6);
-            return clave;
         }
     }
 }

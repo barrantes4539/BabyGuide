@@ -65,6 +65,7 @@ h1 {
 }
 .cuerpo select {
     min-width: 45%;
+
 }
 .cuerpo .botongeneral{
   margin-top: 5%;
@@ -101,9 +102,11 @@ button:hover {
 .cuerpo2 .input-item{
   width: 30%;
 }
-.cuerpo2 select{
-  min-width: 45%;
-}
+    .cuerpo2 select {
+        min-width: 45%;
+        font-size: 20px;
+        padding-left: 10px;
+    }
 
 label{
     position:absolute;
@@ -177,7 +180,7 @@ label{
   /* Habilitar la barra de desplazamiento vertical */
   border-radius: 20px;
   border: 1px solid #6CA5B1;
-  width: 40%;
+  width: 43%;
   margin: 3%;
   display: inline-block;
 }
@@ -192,21 +195,24 @@ label{
 }
 
 .item-list li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  border: 1px solid #6CA5B1;
-  margin: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #6CA5B1;
+    margin: 3%;
+    position: relative;
+    height: 40px;
 }
 
 .item-list li span {
   margin-left: 5px;
 }
-#alerbebe .delete-button {
-    margin-left: 150px;
-    border: none;
+/*#alerbebe .delete-button {*/
+    /*    margin-left: 190px;*/
+    /*border: none;
+
 }
 #vacbebe .delete-button {
     margin-left: 150px;
@@ -217,17 +223,22 @@ label{
     margin-left: 150px;
     border: none;
 }
+#diagbebe span {
+    width: 30%;
+}
 #medibebe .delete-button {
     margin-left: 200px;
     border: none;
-}
+}*/
 
 .delete-button {
+    position: absolute;
+    right: 12px;
     margin-left: 70%;
     border: none;
     background-color: white;
 }
-}
+
 
 
 /* Style the tab */

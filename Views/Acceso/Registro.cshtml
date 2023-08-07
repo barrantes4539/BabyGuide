@@ -27,22 +27,22 @@
         <p class="message">Regístrese y obtenga total acceso a las funcionalidades de la aplicación.</p>
         <div class="flex">
             <label>
-                <input required="" placeholder="" type="text" class="input" name="nombre">
+                <input required="" placeholder="" type="text" class="input" name="nombre" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
                 <span>Nombre</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="apellido1">
+                <input required="" placeholder="" type="text" class="input" name="apellido1" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
                 <span>Primer apellido</span>
             </label>
             <label>
-                <input required="" placeholder="" type="text" class="input" name="apellido2">
+                <input required="" placeholder="" type="text" class="input" name="apellido2" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
                 <span>Segundo apellido</span>
             </label>
         </div>
 
         <label>
-            <input required="" placeholder="" type="email" class="input" name="correoE">
+            <input required="" placeholder="" type="email" class="input" name="correoE" maxlength="50">
             <span>Correo</span>
         </label>
         <!-- Div de regulaciones de contraseña -->
@@ -80,7 +80,7 @@
             <span>Clave</span>
         </label>
         <label>
-            <input required="" placeholder="" type="password" class="input">
+            <input required="" placeholder="" type="password" name="confirmPassword" class="input">
             <span>Confirmar clave</span>
         </label>
         <button class="submit">Registrarme</button>

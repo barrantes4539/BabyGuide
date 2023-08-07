@@ -35,6 +35,9 @@ body::-webkit-scrollbar-thumb {
         background-color: white;
         color: #00DDBD;
     }
+#btnunir{
+    height:55px;
+}
 
 .input-item {
     padding-left: 10px;
@@ -87,7 +90,9 @@ body::-webkit-scrollbar-thumb {
     width: 60%;
     height: 60%;
 }
-
+.bebes select{
+    width: 100%;
+}
 .infobebe {
     display: flex;
     flex-direction: column;
@@ -218,8 +223,7 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
 }
 
-<<<<<<< Updated upstream
-=======
+
 /* Estilos para el modal de registro del bebE*/
 .modal {
     display: none; /* Ocultar el modal por defecto */
@@ -277,20 +281,22 @@ body::-webkit-scrollbar-thumb {
     border-radius: 5px;
 }
 
-..modal-content select {
+.modal-content select {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.modal-content h2 {
+    color: #00DDBD;
+}
 
-> > > > > > > Stashed changes
+
 
 @media screen and (max-width:1000px) {
-    .deco2
 
-{
+.deco2{
     display: none;
 }
 

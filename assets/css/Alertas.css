@@ -302,3 +302,42 @@
         left: 40%;
         bottom: 0;
     }
+    
+
+/* Agregar estilos responsive */
+@media (max-width: 768px) {
+    body {
+        margin-top: 200px; /* Ajustar el margen superior para pantallas más grandes */
+    }
+
+
+    .info-bebe {
+        margin-bottom: 40px;
+        width: auto; /* Reducir el ancho del contenedor .info-bebe para pantallas más grandes */
+        padding-bottom: 10%; /* Reducir el espacio inferior para pantallas más grandes */
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Mostrar 2 columnas en pantallas más grandes */
+        width: auto; /* Reducir el ancho del contenedor .grid-container para pantallas más grandes */
+
+        margin-left: 10px; /* Ajustar el margen izquierdo para centrar el contenido en pantallas grandes */
+    }
+
+    .nuevo-evento,
+    .leyenda {
+        margin-top: auto;
+        width: auto; /* Reducir el ancho de los contenedores .nuevo-evento y .leyenda para pantallas más grandes */
+        margin-left: 10px; /* Ajustar el margen izquierdo para centrar el contenido en pantallas grandes */
+    }
+
+    .leyenda {
+        margin-top: 200px;
+    }
+
+    .planeta, .cohete {
+        display: none
+    }
+}
+
+

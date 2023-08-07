@@ -5,6 +5,7 @@
 }
 
 <head>
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="~/assets/css/Alertas.css" rel="stylesheet" />
 </head>
 
@@ -15,6 +16,7 @@
     </div>
 </div>
 <div class="grid-container">
+
     @{ int cont = 0; }
     @foreach (var i in Model)
     {
@@ -43,6 +45,19 @@
             {
                 <img src="~/assets/img/CategoriasAlertas/patio-de-juegos.png" />
             }
+
+    <div class="grid-item" id="categoria-alerta">
+        <img class="imgPanal" src="~/assets/img/CategoriasAlertas/panal.png" />
+    </div>
+    <div class="grid-item" id="info-alerta">
+        <p>Tiempo restante: </p>
+        <p>Dar almuerzo al bebe</p>
+    </div>
+    <div class="grid-item" id="botones-alerta">
+        <div class="switch">
+            <input type="checkbox" id="switch-checkbox">
+            <label for="switch-checkbox" class="switch-label"></label>
+
         </div>
 
         cont++;
@@ -93,3 +108,6 @@
     <img src="~/assets/img/Alertas/estrella.png" class="estrellas" id="e2" />
     <img src="~/assets/img/Alertas/estrella.png" class="estrellas" id="e3" />
 </div>
+
+<!-- Template Main JS File -->
+<script src="../assets/js/main.js"></script>
