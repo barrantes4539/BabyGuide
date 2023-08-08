@@ -10,25 +10,28 @@
 </head>
 <div class="body">
     <h1>Calendarización de Citas</h1>
-    <form action="@Url.Action("Citas", "Home")" method="post">
-        <div class="main">
+    @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+    {
+        <form action="@Url.Action("Citas", "Home")" method="post">
+            <div class="main">
 
-            <div class="submain">
-                <div class="contenedor1">
-                    <input type="text" class="input-item" placeholder="Escribir Título" name="titu" maxlength="30" required>
-                    <input type="text" class="input-item" placeholder="Escribir Descripción" id="desc" name="desc" maxlength="50" required>
+                <div class="submain">
+                    <div class="contenedor1">
+                        <input type="text" class="input-item" placeholder="Escribir Título" name="titu" maxlength="30" required>
+                        <input type="text" class="input-item" placeholder="Escribir Descripción" id="desc" name="desc" maxlength="50" required>
+                    </div>
+                    <div class="contenedor2">
+                        <input type="date" class="input-item" name="date" required>
+                        <input type="time" class="input-item" name="time" required>
+                    </div>
                 </div>
-                <div class="contenedor2">
-                    <input type="date" class="input-item" name="date" required>
-                    <input type="time" class="input-item" name="time" required>
+                <div class="submain2">
+                    <img src="../assets/img/CitasPage/agenda.png" alt="" class="deco">
+                    <button class="botongeneral" type="submit">Agregar Cita</button>
                 </div>
             </div>
-            <div class="submain2">
-                <img src="../assets/img/CitasPage/agenda.png" alt="" class="deco">
-                <button class="botongeneral" type="submit">Agregar Cita</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    }
 
     <div class="main2">
 
@@ -43,7 +46,11 @@
                     <label for="">@i.fecha</label>
                     <img src="../assets/img/CitasPage/avion.png" alt="">
                 </div>
-                <button class="delete-button" data-id="@i.id"><img src="../assets/img/CitasPage/delete.png" alt=""></button>
+                @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+                {
+                    <button class="delete-button" data-id="@i.id"><img src="../assets/img/CitasPage/delete.png" alt=""></button>
+                }
+
             </div>
         }
 

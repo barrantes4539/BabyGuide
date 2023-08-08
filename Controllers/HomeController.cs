@@ -415,6 +415,7 @@ namespace BabyGuide.Controllers
                 if (Convert.ToString(fila["idBebe"]) != "")
                 {
                     Session["idBebe"] = fila["idBebe"];
+                    Session["idRol"] = fila["idRoll"];
                 }
             }
 
@@ -627,6 +628,7 @@ namespace BabyGuide.Controllers
             {
                 if (row["idBebe"].ToString() == valor)
                 {
+                    Session["idRol"] = row["idRoll"].ToString();
                     resultado = new
                     {
                         success = true,

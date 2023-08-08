@@ -299,7 +299,11 @@ label{
 
   .input-item{
     min-width: 120%;
+    margin-bottom: 3%;
   }
+    select {
+        margin-bottom: 3%;
+    }
   .containerex{
     flex-direction: column;
     margin-top: 20%;
@@ -321,16 +325,17 @@ label{
     min-width: 90%;
   }
   .cuerpo2 select{
-    width: 90%;
+    min-width: 90%;
   }
   .item-list-container {
     display: flex;
-    width: 90%;
+    flex-direction: column;
+    width: 95%;
   }
   .item-list{
     width: 100%;
   }
-  #Diagnosticos .item-list-container{
+/*  #Diagnosticos .item-list-container{
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -338,8 +343,61 @@ label{
   }
   #Diagnosticos button{
     position: relative;
-  }
+  }*/
+#diag{
+    display: flex;
+    flex-direction: column;
+}
+#save{
+    margin-top: 47%;
+}
+.cuerpo3 .input-item {
+    min-width: 80%;
+}
   .body{
     margin-top: 35%;
   }
+    #lblnom {
+        position: absolute;
+        background-color: white;
+        margin-left: 2%;
+    }
+
+    #lblnac {
+        margin-top: 18%;
+        margin-right: 100%;
+    }
+
+    #lblape1 {
+        position: absolute;
+        background-color: white;
+        margin-left: 2%;
+        margin-top: 32%;
+    }
+
+    #lblape2 {
+        position: absolute;
+        background-color: white;
+        margin-top: 48%;
+    }
+
+    #lblpes {
+        position: absolute;
+        background-color: white;
+        margin-bottom: 5%;
+    }
+
+    #lblgen {
+        position: absolute;
+        background-color: white;
+        margin-left: 2%;
+        margin-top: 6%;
+    }
+
+    #lblgest {
+        position: absolute;
+        background-color: white;
+        margin-top: 5.5%;
+    }
+
 }
