@@ -253,8 +253,10 @@ namespace BabyGuide.Controllers
                 negocios.EliminarCodigo(correoUsuario);
                 Session["correoUsuario"] = Session["correoUsuarioTemporal"];
                 Session["idBebe"] = negocios.idBebe(Convert.ToInt32(Session["idUsuario"]));
-
-
+                if (Session["idBebe"] != null)
+                {
+                    Session["idRol"] = negocios.idRol(Convert.ToInt32(Session["idBebe"]));
+                }
                 return RedirectToAction("Index", "Home");
             }
             else

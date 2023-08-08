@@ -497,7 +497,11 @@ namespace BabyGuide.Controllers
 
             return View(viewModel);
         }
-
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            return View("Index");
+        } 
 
         [HttpPost]
         public ActionResult ObtenerPasosIngredienteYEtapa(string ingrediente, int etapa)
