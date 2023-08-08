@@ -31,7 +31,11 @@
                             }
 
                         </select>
-                        <button class="botongeneral" id="btnclave">Compartir Clave</button>
+                        @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+                        {
+                            <button class="botongeneral" id="btnclave">Compartir Clave</button>
+                        }
+
                     </div>
                 }
 
@@ -114,10 +118,14 @@
             }
 
 
-            <div class="botonperfil">
-                <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
+        <div class="botonperfil">
+            <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
+            @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+            {
                 <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")">Gestionar Familia</a>
-            </div>
+            }
+
+        </div>
         </div>
 
     </div>
