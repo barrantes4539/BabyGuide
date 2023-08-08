@@ -144,6 +144,10 @@
     <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Listas\Alertas.cs" />
+
+    <Compile Include="Models\Listas\AlertasModel.cs" />
+    <Compile Include="Models\Listas\CategoriasAlertas.cs" />
+
     <Compile Include="Models\Listas\FamiliaModel.cs" />
     <Compile Include="Models\Listas\Roles.cs" />
     <Compile Include="Models\Listas\Familia.cs" />
