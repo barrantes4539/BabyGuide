@@ -1,50 +1,179 @@
 ﻿
-.container-config {
+/* The sidebar menu */
+.sidenav-configFrontend {
+    height: 500px; /* Full-height: remove this if you want "auto" height */
+    width: auto; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    /*z-index: 1;*/ /* Stay on top */
+   
+    left: 300px;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
     margin-top: 200px;
-  
-    max-width: 400px;
-    margin: 150px auto;
+    border-radius: 20px;
+    float:left;
+    margin-left: 200px
+    
+}
+
+    /* The navigation menu links */
+    .sidenav-configFrontend a {
+        padding: 6px 8px 15px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        color: #fff;
+        display: block;
+    }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav-configFrontend a:hover {
+            background-color: #67e8d2;
+            color: black;
+        }
+
+/* Style page content */
+.main-configFrontend {
+    width: 25%;
+    padding: 10px;
+    margin-top: 200px;
+    margin-left: 700px; 
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+}
+
+/* Estilos generales */
+.configForm {
+    background-color: #fff;
+    border-radius: 10px;
     padding: 20px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+   
+}
+
+/* Estilos para los selectores */
+select {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.form-group-config {
-    
-    margin-bottom: 20px;
+/* Estilos para el área de texto */
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
 }
 
-label {
-    display: block;
+/* Estilos para los botones */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-weight: bold;
+}
+
+#eliminarConsejo {
+    background-color: #ff5555;
+    color: black;
+    margin-right: 1px;
     margin-bottom: 5px;
 }
 
-input[type="text"],
-select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-button {
-    width: 250px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-}
-
-    button:hover {
-        background-color: #0056b3;
+    #eliminarConsejo:hover {
+        background-color: #ff3333;
     }
+
+#agregarConsejo {
+    background-color: #67e8d2;
+    color: black;
+}
+
+    #agregarConsejo:hover {
+        background-color: #49c2ac;
+    }
+#modificarConsejo {
+    background-color: #7eadf5;
+    color: black;
+}
+
+    #modificarConsejo:hover {
+        background-color: #2b7cd3;
+    }
+#guardarCambiosConsejo {
+    background-color: #333333;
+    color: #eee;
+    width: 40%;
+    font-size: 13px
+}
+
+    #guardarCambiosConsejo:hover {
+        background-color: #0a443a;
+    }
+/*    Estilos para nombres y significados*/
+#eliminarNombre {
+    background-color: #ff5555;
+    color: black;
+    margin-right: 1px;
+    margin-bottom: 5px;
+}
+
+    #eliminarNombre:hover {
+        background-color: #ff3333;
+    }
+
+#agregarNombre {
+    background-color: #67e8d2;
+    color: black;
+}
+
+    #agregarConsejo:hover {
+        background-color: #49c2ac;
+    }
+
+#modificarNombre {
+    background-color: #7eadf5;
+    color: black;
+}
+
+    #modificarNombre:hover {
+        background-color: #2b7cd3;
+    }
+
+#guardarCambiosNombre {
+    background-color: #333333;
+    color: #eee;
+    width: 40%;
+    font-size: 13px
+}
+
+    #guardarCambiosNombre:hover {
+        background-color: #0a443a;
+    }
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-width: 800px) {
+    .sidenav-configFrontend {
+        padding-top: 15px;
+        float: left;
+        left: -180px;
+        margin-top: 150px;
+        width: 150px;
+        z-index: 1;
+    }
+
+        .sidenav-configFrontend a {
+            font-size: 18px;
+        }
+
+    .main-configFrontend {
+        width: 250px;
+        padding: 10px;
+        margin-top: 150px;
+        margin-left: 160px;
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        
+    }
+}
