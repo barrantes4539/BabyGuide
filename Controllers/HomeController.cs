@@ -699,13 +699,13 @@ namespace BabyGuide.Controllers
         //Metodo para alertas
         public ActionResult Alertas()
         {
-            //if (Session["idBebe"] == null)
-            //{
-            //    return View("Index");
-            //}
+            if (Session["idBebe"] == null)
+            {
+                return View("Index");
+            }
 
             Alertas alertas = new Alertas();
-            int idBebe = 305340319;
+            int idBebe = Convert.ToInt32(Session["idBebe"]);
 
             string Titulo = Request.Form["iptTitulo"]?.ToString();
             string Hora = Request.Form["iptHora"]?.ToString();
