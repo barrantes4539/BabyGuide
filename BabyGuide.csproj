@@ -144,8 +144,10 @@
     <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Listas\Alertas.cs" />
+
     <Compile Include="Models\Listas\AlertasModel.cs" />
     <Compile Include="Models\Listas\CategoriasAlertas.cs" />
+
     <Compile Include="Models\Listas\FamiliaModel.cs" />
     <Compile Include="Models\Listas\Roles.cs" />
     <Compile Include="Models\Listas\Familia.cs" />
@@ -223,6 +225,7 @@
     <Content Include="assets\img\trash.png" />
     <Content Include="assets\js\AccordionDashboard.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\moduloConfig.js" />
     <Content Include="assets\js\NuevaAventura.js" />
     <Content Include="assets\js\openCity.js" />
     <Content Include="assets\js\ValidacionPass.js" />
