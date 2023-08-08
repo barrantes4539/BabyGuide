@@ -41,6 +41,8 @@ namespace BabyGuide.Controllers
             return View();
         }
 
+     
+
 
         // Método para insertar dieta utilizando el procedimiento almacenado
         [HttpPost]

@@ -14,55 +14,75 @@
     <link href="../assets/css/ModuloConfiguracion/ConfiguracionSistema.css" rel="stylesheet" />
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
-    
+
 
 </head>
 <body>
     <div class="container-config">
-        <h2>Configuración del Sistema</h2>
-        <form>
-            <div class="form-group-config">
-                <label for="nombre_sistema">Nombre del Sistema</label>
-                <input type="text" id="nombre_sistema" placeholder="Ingrese el nombre del sistema">
-            </div>
+        <!-- Side navigation -->
+        <div class="sidenav-configFrontend">
+            <a href="#" id="consejosLink">Consejos</a>
+            <a href="#" id="nombresLink">Nombres y Significados</a>
+            <a href="#" id="expedienteLink">Expediente</a>
+        </div>
 
-            <div class="form-group-config">
-                <label for="idioma">Idioma</label>
-                <select id="idioma">
-                    <option value="es">Español</option>
-                    <option value="en">Inglés</option>
-                    <option value="fr">Francés</option>
-                </select>
-            </div>
+        <div class="main-configFrontend">
 
-            <div class="form-group-config">
-                <label for="zona_horaria">Zona Horaria</label>
-                <select id="zona_horaria">
-                    <option value="GMT-5">GMT-5 (Hora Estándar del Este)</option>
-                    <option value="GMT-6">GMT-6 (Hora Central)</option>
-                    <option value="GMT-7">GMT-7 (Hora del Pacífico)</option>
-                </select>
-            </div>
+            @*Se mostrara el input de agregar y el text area de la descripciono unicamente cuando se presione el boton de agregarConsejo*@
+            @*Se mostrara unicamente el select con el consejo seleccionado y el text area de la descripcion unicamente cuando se presione el boton de editar*@
+            @*Boton de guardar cambios es para submit*@
+            <form id="consejosForm" class="configForm">
+                <h2>Consejos</h2>
+                <label for="consejosSelector">Seleccionar Consejo:</label>
+                <select id="consejosSelector">
+                    <option value="consejo1">Consejo 1</option>
+                    <option value="consejo2">Consejo 2</option>
+                    <option value="consejo3">Consejo 3</option>
+                </select><br>
 
-            <div class="form-group-config">
-                <label for="mostrar_notificaciones">Mostrar Notificaciones</label>
-                <input type="checkbox" id="mostrar_notificaciones">
-            </div>
+                <label for="descripcionConsejo" style="display: none;">Modificar Consejo:</label>
+                <textarea id="descripcionConsejo" style="display: none;" rows="4" placeholder="Ingrese la descripcion"></textarea><br>
 
-            <div class="form-group-config">
-                <label for="tema">Tema</label>
-                <select id="tema">
-                    <option value="default">Predeterminado</option>
-                    <option value="dark">Oscuro</option>
-                    <option value="light">Claro</option>
-                </select>
-            </div>
+                <button type="button" id="agregarConsejo"><i class='bx bx-plus'></i></button>
+                <button type="button" id="eliminarConsejo"><i class='bx bxs-trash'></i></button>
+                <button type="button" id="modificarConsejo"><i class='bx bxs-edit-alt'></i></button>
+                <button type="submit" id="guardarCambiosConsejo">Guardar</button>
+            </form>
 
-            <button type="submit">Guardar Configuración</button>
-        </form>
+            @*Se mostrara el input de agregar y el text area del significado unicamente cuando se presione el boton de agregarNombre*@
+            @*Se mostrara unicamente el select con el nombre seleccionado y el text area del significado unicamente cuando se presione el boton de editar*@
+            @*Boton de guardar cambios es para submit*@
+            <form id="nombresForm" class="configForm" style="display: none;">
+                <h2>Nombres y significados</h2>
+                <label for="nombresSelector">Seleccionar nombre:</label>
+                <select id="nombresSelector">
+                    <option value="nombre1">Nombre 1</option>
+                    <option value="nombre2">Nombre 2</option>
+                    <option value="nombre3">Nombre 3</option>
+                </select><br>
+
+                <label for="IngresarNombre" style="display: none;">Ingrese un Nombre:</label>
+                <input type="text" name="txtAgregarNombre" style="display: none;" id="txtAgregarNombre" value="" />
+
+                <label for="descripcionNombre" style="display: none;">Modificar Nombre:</label>
+                <textarea id="descripcionNombre" style="display: none;" rows="4" placeholder="Ingrese la descripcion"></textarea><br>
+
+                <button type="button" id="agregarNombre"><i class='bx bx-plus'></i></button>
+                <button type="button" id="eliminarNombre"><i class='bx bxs-trash'></i></button>
+                <button type="button" id="modificarNombre"><i class='bx bxs-edit-alt'></i></button>
+                <button type="submit" id="guardarCambiosNombre">Guardar</button>
+            </form>
+
+
+            <div id="expedienteForm" class="configForm" style="display: none;">
+                <!-- Aquí puedes colocar el formulario de expediente -->
+            </div>
+        </div>
     </div>
+
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/moduloConfig.js"></script>
 
 
 </body>
