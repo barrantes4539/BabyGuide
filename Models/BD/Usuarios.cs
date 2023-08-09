@@ -340,7 +340,31 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
+        public int? idRol(int id)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT idRoll FROM BabyGuide.BebesUsuario WHERE idBebe = @id", connection);
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@id", id);
+                int? idexp = (int?)command.ExecuteScalar();
 
+
+                return idexp;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
     }
 }
