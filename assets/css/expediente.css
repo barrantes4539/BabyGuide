@@ -38,13 +38,14 @@ h1 {
 }
 
 .containerex {
-  width: 70%;
-  /* Espacio entre los inputs */
-  margin: 3%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+    width: 70%;
+    /* Espacio entre los inputs */
+    margin: 3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
 }
 
 
@@ -359,45 +360,43 @@ label{
   }
     #lblnom {
         position: absolute;
-        background-color: white;
-        margin-left: 2%;
+        margin-left: 5%;
+        top: -10px;
     }
 
     #lblnac {
-        margin-top: 18%;
-        margin-right: 100%;
+        margin-top: 20%;
+        left: -70px;
     }
 
     #lblape1 {
-        position: absolute;
-        background-color: white;
-        margin-left: 2%;
-        margin-top: 32%;
+        margin-left: 5%;
+        margin-top: 46%;
     }
 
     #lblape2 {
+        left: -70px;
+        margin-top: 69%;
+    }
+    #lblalt {
         position: absolute;
-        background-color: white;
-        margin-top: 48%;
+        top: 560px;
+        margin-left: 5%;
     }
 
     #lblpes {
-        position: absolute;
-        background-color: white;
-        margin-bottom: 5%;
+        left: -133px;
+        margin-top: 16%;
     }
 
     #lblgen {
-        position: absolute;
-        background-color: white;
-        margin-left: 2%;
-        margin-top: 6%;
+        margin-left: 5%;
+        margin-top: 33%;
     }
 
     #lblgest {
-        position: absolute;
-        background-color: white;
-        margin-top: 5.5%;
+        left: -133px;
+        margin-top: 49%;
     }
 
 }
