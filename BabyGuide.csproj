@@ -225,6 +225,7 @@
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\NuevaAventura.js" />
     <Content Include="assets\js\openCity.js" />
+    <Content Include="assets\js\push.min.js" />
     <Content Include="assets\js\ValidacionPass.js" />
     <Content Include="assets\scss\Readme.txt" />
     <Content Include="assets\vendor\bootstrap-icons\bootstrap-icons.css" />
@@ -409,6 +410,9 @@
     <Content Include="Views\Home\PerfilModificar.cshtml" />
     <Content Include="Views\Home\GestionFamilia.cshtml" />
     <Content Include="Views\Home\EtapasDesarrollo.cshtml" />
+    <Content Include="Views\Home\Ultrasonidos.cshtml" />
+    <Content Include="Views\Home\AlbumAnio.cshtml" />
+    <Content Include="Views\Home\EtapasAlbum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

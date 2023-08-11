@@ -32,10 +32,7 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-        public ActionResult BabyGaleria()
-        {
-            return View();
-        }
+
         public ActionResult NuevaAventura()
         {
             return View();
@@ -134,6 +131,7 @@ namespace BabyGuide.Controllers
             return View(viewModel);
         }
         #region Expediente
+
         [HttpPost]
         public ActionResult AgregarAlergia(string id, string nombre, string fecha)
         {
@@ -453,7 +451,7 @@ namespace BabyGuide.Controllers
             string ape2 = Request.Form["ape2"]?.ToString();
             string email = Request.Form["email"]?.ToString();
 
-            if (nom != null &&  ape1 != null && ape2 != null && email != null)
+            if (nom != null && ape1 != null && ape2 != null && email != null)
             {
                 perfil.ModificarPerfil(Convert.ToInt32(Session["idUsuario"]), nom, ape1, ape2, email);
             }
@@ -466,7 +464,7 @@ namespace BabyGuide.Controllers
                 ViewBag.ape1 = row["Apellido1"].ToString();
                 ViewBag.ape2 = row["Apellido2"].ToString();
             }
-            
+
             ViewBag.email = Convert.ToString(Session["correoUsuario"]);
 
 
@@ -696,6 +694,7 @@ namespace BabyGuide.Controllers
             return View("Perfil", List);
         }
 
+        #region Alertas
         //Metodo para alertas
         public ActionResult Alertas()
         {
@@ -709,9 +708,9 @@ namespace BabyGuide.Controllers
 
             string Titulo = Request.Form["iptTitulo"]?.ToString();
             string Hora = Request.Form["iptHora"]?.ToString();
-            string idCategoria = Request.Form["slcCategoria"]?.ToString();                       
+            string idCategoria = Request.Form["slcCategoria"]?.ToString();
 
-            if(Titulo != null && Hora != null && idCategoria != null)
+            if (Titulo != null && Hora != null && idCategoria != null)
             {
                 alertas.IngresarAlerta(Titulo, Hora, Convert.ToInt32(idCategoria), idBebe);
             }
@@ -743,8 +742,49 @@ namespace BabyGuide.Controllers
 
             return Json(new { success = true }); // Enviar una respuesta JSON para indicar el éxito de la operación
         }
+        #endregion
 
-            public bool EnviarCorreo(string correo, string clave, string bebe)
+        #region BabyGaleria
+        public ActionResult BabyGaleria()
+        {
+            return View();
+        }
+
+        //Redireccionamiento de los botones
+        public ActionResult RedirecUltrasonidos()
+        {
+            return RedirectToAction("Ultrasonidos"); // Redirige a la acción "Ultrasonidos"
+        }
+
+        public ActionResult RedirecAlbumAnio()
+        {
+            return RedirectToAction("AlbumAnio"); // Redirige a la acción "AlbumAnio"
+        }
+
+        public ActionResult RedirecEtapasAlbum()
+        {
+            return RedirectToAction("EtapasAlbum"); // Redirige a la acción "EtapasAlbum"
+        }
+
+        //Controladores de las vistas de las opciones
+        public ActionResult Ultrasonidos()
+        {
+            return View();
+        }
+
+        public ActionResult AlbumAnio()
+        {
+            return View();
+        }
+
+        public ActionResult EtapasAlbum()
+        {
+            return View();
+        }
+        #endregion
+
+        #region CorreoE
+        public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";
             string mensaje = $@"<!DOCTYPE html>
@@ -847,5 +887,6 @@ namespace BabyGuide.Controllers
             }
             return resultado;
         }
+        #endregion
     }
 }

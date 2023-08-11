@@ -2,12 +2,11 @@
 .contenedor-botones {
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
     width: 550px;
-    top: 120px;
-    left: 200px;
+    margin-top: 170px;
+    margin-left: 100px;
 }
 
 h1 {
@@ -47,14 +46,56 @@ p {
     font-size: 16px;
     text-align: justify;
     color: #325359;
+    margin-top: 15px;
 }
 
 .contenedor-imagen {
+    position: relative;
     width: 50px;
-    top: 180px;
-    right: 150px;
+    margin-top: -570px;
+    margin-left: 1050px;
 }
-.img-fam{
-    width: 500px;
-    height: 500px;
+
+.img-fam {
+    width: auto;
+    height: 550px;
+}
+
+.linea-arriba {
+    border-top: 3.5px dashed #00826F;
+    opacity: 80%;
+    position: absolute;
+    top: -15px;
+    left: 115px;
+    width: 250px;
+}
+
+.linea-izquierda {
+    border-left: 3.5px dashed #00826F;
+    opacity: 80%;
+    position: absolute;
+    top: 0;
+    left: -15px;
+    height: 350px;
+}
+
+.linea-abajo-derecha {
+    border-bottom: 3.5px dashed #00826F;
+    border-right: 3.5px dashed #00826F;
+    opacity: 80%;
+    position: absolute;
+    bottom: -15px;
+    left: 280px;
+    width: 100px;
+    height: 100px;
+}
+#oso {
+    width: 100px;
+    margin-top: -1090px;
+    margin-left: 80px
+}
+#nube {
+    width: 200px;
+    margin-top: -400px;
+    margin-left: 550px
 }
