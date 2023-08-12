@@ -500,7 +500,7 @@ namespace BabyGuide.Controllers
         public ActionResult CerrarSesion()
         {
             Session.Clear();
-            return View("BabyGuide/");
+            return RedirectToAction("Index", "Home");
         } 
 
         [HttpPost]
