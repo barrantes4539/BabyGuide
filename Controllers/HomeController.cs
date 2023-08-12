@@ -43,7 +43,27 @@ namespace BabyGuide.Controllers
         public ActionResult Preguntas()
         {
 
-            return View();
+            string preg = Request.Form["txtpregunta"]?.ToString();
+
+            Preguntas preguntas = new Preguntas();
+            if (preg != null)
+            {
+                DataTable dt = preguntas.BuscarRespuesta(preg);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow fila = dt.Rows[0];
+                    ViewBag.res = fila["Respuesta"];
+                    ViewBag.preg = fila["Pregunta"];
+                }
+                else if (dt.Rows.Count <= 0)
+                {
+                    ViewBag.preg = "No se encontró una pregunta";
+                }
+            }
+
+            List<Preguntas> preguntasl = preguntas.VerPreguntas();
+
+            return View(preguntasl);
         }
 
         public ActionResult EtapasDesarrollo()
@@ -500,7 +520,7 @@ namespace BabyGuide.Controllers
         public ActionResult CerrarSesion()
         {
             Session.Clear();
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         } 
 
         [HttpPost]

@@ -140,14 +140,13 @@
     <Compile Include="Models\BD\Expediente.cs" />
     <Compile Include="Models\BD\PerfilModificar.cs" />
     <Compile Include="Models\BD\Perfil.cs" />
+    <Compile Include="Models\BD\Preguntas.cs" />
     <Compile Include="Models\BD\SigNombres_Consejos.cs" />
     <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
     <Compile Include="Models\Listas\Alertas.cs" />
-
     <Compile Include="Models\Listas\AlertasModel.cs" />
     <Compile Include="Models\Listas\CategoriasAlertas.cs" />
-
     <Compile Include="Models\Listas\FamiliaModel.cs" />
     <Compile Include="Models\Listas\Roles.cs" />
     <Compile Include="Models\Listas\Familia.cs" />
