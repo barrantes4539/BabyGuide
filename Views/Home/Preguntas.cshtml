@@ -17,7 +17,7 @@
                 <input type="text" class="input-item" placeholder="Escribir Pregunta" id="miInput" name="txtpregunta">
                 <button class="botongeneral" id="miBoton" type="submit">Buscar Pregunta</button>
                 <div class="resp">
-                    <label id="lblpregunta" @(ViewBag.preg != null && ViewBag.preg.ToString() == "No se encontró una pregunta" ? "style=color:red;" : "")>Pregunta más coincidente: @ViewBag.preg </label>
+                    <label id="lblpregunta" @(ViewBag.preg != null && ViewBag.preg.ToString() == "No se encontró una pregunta" ? "style=color:red;" : "")>@ViewBag.preg </label>
                     <label id="lblrespuesta">@ViewBag.res</label>
                 </div>
             </div>

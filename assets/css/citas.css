@@ -144,14 +144,14 @@ button:hover {
 @media screen and (max-width:700px) {
     
     .input-item, #desc{
-        width: 130%;
+        min-width: 100%;
     }
     
     .submain, .submain2{
         width: 95%;
     }
     .input-item{
-        width: 100%;
+        min-width: 100%;
     }
     
     .botongeneral{
@@ -163,5 +163,8 @@ button:hover {
     }
     .body{
         margin-top: 30%;
-      }
+    }
+    .cita{
+        width: 100%;
+    }
 }

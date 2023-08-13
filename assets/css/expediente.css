@@ -302,6 +302,9 @@ label{
     min-width: 120%;
     margin-bottom: 3%;
   }
+    .containerex .input-item {
+        margin-bottom: 4%;
+    }
     select {
         margin-bottom: 3%;
     }
@@ -365,27 +368,27 @@ label{
     }
 
     #lblnac {
-        margin-top: 20%;
+        margin-top: 23%;
         left: -70px;
     }
 
     #lblape1 {
         margin-left: 5%;
-        margin-top: 46%;
+        margin-top: 49%;
     }
 
     #lblape2 {
         left: -70px;
-        margin-top: 69%;
+        margin-top: 76%;
     }
     #lblalt {
         position: absolute;
-        top: 560px;
+        top: 545px;
         margin-left: 5%;
     }
 
     #lblpes {
-        left: -133px;
+        left: -120px;
         margin-top: 16%;
     }
 
@@ -395,7 +398,7 @@ label{
     }
 
     #lblgest {
-        left: -133px;
+        left: -120px;
         margin-top: 49%;
     }
 

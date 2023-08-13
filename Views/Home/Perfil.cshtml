@@ -43,7 +43,7 @@
 
             <div class="bebe2">
                 <button class="botongeneral" id="registrarBebeBtn">Registrar bebé</button>
-                
+
                 <div class="agregar">
                     <input type="text" class="input-item" placeholder="Ingrese clave bebé" id="txtclaveu">
                     <button class="botongeneral" id="btnunir">Confirmar clave</button>
@@ -94,7 +94,7 @@
                     <span class="close" id="closeModalclave">&times;</span>
                     <h2>Compartir clave</h2>
                     <label id="lblclave" for="txtclave">Clave bebé</label>
-                    <input type="text" name="name" value="@ViewBag.clave" id="txtclave" disabled/>
+                    <input type="text" name="name" value="@ViewBag.clave" id="txtclave" disabled />
                     <input type="email" name="name" value="" placeholder="Ingresa un Email" id="txtcorreo" />
                     <button class="botongeneral" id="btncompartir">Compartir</button>
                 </div>
@@ -118,14 +118,14 @@
             }
 
 
-        <div class="botonperfil">
-            <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
-            @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
-            {
-                <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")">Gestionar Familia</a>
-            }
+            <div class="botonperfil">
+                <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
+                @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+                {
+                    <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")">Gestionar Familia</a>
+                }
 
-        </div>
+            </div>
         </div>
 
     </div>
@@ -263,7 +263,7 @@
                 } else {
 
                 }
-                
+
             },
             error: function () {
                 alert('Datos del bebe no encontrados.');
@@ -287,7 +287,7 @@
             data: { clave: clave },
             success: function (response) {
                 if (response.success) {
-                    
+
                 } else {
 
                 }
