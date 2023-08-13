@@ -265,7 +265,7 @@
     function cargarConsejos() {
         $.ajax({
             type: 'GET',
-            url: '/Home/ListarConsejos', // Ruta para obtener la lista de consejos
+            url: '@Url.Action("ListarConsejos", "Home")', // Ruta para obtener la lista de consejos
             dataType: 'json',
             success: function (data) {
 
