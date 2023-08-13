@@ -35,12 +35,12 @@
                 <h2>Consejos</h2>
                 <label for="consejosSelector">Seleccionar Consejo:</label>
                 <select id="consejosSelector">
-                    <option value="consejo1">Consejo 1</option>
-                    <option value="consejo2">Consejo 2</option>
-                    <option value="consejo3">Consejo 3</option>
+                    @*Aqui van los titulos de los consejos enlistados en options que se agregaran dinamicamente gracias al controlador*@
+
                 </select><br>
 
                 <label for="descripcionConsejo" style="display: none;">Modificar Consejo:</label>
+                @*El siguiente textarea se mostrara con la descripcion actual cargada en caso de que el usuario presione la opcion de modificar consejo*@
                 <textarea id="descripcionConsejo" style="display: none;" rows="4" placeholder="Ingrese la descripcion"></textarea><br>
 
                 <button type="button" id="agregarConsejo"><i class='bx bx-plus'></i></button>
@@ -56,16 +56,14 @@
                 <h2>Nombres y significados</h2>
                 <label for="nombresSelector">Seleccionar nombre:</label>
                 <select id="nombresSelector">
-                    <option value="nombre1">Nombre 1</option>
-                    <option value="nombre2">Nombre 2</option>
-                    <option value="nombre3">Nombre 3</option>
                 </select><br>
 
                 <label for="IngresarNombre" style="display: none;">Ingrese un Nombre:</label>
                 <input type="text" name="txtAgregarNombre" style="display: none;" id="txtAgregarNombre" value="" />
 
-                <label for="descripcionNombre" style="display: none;">Modificar Nombre:</label>
-                <textarea id="descripcionNombre" style="display: none;" rows="4" placeholder="Ingrese la descripcion"></textarea><br>
+                <label for="significadoNombre" style="display: none;">Modificar Nombre:</label>
+                @*El siguiente textarea se mostrara con la descripcion actual cargada en caso de que el usuario presione la opcion de modificarnombre*@
+                <textarea id="significadoNombre" style="display: none;" rows="4" placeholder="Ingrese la descripcion"></textarea><br>
 
                 <button type="button" id="agregarNombre"><i class='bx bx-plus'></i></button>
                 <button type="button" id="eliminarNombre"><i class='bx bxs-trash'></i></button>
@@ -85,5 +83,168 @@
     <script src="../assets/js/moduloConfig.js"></script>
 
 
+    <!-- Include SweetAlert library -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Agrega jQuery si aún no está incluido -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        
+        $(document).ready(function() {
+            cargarListaConsejos();
+            cargarListaNombres();
+
+            $("#consejosSelector").change(function() {
+                var consejoSeleccionado = $(this).val();
+                obtenerDescripcionConsejo(consejoSeleccionado);
+            });
+
+            $("#nombresSelector").change(function() {
+                var nombreSeleccionado = $(this).val();
+                obtenerSignificadoNombre(nombreSeleccionado);
+            });
+
+            $("#modificarConsejo").click(function() {
+                mostrarDescripcionConsejo();
+            });
+
+            $("#modificarNombre").click(function() {
+                mostrarSignificado();
+            });
+
+            $("#guardarCambiosConsejo").click(function() {
+                guardarCambiosConsejo();
+            });
+
+            $("#guardarCambiosNombre").click(function() {
+                guardarCambiosSignificado();
+            });
+        });
+
+        function cargarListaConsejos() {
+            
+            $.ajax({
+                url: "@Url.Action("ListarConsejos", "Home")",
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var options = "";
+                    data.forEach(function(consejo) {
+                        options += "<option value='" + consejo.Titulo + "'>" + consejo.Titulo + "</option>";
+                    });
+                    $("#consejosSelector").html(options);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al cargar la lista de consejos.");
+                }
+            });
+        }
+        
+        function obtenerDescripcionConsejo(tituloConsejo) {
+            $.ajax({
+                url: "@Url.Action("ObtenerDescripcionConsejo", "Home")",
+                method: "GET",
+                data: { titulo: tituloConsejo },
+                dataType: "json",
+                success: function(data) {
+                    $("#descripcionConsejo").val(data.Descripcion);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al obtener la descripción del consejo.");
+                }
+            });
+        }
+
+        function mostrarDescripcionConsejo() {
+            var descripcion = $("#descripcionConsejo").val();
+            $("#descripcionConsejo").show().val(descripcion);
+        }
+
+        function guardarCambiosConsejo() {
+            var tituloConsejo = $("#consejosSelector").val();
+            var nuevaDescripcion = $("#descripcionConsejo").val();
+
+            $.ajax({
+                url: "@Url.Action("ActualizarDescripcionConsejo", "Home")",
+                method: "POST",
+                data: { titulo: tituloConsejo, descripcion: nuevaDescripcion },
+                success: function() {
+                    mostrarExitoAlert("Consejo modificado exitosamente.");
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al modificar el consejo.");
+                }
+            });
+        }
+
+        function cargarListaNombres() {
+            $.ajax({
+                url: "@Url.Action("ListarNombres", "Home")",
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var options = "";
+                    data.forEach(function(nombre) {
+                        options += "<option value='" + nombre + "'>" + nombre + "</option>";
+                    });
+                    $("#nombresSelector").html(options);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al cargar la lista de nombres.");
+                }
+            });
+        }
+        
+        function obtenerSignificadoNombre(nombreSeleccionado) {
+            
+            $.ajax({
+                url: "@Url.Action("ObtenerSignificadoPorNombreC", "Home")",
+                method: "GET",
+                data: { nombre: nombreSeleccionado },
+                dataType: "json",
+                success: function (data) {
+                    
+                    $("#significadoNombre").text(data.Significado);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al obtener el significado del nombre.");
+                }
+            });
+        }
+
+        function mostrarSignificado() {
+            var significado = $("#significadoNombre").val();
+            $("#significadoNombre").show().val(significado);
+        }
+
+        function guardarCambiosSignificado() {
+            var nombreSeleccionado = $("#nombresSelector").val();
+            var nuevoSignificado = $("#significadoNombre").val();
+
+            $.ajax({
+                url: "@Url.Action("ActualizarSignificado", "Home")",
+                method: "POST",
+                data: { nombre: nombreSeleccionado, significado: nuevoSignificado },
+                success: function () {
+                   
+                    mostrarExitoAlert("Significado modificado exitosamente.");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("AJAX Error:", textStatus, errorThrown);
+                    mostrarErrorAlert("Error al modificar el significado.");
+                }
+            });
+        }
+
+        function mostrarExitoAlert(mensaje) {
+            swal(mensaje, "Presiona OK para continuar", "success");
+        }
+
+        function mostrarErrorAlert(mensaje) {
+            swal(mensaje, "Ha ocurrido un error", "error");
+        }
+    
+        
+    </script>
 </body>
-</html>
+</html> 

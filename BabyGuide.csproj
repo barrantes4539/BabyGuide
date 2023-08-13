@@ -159,6 +159,7 @@
     <Compile Include="Models\Listas\DietasModel.cs" />
     <Compile Include="Models\Listas\ExpedienteModel.cs" />
     <Compile Include="Models\Listas\Medicamentos.cs" />
+    <Compile Include="Models\Listas\SignificadoNombre.cs" />
     <Compile Include="Models\Listas\VacunasBebe.cs" />
     <Compile Include="Models\Listas\UsuariosModel.cs" />
     <Compile Include="Models\Listas\Vacunas.cs" />

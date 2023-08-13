@@ -560,6 +560,23 @@ namespace BabyGuide.Controllers
             return Json(new { significado });
         }
 
+
+        [HttpGet]
+        public JsonResult ObtenerDescripcionConsejo(string nombre)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            string descripcion = sigNombresConsejos.ObtenerSignificadoPorNombreC(nombre); // Implementa este método
+            return Json(new { Descripcion = descripcion }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult ListarNombres()
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            List<string> nombres = sigNombresConsejos.ListarNombres();
+            return Json(nombres, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public JsonResult ListarConsejos()
         {
@@ -571,6 +588,30 @@ namespace BabyGuide.Controllers
 
             // Devolver la lista de consejos como resultado JSON
             return Json(consejos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult ObtenerSignificadoPorNombreC(string nombre)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            string significado = sigNombresConsejos.ObtenerDescripcionPorTitulo(nombre); // Implementa este método
+            return Json(new { Significado = significado }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarDescripcionConsejo(string titulo, string descripcion)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.ActualizarDescripcion(titulo, descripcion); // Implementa este método
+            return Json(new { mensaje = "Descripción actualizada con éxito." });
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarSignificado(string nombre, string significado)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.ActualizarSignificado(nombre, significado); // Implementa este método
+            return Json(new { mensaje = "Significado actualizada con éxito." });
         }
 
         //Indicador Total Usuarios controller
