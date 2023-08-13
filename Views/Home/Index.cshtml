@@ -234,7 +234,6 @@
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 // Actualizar el valor del contador con el valor recibido desde el controlador
                 var contadorElement = $("#" + contadorId);
                 contadorElement.attr("data-purecounter-end", data);
@@ -269,7 +268,6 @@
             dataType: 'json',
             success: function (data) {
 
-                console.log(data)
                 // Procesar la lista de consejos y agregarlos al testimonial section
                 var consejosContainer = document.getElementById('consejosContainer');
                 consejosContainer.innerHTML = '';

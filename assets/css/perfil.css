@@ -36,7 +36,7 @@ body::-webkit-scrollbar-thumb {
         color: #00DDBD;
     }
 #btnunir{
-    height:55px;
+    height:10%;
 }
 
 .input-item {
@@ -58,7 +58,6 @@ body::-webkit-scrollbar-thumb {
 
 .main {
     width: 100%;
-    padding: 3%;
     background-color: #89C0CF;
 }
 
@@ -102,7 +101,6 @@ body::-webkit-scrollbar-thumb {
 
 .main2 {
     width: 100%;
-    padding: 3%;
     background-color: rgba(0, 221, 189, 0.32);
 }
 
@@ -305,44 +303,69 @@ body::-webkit-scrollbar-thumb {
 @media screen and (max-width:700px) {
     .bebe {
         flex-direction: column;
-        margin-left: 5%;
         height: 40%;
     }
-
-    .bebes {
-        width: 100%;
+    .bebe2 {
+        margin-left: 10%;
     }
-
+    .modal{
+        margin-top: 20%;
+    }
     .perfil {
         flex-direction: column;
     }
 
     .rol {
-        width: 15%;
+        width: 30%;
         padding: 3%;
-        margin-left: 40%;
+        margin-left: 30%;
+        margin-top: 5%;
+        text-align: center;
     }
 
     .infoperfil {
-        margin-left: 60%;
-        margin-top: -25%;
+        margin-left: 20%;
     }
-
+    .infobebe {
+        margin-left: 20%;
+    }
     .botonperfil {
-        margin-right: 250%;
+        margin-left: -20%;
         width: 40%;
     }
-
+    .btnunir{
+        margin-top: 3%;
+        margin-right: 10%;
+    }
     .agregar {
-        margin-left: 10%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20%;
         width: 100%;
     }
 
     .input-item {
-        width: 80%;
+        width: 90%;
     }
 
     .body {
         margin-top: 30%;
+    }
+
+    #miSelect{
+        width: 130%;
+        margin: 15%;
+    }
+    #lblnom, #lblape{
+        margin-left: 30%;
+    }
+    #txtclaveu{
+        margin-bottom: 10%;
+    }
+    .deco{
+        display: none;
+    }
+    .botongeneral{
+        min-width: 80%;
     }
 }

@@ -11,6 +11,7 @@ using System.Net.Http;
 
 using System.Net.Mail;
 using System.Net;
+using RestSharp;
 
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -52,12 +53,47 @@ namespace BabyGuide.Controllers
                 if (dt.Rows.Count > 0)
                 {
                     DataRow fila = dt.Rows[0];
-                    ViewBag.res = fila["Respuesta"];
+                    ViewBag.res = "Pregunta más coincidente: " + fila["Respuesta"];
                     ViewBag.preg = fila["Pregunta"];
                 }
                 else if (dt.Rows.Count <= 0)
                 {
-                    ViewBag.preg = "No se encontró una pregunta";
+                    string _EndPoint = "https://api.openai.com/";
+                    string _URI = "v1/chat/completions";
+                    string _APIKey = "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";
+
+                    var pSolicitud = preg;
+
+                    var strRespuesta = "";
+
+                    // Consumir la API
+                    var oCliente = new RestClient(_EndPoint);
+                    var oSolicitud = new RestRequest(_URI, Method.Post);
+                    oSolicitud.AddHeader("Content-Type", "application/json");
+                    oSolicitud.AddHeader("Authorization", "Bearer " + _APIKey);
+
+                    // Creamos el cuerpo de la solicitud
+                    var oCuerpo = new Request()
+                    {
+                        model = "gpt-3.5-turbo",
+                        messages = new List<Message>()
+                        {
+                        new Message() {
+                            role="user",
+                            content=pSolicitud
+                        }
+                        }
+                    };
+
+                    var jsonString = JsonConvert.SerializeObject(oCuerpo);
+
+                    oSolicitud.AddJsonBody(jsonString);
+
+                    var oRespuesta = oCliente.Post<Response>(oSolicitud);
+
+                    strRespuesta = oRespuesta.choices[0].message.content;
+
+                    ViewBag.res = "Respondido de ChatGPT: " + strRespuesta;
                 }
             }
 
@@ -474,7 +510,7 @@ namespace BabyGuide.Controllers
             string ape2 = Request.Form["ape2"]?.ToString();
             string email = Request.Form["email"]?.ToString();
 
-            if (nom != null &&  ape1 != null && ape2 != null && email != null)
+            if (nom != null && ape1 != null && ape2 != null && email != null)
             {
                 perfil.ModificarPerfil(Convert.ToInt32(Session["idUsuario"]), nom, ape1, ape2, email);
             }
@@ -487,7 +523,7 @@ namespace BabyGuide.Controllers
                 ViewBag.ape1 = row["Apellido1"].ToString();
                 ViewBag.ape2 = row["Apellido2"].ToString();
             }
-            
+
             ViewBag.email = Convert.ToString(Session["correoUsuario"]);
 
 
@@ -521,7 +557,7 @@ namespace BabyGuide.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index", "Home");
-        } 
+        }
 
         [HttpPost]
         public ActionResult ObtenerPasosIngredienteYEtapa(string ingrediente, int etapa)
@@ -735,9 +771,9 @@ namespace BabyGuide.Controllers
 
             string Titulo = Request.Form["iptTitulo"]?.ToString();
             string Hora = Request.Form["iptHora"]?.ToString();
-            string idCategoria = Request.Form["slcCategoria"]?.ToString();                       
+            string idCategoria = Request.Form["slcCategoria"]?.ToString();
 
-            if(Titulo != null && Hora != null && idCategoria != null)
+            if (Titulo != null && Hora != null && idCategoria != null)
             {
                 alertas.IngresarAlerta(Titulo, Hora, Convert.ToInt32(idCategoria), idBebe);
             }
@@ -770,7 +806,7 @@ namespace BabyGuide.Controllers
             return Json(new { success = true }); // Enviar una respuesta JSON para indicar el éxito de la operación
         }
 
-            public bool EnviarCorreo(string correo, string clave, string bebe)
+        public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";
             string mensaje = $@"<!DOCTYPE html>
