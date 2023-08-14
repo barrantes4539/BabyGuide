@@ -122,7 +122,7 @@
                 <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
                 @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
                 {
-                    <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")">Gestionar Familia</a>
+                    <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")" id="btngestion">Gestionar Familia</a>
                 }
 
             </div>
@@ -230,6 +230,19 @@
                     $('#lblape').text(response.apellido);
                     $('#lblrol').text(response.rol);
                     $('#txtclave').val(response.clave);
+                    if (response.idrol == "1" || response.idrol == "2") {
+                        var enlace = document.getElementById("btngestion");
+                        var clave = document.getElementById("btnclave");
+
+                        clave.style.display = "inline";
+                        enlace.style.display = "inline";
+                    } else {
+                        var enlace = document.getElementById("btngestion");
+                        var clave = document.getElementById("btnclave");
+
+                        clave.style.display = "none";
+                        enlace.style.display = "none";
+                    }
                 } else {
                     console.error("Error al actualizar la variable de sesión.");
                 }

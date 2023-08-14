@@ -91,7 +91,7 @@
                             <span>@i.name | </span>
                             <span>@i.fecha</span>
                             <button class="delete-button" data-id="@i.id" data-name="@i.name">
-                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                                <img src="~/assets/img/trash.png" />
                             </button>
                         </li>
 
@@ -123,7 +123,7 @@
                             <span>@i.name | </span>
                             <span>@i.fecha</span>
                             <button class="delete-button" data-id="@i.id" data-name="@i.name">
-                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                                <img src="~/assets/img/trash.png" />
                             </button>
                         </li>
                     }
@@ -145,7 +145,7 @@
                             <span>@i.name | </span>
                             <span>@i.fecha</span>
                             <button class="delete-button" data-id="@i.id" data-name="@i.name">
-                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                                <img src="~/assets/img/trash.png" />
                             </button>
                         </li>
                     }
@@ -172,7 +172,7 @@
                         <li>
                             <span>@i.name</span>
                             <button class="delete-button" data-id="@i.id" data-name="@i.name">
-                                <img src="~/assets/img/ExpedientePage/delete.png" />
+                                <img src="~/assets/img/trash.png" />
                             </button>
                         </li>
                     }
@@ -244,7 +244,8 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#alerbebe").append("<li><span>" + data.name + "</span> <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='@Url.Content("/assets/img/ExpedientePage/delete.png")' /></button></li>");
+                        $("#alerbebe").append("<li><span>" + data.name + "</span> <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='@Url.Content("~/assets/img/trash.png")' /></button></li>");
+                        swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
                     }
 
                 },
@@ -303,7 +304,8 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#vacbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='@Url.Content("/assets/img/ExpedientePage/delete.png")' /></button></li>");
+                        $("#vacbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-id='" + data.id + "'> <img src='@Url.Content("~/assets/img/trash.png")' /></button></li>");
+                        swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
                     }
                 },
                 error: function () {
@@ -362,7 +364,8 @@
                     // La respuesta del servidor debe ser el objeto del elemento seleccionado
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
-                        $("#diagbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-name='" + data.name +"'> <img src='@Url.Content("/assets/img/ExpedientePage/delete.png")' /></button></li>");
+                        $("#diagbebe").append("<li><span>" + data.name + "</span>  <span> | " + data.fecha + "</span><button class='delete-button' data-name='" + data.name +"'> <img src='@Url.Content("~/assets/img/trash.png")' /></button></li>");
+                        swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
                     }
                 },
                 error: function () {
@@ -417,7 +420,7 @@
                     if (data !== null) {
                         // Agregar el elemento a la lista seleccionada
 
-                        $("#medibebe").append("<li><span>" + data.name + "</span><button class='delete-button' data-id='" + data.id +"'> <img src='@Url.Content("/assets/img/ExpedientePage/delete.png")' /></button></li>");
+                        $("#medibebe").append("<li><span>" + data.name + "</span><button class='delete-button' data-id='" + data.id +"'> <img src='@Url.Content("~/assets/img/trash.png")' /></button></li>");
                         swal("Elemento agregado exitosamente", "Presiona OK para continuar", "success"); // Mostrar la alerta SweetAlert
 
                     }

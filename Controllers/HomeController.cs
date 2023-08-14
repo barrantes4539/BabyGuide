@@ -724,7 +724,7 @@ namespace BabyGuide.Controllers
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
             DataRow fila = dataTable.Rows[0];
-            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "" };
+            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" };
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row["idBebe"].ToString() == valor)
@@ -736,7 +736,8 @@ namespace BabyGuide.Controllers
                         nombre = row["NombreB"].ToString(),
                         apellido = row["ApellidosB"].ToString(),
                         rol = row["Rol"].ToString(),
-                        clave = row["Clave"].ToString()
+                        clave = row["Clave"].ToString(),
+                        idrol = row["idRoll"].ToString(),
                     };
                 }
             }
