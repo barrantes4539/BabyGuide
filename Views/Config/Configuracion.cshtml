@@ -49,6 +49,19 @@
                 <button type="submit" id="guardarCambiosConsejo">Guardar</button>
             </form>
 
+            <!-- Agregar Consejo Modal -->
+            <div id="agregarConsejoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Agregar Consejo</h2>
+                    <input type="text" id="inputNuevoConsejo" placeholder="Nuevo consejo">
+                    <textarea id="textareaNuevaDescripcion" placeholder="Descripción"></textarea>
+                    <br />
+                    <button id="btnAgregarConsejoModal">Agregar Consejo</button>
+                    <button class="closeModal">Cancelar</button>
+                </div>
+            </div>
+
             @*Se mostrara el input de agregar y el text area del significado unicamente cuando se presione el boton de agregarNombre*@
             @*Se mostrara unicamente el select con el nombre seleccionado y el text area del significado unicamente cuando se presione el boton de editar*@
             @*Boton de guardar cambios es para submit*@
@@ -71,9 +84,48 @@
                 <button type="submit" id="guardarCambiosNombre">Guardar</button>
             </form>
 
+            <!-- Agregar Nombre Modal -->
+            <div id="agregarNombreModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Agregar Nombre y Significado</h2>
+                    <input type="text" id="inputNuevoNombre" placeholder="Nuevo nombre">
+                    <textarea id="textareaNuevoSignificado" placeholder="Significado"></textarea>
+                    <br />
+                    <button id="btnAgregarNombreModal">Agregar Nombre</button>
+                    <button class="closeModal">Cancelar</button>
+                </div>
+            </div>
 
-            <div id="expedienteForm" class="configForm" style="display: none;">
+
+            <form id="expedienteForm" class="configForm" style="display: none;">
                 <!-- Aquí puedes colocar el formulario de expediente -->
+                <h2>Expediente - Alergias</h2>
+                <label for="alergiasSelector">Seleccionar alergia:</label>
+                <select id="alergiasSelector">
+                </select><br>
+
+          
+
+                <label for="nombreAlergia" style="display: none;">Modificar alergia:</label>
+                @*El siguiente textarea se mostrara con la descripcion actual cargada en caso de que el usuario presione la opcion de modificarnombre*@
+                <textarea id="nombreAlergia" style="display: none;" rows="4" placeholder="Ingrese la nueva alergia"></textarea><br>
+
+                <button type="button" id="agregarAlergia"><i class='bx bx-plus'></i></button>
+                <button type="button" id="eliminarAlergia"><i class='bx bxs-trash'></i></button>
+                <button type="button" id="modificarAlergia"><i class='bx bxs-edit-alt'></i></button>
+                <button type="submit" id="guardarCambiosAlergia">Guardar</button>
+            </form>
+            <!-- Agregar Nombre Modal -->
+            <div id="agregarAlergiaModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Agregar alergia</h2>
+                    <input type="text" id="inputNuevaAlergia" placeholder="Nueva alergia" autocomplete="off">
+                    <br />
+                    <button id="btnAgregarAlergiaModal">Agregar Alergia</button>
+                    <button class="closeModal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -87,47 +139,151 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Agrega jQuery si aún no está incluido -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script>
-        
+
         $(document).ready(function() {
             cargarListaConsejos();
             cargarListaNombres();
+            cargarListaAlergias();
 
-            $("#consejosSelector").change(function() {
-                var consejoSeleccionado = $(this).val();
-                obtenerDescripcionConsejo(consejoSeleccionado);
+            $("#consejosLink").click(function () {
+                formularioActivo = "consejos"; // Marcar el formulario de consejos como activo
+                mostrarFormulario("consejosForm");
             });
 
-            $("#nombresSelector").change(function() {
-                var nombreSeleccionado = $(this).val();
-                obtenerSignificadoNombre(nombreSeleccionado);
+            $("#nombresLink").click(function () {
+                formularioActivo = "nombres"; // Marcar el formulario de nombres como activo
+                mostrarFormulario("nombresForm");
             });
 
-            $("#modificarConsejo").click(function() {
-                mostrarDescripcionConsejo();
+            $("#expedienteLink").click(function () {
+                formularioActivo = "expediente"; // Marcar el formulario de nombres como activo
+                mostrarFormulario("expedienteForm");
             });
 
-            $("#modificarNombre").click(function() {
-                mostrarSignificado();
+            //$("#consejosSelector").change(function() {
+            //    var consejoSeleccionado = $(this).val();
+            //    obtenerDescripcionConsejo(consejoSeleccionado);
+            //});
+
+            //$("#nombresSelector").change(function() {
+            //    var nombreSeleccionado = $(this).val();
+            //    obtenerSignificadoNombre(nombreSeleccionado);
+            //});
+
+            // Abrir el modal de agregar consejo al hacer clic en el botón
+            $("#agregarConsejo").click(function () {
+                $("#agregarConsejoModal").show();
             });
 
-            $("#guardarCambiosConsejo").click(function() {
-                guardarCambiosConsejo();
+            $("#btnAgregarConsejoModal").click(function () {
+                AgregarConsejo();
+                $("#agregarConsejoModal").hide();
             });
 
-            $("#guardarCambiosNombre").click(function() {
-                guardarCambiosSignificado();
+            // Abrir el modal de agregar nombre al hacer clic en el botón
+            $("#agregarNombre").click(function () {
+                $("#agregarNombreModal").show();
+            });
+
+            $("#btnAgregarNombreModal").click(function () {
+                AgregarNombre();
+                $("#agregarNombreModal").hide();
+            });
+
+            // Abrir el modal de agregar alergia al hacer clic en el botón
+            $("#agregarAlergia").click(function () {
+                $("#agregarAlergiaModal").show();
+            });
+
+            $("#btnAgregarAlergiaModal").click(function () {
+                AgregarAlergia();
+                $("#agregarAlergiaModal").hide();
+            });
+
+            // Cerrar el modal al hacer clic en el botón "Cancelar"
+            $(".closeModal").click(function () {
+                $(".modal").hide();
+            });
+
+            // Cerrar el modal al hacer clic en la "X" en la esquina superior
+            $(".close").click(function () {
+                $(".modal").hide();
+            });
+
+            //EDICION DE DATOS
+            $("#modificarConsejo").click(function () {
+                if (formularioActivo === "consejos") {
+                    mostrarDescripcionConsejo();
+                }
+            });
+            $("#modificarNombre").click(function () {
+                if (formularioActivo === "nombres") {
+                    mostrarSignificado();
+                }
+            });
+            $("#modificarAlergia").click(function () {
+                if (formularioActivo === "expediente") {
+                    mostrarNombreAlergia();
+                }
+            });
+
+            //GUARDAR CAMBIOS
+            $("#guardarCambiosConsejo").click(function () {
+                if (formularioActivo === "consejos") {
+                    guardarCambiosConsejo();
+                }
+            });
+
+            $("#guardarCambiosNombre").click(function () {
+                if (formularioActivo === "nombres") {
+                    guardarCambiosSignificado();
+                }
+            });
+
+            $("#guardarCambiosExpediente").click(function () {
+                if (formularioActivo === "expediente") {
+                    guardarCambiosExpediente();
+                }
+            });
+
+            //ELIMINAR DATOS
+            $("#eliminarConsejo").click(function () {
+                if (formularioActivo === "consejos") {
+                    EliminarConsejo();
+                }
+            });
+
+            $("#eliminarNombre").click(function () {
+                if (formularioActivo === "nombres") {
+                    EliminarNombre();
+                }
+            });
+            $("#eliminarAlergia").click(function () {
+                if (formularioActivo === "expediente") {
+                    EliminarAlergia();
+                }
             });
         });
 
+        function mostrarFormulario(formularioId) {
+            // Ocultar todos los formularios y modales
+            $(".configForm").hide();
+            $(".modal").hide();
+
+            // Mostrar el formulario seleccionado
+            $("#" + formularioId).show();
+        }
+
         function cargarListaConsejos() {
-            
+
             $.ajax({
                 url: "@Url.Action("ListarConsejos", "Home")",
                 method: "GET",
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
+
                     var options = "";
                     data.forEach(function(consejo) {
                         options += "<option value='" + consejo.Titulo + "'>" + consejo.Titulo + "</option>";
@@ -139,7 +295,7 @@
                 }
             });
         }
-        
+
         function obtenerDescripcionConsejo(tituloConsejo) {
             $.ajax({
                 url: "@Url.Action("ObtenerDescripcionConsejo", "Home")",
@@ -168,11 +324,44 @@
                 url: "@Url.Action("ActualizarDescripcionConsejo", "Home")",
                 method: "POST",
                 data: { titulo: tituloConsejo, descripcion: nuevaDescripcion },
-                success: function() {
-                    mostrarExitoAlert("Consejo modificado exitosamente.");
+                success: function(data) {
+                    mostrarExitoAlert(data.mensaje);
                 },
                 error: function() {
                     mostrarErrorAlert("Error al modificar el consejo.");
+                }
+            });
+        }
+
+        function EliminarConsejo () {
+            var tituloConsejo = $("#consejosSelector").val();
+            $.ajax({
+                url: "@Url.Action("EliminarConsejo", "Home")",
+                method: "POST",
+                data: { titulo: tituloConsejo },
+                success: function(data) {
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al eliminar el consejo.");
+                }
+            });
+        }
+
+        function AgregarConsejo () {
+            var tituloConsejo = $("#inputNuevoConsejo").val();
+            var desConsejo = $("#textareaNuevaDescripcion").val();
+
+
+            $.ajax({
+                url: "@Url.Action("AgregarConsejo", "Home")",
+                method: "POST",
+                data: { titulo: tituloConsejo,descripcion: desConsejo },
+                success: function(data) {
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al agregar el consejo.");
                 }
             });
         }
@@ -194,16 +383,17 @@
                 }
             });
         }
-        
+
         function obtenerSignificadoNombre(nombreSeleccionado) {
-            
+
             $.ajax({
                 url: "@Url.Action("ObtenerSignificadoPorNombreC", "Home")",
                 method: "GET",
                 data: { nombre: nombreSeleccionado },
                 dataType: "json",
                 success: function (data) {
-                    
+
+
                     $("#significadoNombre").text(data.Significado);
                 },
                 error: function() {
@@ -225,26 +415,148 @@
                 url: "@Url.Action("ActualizarSignificado", "Home")",
                 method: "POST",
                 data: { nombre: nombreSeleccionado, significado: nuevoSignificado },
-                success: function () {
-                   
-                    mostrarExitoAlert("Significado modificado exitosamente.");
+                success: function (data) {
+                    console.log(data);
+                    mostrarExitoAlert(data.mensaje);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log("AJAX Error:", textStatus, errorThrown);
-                    mostrarErrorAlert("Error al modificar el significado.");
+                    mostrarErrorAlert("Error al modificar el nombre.");
                 }
             });
         }
 
+        function AgregarNombre () {
+            var Nombre = $("#inputNuevoNombre").val();
+            var Significado = $("#textareaNuevoSignificado").val();
+
+
+            $.ajax({
+                url: "@Url.Action("AgregarNombre", "Home")",
+                method: "POST",
+                data: { nombre: Nombre, significado: Significado  },
+                success: function(data) {
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al eliminar el nombre.");
+                }
+            });
+        }
+
+        function EliminarNombre() {
+            var nombreSeleccionado = $("#nombresSelector").val();
+
+
+            $.ajax({
+                url: "@Url.Action("EliminarNombre", "Home")",
+                method: "POST",
+                data: { nombre: nombreSeleccionado },
+                success: function(data) {
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al eliminar el nombre.");
+                }
+            });
+        }
+
+        function cargarListaAlergias() {
+
+            $.ajax({
+                url: "@Url.Action("ListarAlergias", "Home")",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+
+                    var options = "";
+                    data.forEach(function(alergias) {
+                        options += "<option value='" + alergias + "'>" + alergias + "</option>";
+                    });
+                    $("#alergiasSelector").html(options);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al cargar la lista de alergias.");
+                }
+            });
+        }
+
+        function guardarCambiosExpediente() {
+            var nombreAlergiaSeleccionado = $("#alergiasSelector").val();
+            var nuevaAlergia = $("#nombreAlergia").val();
+
+            $.ajax({
+                url: "@Url.Action("ActualizarExpediente", "Home")",
+                method: "POST",
+                data: { nuevaAlergia: nombreAlergiaSeleccionado, actualAlergia: nuevaAlergia },
+                success: function (data) {
+                    console.log(data);
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("AJAX Error:", textStatus, errorThrown);
+                    mostrarErrorAlert("Error al guardar los cambios de expediente.");
+                }
+            });
+        }
+
+        function AgregarAlergia() {
+            var NombreAlergia = $("#inputNuevaAlergia").val();
+            $.ajax({
+                url: "@Url.Action("AgregarAlergia", "Home")",
+                method: "POST",
+                data: { nombreAlergia: NombreAlergia },
+                success: function (data) {
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                    mostrarErrorAlert("Error al agregar la alergia.");
+                }
+            });
+        }
+
+        function EliminarAlergia() {
+            var nombreAlergiaSeleccionado = $("#alergiasSelector").val();
+            $.ajax({
+                url: "@Url.Action("EliminarAlergia", "Home")",
+                method: "POST",
+                data: { nombreAlergia: nombreAlergiaSeleccionado },
+                success: function(data) {
+                    mostrarExitoAlert(data.mensaje);
+                },
+                error: function() {
+                    mostrarErrorAlert("Error al eliminar el nombre.");
+                }
+            });
+        }
+        function mostrarNombreAlergia() {
+            var significado = $("#nombreAlergia").val();
+            $("#nombreAlergia").show().val(significado);
+        }
+
         function mostrarExitoAlert(mensaje) {
-            swal(mensaje, "Presiona OK para continuar", "success");
+            swal({
+                text: mensaje,
+                icon: "success",
+                button: "OK"
+            }).then((value) => {
+                // Aquí puedes ejecutar acciones adicionales si es necesario
+            });
         }
 
         function mostrarErrorAlert(mensaje) {
-            swal(mensaje, "Ha ocurrido un error", "error");
+            swal({
+                text: mensaje,
+                icon: "error",
+                button: "OK"
+            }).then((value) => {
+                // Aquí puedes ejecutar acciones adicionales si es necesario
+            });
         }
-    
-        
+
     </script>
 </body>
-</html> 
+</html>

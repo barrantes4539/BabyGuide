@@ -439,12 +439,12 @@
     <Content Include="Views\Config\ModuloConfiguracion.cshtml" />
     <Content Include="Views\Config\Usuarios.cshtml" />
     <Content Include="Views\Config\Historial.cshtml" />
-    <Content Include="Views\Config\Configuracion.cshtml" />
     <Content Include="Views\Config\CrearDietas.cshtml" />
     <Content Include="Views\Home\Perfil.cshtml" />
     <Content Include="Views\Home\PerfilModificar.cshtml" />
     <Content Include="Views\Home\GestionFamilia.cshtml" />
     <Content Include="Views\Home\EtapasDesarrollo.cshtml" />
+    <Content Include="Views\Config\Configuracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
