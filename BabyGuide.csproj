@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BD\Alertas.cs" />
+    <Compile Include="Models\BD\BabyGaleria.cs" />
     <Compile Include="Models\BD\GestionarFamilia.cs" />
     <Compile Include="Models\BD\Dietas.cs" />
     <Compile Include="Models\BD\Citas.cs" />
@@ -165,7 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\Alertas.css" />
-    <Content Include="assets\css\BabyGaleria.css" />
+    <Content Include="assets\css\BabyGaleria\BabyGaleria.css" />
+    <Content Include="assets\css\BabyGaleria\Ultrasonidos.css" />
     <Content Include="assets\css\citas.css" />
     <Content Include="assets\css\DobleVerificacion.css" />
     <Content Include="assets\css\EtapasDesarrollo.css" />
@@ -189,8 +191,10 @@
     <Content Include="assets\img\Alertas\planetas.png" />
     <Content Include="assets\img\BabyGaleria\album-bebe.png" />
     <Content Include="assets\img\BabyGaleria\AlbumFamiliar.jpg" />
+    <Content Include="assets\img\BabyGaleria\camara-de-fotos.png" />
     <Content Include="assets\img\BabyGaleria\marioneta.png" />
     <Content Include="assets\img\BabyGaleria\matriz.png" />
+    <Content Include="assets\img\BabyGaleria\musica.png" />
     <Content Include="assets\img\BabyGaleria\nubes.png" />
     <Content Include="assets\img\BabyGaleria\oso-de-peluche.png" />
     <Content Include="assets\img\CategoriasAlertas\biberon.png" />
@@ -212,7 +216,9 @@
     <Content Include="assets\img\HomePage\ImagenVerdeLego.jpg" />
     <Content Include="assets\img\HomePage\services.png" />
     <Content Include="assets\img\newLogo.png" />
+    <Content Include="assets\img\NuevaAventura\album-de-fotos.png" />
     <Content Include="assets\img\NuevaAventura\Baño.jpg" />
+    <Content Include="assets\img\NuevaAventura\drawn-dotted.png" />
     <Content Include="assets\img\PerfilPage\familia.png" />
     <Content Include="assets\img\PerfilPage\perfil.png" />
     <Content Include="assets\img\PModificarPage\cubos.png" />

@@ -1,11 +1,19 @@
-﻿*, ::after, ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+﻿body {
+    position: relative;
 }
 
+/*Contenedor de Agregar Aventura*/
+.agregar-aventura {
+    border: 2px dashed #00DDBD;
+    border-radius: 15px;
+    width: 40%;
+    height: auto;
+    margin-top: 150px;
+    margin-left: 50px;
+}
+/*Estilo del Drag & Drop*/
 .card {
-    width: 100%;
+    width: 80%;
     height: auto;
     padding: 15px;
     box-shadow: 0 0 5px rgb(0, 0, 0, 0.15);
@@ -14,6 +22,7 @@
     font-family: 'Poppins', sans-serif;
     background: #fafbff;
     margin: 5%;
+    margin-left: 10%;
 }
 
     .card .top {
@@ -29,9 +38,9 @@
             color: #00DDBD;
         }
 
-form {
+.drag-drop-container {
     width: 100%;
-    height: 160px;
+    height: 100px;
     border-radius: 5px;
     border: 2px dashed #d5d5e1;
     color: #c8c9dd;
@@ -46,19 +55,19 @@ form {
     margin-top: 20px;
 }
 
-    form .select {
+    .drag-drop-container .select {
         color: #00DDBD;
         margin-left: 7px;
         cursor: pointer;
     }
 
-    form input {
+    .drag-drop-container input {
         display: none;
     }
 
-    form.dragover {
+    .drag-drop-container.dragover {
         border-style: solid;
-        font-size: 2rem;
+        font-size: 20px;
         color: #c8c9dd;
         font-weight: 600;
         background: rgb(0, 0, 0, 0.34);
@@ -110,112 +119,135 @@ form {
                 opacity: 0.8;
             }
 
-.info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 2px dashed #d5d5e1;
-    width: 50%;
-    margin-top: 10%;
-    margin-left: 3%;
+.agregar-aventura h4 {
+    background-color: #97fbed;
+    border-radius: 10px;
+    width: 80%;
+    padding: 5px;
+    padding-left: 20px;
+    color: #426E77;
+    font-weight: bold;
+    margin: 10px;
+    margin-left: 10%;
+    margin-bottom: 30px;
 }
 
-    .info h2 {
-        background-color: #00ddbc56;
-        border-radius: 15px;
-        padding-left: 20px;
-        padding: 1%;
-        width: 85%;
-        color: #426E77;
-        margin-top: 5%;
-        margin-bottom: 5%;
+.agregar-aventura label {
+    position: absolute;
+}
+
+.agregar-aventura .lbltitulo {
+    background-color: white;
+    margin-left: 70px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.agregar-aventura input {
+    border: 2px solid #00DDBD;
+    border-radius: 5px;
+    min-width: 295px;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+.agregar-aventura select {
+    border: 2px solid #00DDBD;
+    border-radius: 5px;
+    width: 170px;
+    height: 30px;
+}
+
+.agregar-aventura .tipo-archivo {
+    margin-left: 20px;
+}
+
+.info-categorias {
+    position: relative;
+    margin-top: -30px;
+    margin-left: 50px;
+}
+
+    .info-categorias .lblalbum {
+        top: 20px;
+        left: 15px;
     }
 
-#lbl-titulo {
-    position: absolute;
-    background-color: white;
-    color: #00DDBD;
-    margin-top: 8%;
-    margin-left: -27%;
-}
+    .info-categorias .album-destino {
+        margin-top: 50px;
+        margin-left: 10px;
+    }
 
-.info input {
-    border: 2px solid #89C0CF;
-    border-radius: 7px;
-    padding: 1.5%;
-    margin: 1%;
-    top: 20%;
-    left: 5%;
-    min-width: 50%;
-    font-family: Daniel, sans-serif;
-    color: #00DDBD;
-}
+    .info-categorias .lbletapa {
+        top: 20px;
+        left: 210px;
+    }
 
-select {
-    border: 2px solid #89C0CF;
-    border-radius: 7px;
-    min-width: 30%;
-    min-height: 41px;
-    margin: 1%;
-    font-family: Daniel, sans-serif;
-    color: #00DDBD;
-    cursor: pointer;
-}
+    .info-categorias .etapa-desarrollo {
+        margin-top: 50px;
+        margin-left: 20px;
+    }
 
-#etapas-desarrollo, #album-destino {
-    margin-top: 2%;
-}
-
-#album-destino {
-    margin-left: -14.9%;
-    margin-right: 3%;
-}
-
-#lbl-etapa-desarrollo, #lbl-album-destino {
-    position: absolute;
-    margin-top: 35%;
-    color: #00DDBD;
-}
-
-#lbl-album-destino {
-    margin-left: -32%;
-}
-
-#lbl-etapa-desarrollo {
-    margin-left: 3%;
-}
-
-.info button {
-    background: #6ca5b1dd;
+.agregar-aventura button {
+    background-color: #6CA5B1;
     border: none;
     border-radius: 30px;
-    width: 50%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    padding: 2%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 32%;
+    padding: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
     color: white;
-    font-size: 25px;
-    cursor: pointer;
 }
 
-    .info button:hover {
-        opacity: 0.8;
+.agregar-aventura .oso {
+    width: 100px;
+    margin-top: -100px;
+    margin-left: 50px;
+}
+
+.decoracion {
+    margin-top: -520px;
+    margin-left: 950px;
+    width: 500px;
+}
+
+    .decoracion .album {
+        width: 70px;
+        margin-left: 430px;
     }
 
-.img-aventura {
-    display: flex;
-    width: 40%;
-    height: auto;
-    margin-top: -49%;
-    margin-left: 57%;
+    .decoracion .bano {
+        width: 500px;
+        margin-top: 25px;
+    }
+
+    .decoracion .linea-arriba {
+        border: 2px dashed #00826F;
+        width: 310px;
+        margin-top: -20px;
+        margin-left: 100px;
+    }
+
+    .decoracion .linea-abajo {
+        border: 2px dashed #00826F;
+        width: 310px;
+        margin-top: 15px;
+    }
+
+.contenedor-cohete {
+    margin-top: -300px;
+    margin-left: 47%;
 }
 
-#leyenda {
-    width: 40%;
-    margin-top: 1%;
-    margin-left: 57%;
-    font-family: Mulish, sans-serif;
-    font-size: 16px;
-    text-align: justify;
-    color: #325359;
-}
+    .contenedor-cohete .cohete {
+        margin-top: -550px;        
+        width: 200px;
+    }
+
+    .contenedor-cohete .flecha {
+        width: 150px;
+        margin-left: -210px;
+        transform: rotate(-15deg);
+    }

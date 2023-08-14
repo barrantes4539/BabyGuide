@@ -1,0 +1,166 @@
+﻿
+body {
+    /*background-color: #f1f1f1;*/
+    padding: 20px;    
+}
+
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+    margin-top: 100px;
+    padding-top: 20px;
+    margin-left: 40%;
+    color: #078774;
+}
+
+.nube {
+    width: 110px;
+    margin-top: -115px;
+    margin-left: 410px;
+}
+
+.linea-punteada {
+    border: 2px dashed #00826F;
+    width: 350px;
+    margin-top: -50px;
+    margin-left: 20px;
+}
+.agregar {
+    display: flex;
+    position: relative;
+    margin-top: -30px;
+    margin-bottom: 30px;
+    margin-left: 70%;
+}
+
+    .agregar button {
+        background-color: #b3d8e0;
+        color: white;
+        border: none;
+        outline: none;
+        /*padding: 12px;*/
+        padding-left: 50px;
+        cursor: pointer;
+        width: 150px;
+        border-radius: 30px;
+        margin-right: 20px;
+    }
+
+    .agregar img {
+        position: absolute;
+        top: 5px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .agregar .camara {
+        left: 15px;
+    }
+
+    .agregar .notam {
+        left: 180px;
+    }
+
+/* Style the buttons */
+#myBtnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #68ffe8;
+    border-radius: 10px;
+    width: 101.5%;
+}
+
+.btn {
+    /*background-color: #ffd800;*/
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 0;
+    color: #325359;
+    font-size: 20px;
+    /*font-weight: bold;*/
+}
+
+    .btn:hover {
+        background-color: #a4c3c9;
+    }
+
+    .btn.active {
+        background-color: #629fab;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: white;
+    }
+
+/* Center website */
+.main {
+    /*border: 2px solid #000000;*/
+    min-width: 90%;
+    max-width: 90%;
+    margin: auto;    
+}
+
+
+
+.row {
+    max-height: 420px;
+    margin: 10px -16px;
+    overflow: auto;
+}
+
+    .row::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .row::-webkit-scrollbar-thumb {
+        background-color: #00DDBD;
+        border-radius: 5px;
+    }
+
+    /* Add padding BETWEEN each column */
+    .row,
+    .row > .column {
+        padding: 8px;
+    }
+
+/* Create three equal columns that floats next to each other */
+.column {
+    width: 25%;
+    display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Content */
+.content {
+    background-color: #b3d8e0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+    display: block;
+}
+
+
+.contenedor-imagen {
+    border-radius: 10px;
+    border: 3.5px solid #ffffff;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+    .contenedor-imagen img {
+        width: 100%;
+        box-shadow: 10px #000000;
+    }

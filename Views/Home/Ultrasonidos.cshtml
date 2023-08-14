@@ -4,5 +4,153 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="margin-top:200px;">Ultrasonidos</h2>
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/assets/css/BabyGaleria/Ultrasonidos.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Ultrasonidos</h1>
+    <img src="~/assets/img/BabyGaleria/nubes.png" class="nube" />
+    <div class="linea-punteada"></div>
+
+    <div class="agregar">
+        <img src="~/assets/img/BabyGaleria/camara-de-fotos.png" class="camara" />
+        <button onclick="window.location.href='@Url.Action("RedirecNuevaAventura", "Home")'">Nueva Aventura</button>
+        <img src="~/assets/img/BabyGaleria/musica.png" class="notam" />
+        <button>Susurros Tiernos</button>
+    </div>
+
+    <!-- MAIN (Center website) -->
+    <div class="main">
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')">Todos</button>
+            <button class="btn" onclick="filterSelection('nature')">Imágenes</button>
+            <button class="btn" onclick="filterSelection('cars')">Videos</button>
+            <button class="btn" onclick="filterSelection('people')">Audios</button>
+        </div>
+
+        <!-- Portfolio Gallery Grid -->
+        <div class="row">
+            <div class="column nature">
+                <div class="content">
+                    <div class="contenedor-imagen">
+                        <img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mountains">
+                    </div>
+                    <h4>Mountains</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <div class="column nature">
+                <div class="content">
+                    <div class="contenedor-imagen">
+                        <img src="https://images.unsplash.com/photo-1617331140180-e8262094733a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80" alt="Lights" style="width: 100%;">
+                    </div>
+                    <h4>Lights</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <div class="column nature">
+                <div class="content">
+                    <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
+                    <h4>Forest</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+
+            <div class="column cars">
+                <div class="content">
+                    <img src="/w3images/cars1.jpg" alt="Car" style="width:100%">
+                    <h4>Retro</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <div class="column cars">
+                <div class="content">
+                    <img src="/w3images/cars2.jpg" alt="Car" style="width:100%">
+                    <h4>Fast</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <div class="column cars">
+                <div class="content">
+                    <img src="/w3images/cars3.jpg" alt="Car" style="width:100%">
+                    <h4>Classic</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+
+            <div class="column people">
+                <div class="content">
+                    <img src="/w3images/people1.jpg" alt="Car" style="width:100%">
+                    <h4>Girl</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <div class="column people">
+                <div class="content">
+                    <img src="/w3images/people2.jpg" alt="Car" style="width:100%">
+                    <h4>Man</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <div class="column people">
+                <div class="content">
+                    <img src="/w3images/people3.jpg" alt="Car" style="width:100%">
+                    <h4>Woman</h4>
+                    <p>Lorem ipsum dolor..</p>
+                </div>
+            </div>
+            <!-- END GRID -->
+        </div>
+
+        <!-- END MAIN -->
+    </div>
+</body>
+
+<script>
+    filterSelection("all")
+
+    function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("column");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+    }
+
+    function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+        }
+    }
+
+    function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
+
+
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>

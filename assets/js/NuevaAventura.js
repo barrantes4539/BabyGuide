@@ -1,10 +1,10 @@
-﻿let files = [],
-    button = document.querySelector('.top button'),
-    form = document.querySelector('form'),
+﻿
+let files = [],
+    form = document.querySelector('.drag-drop-container'),
     container = document.querySelector('.contenedor'),
     Text = document.querySelector('.inner'),
-    browse = document.querySelector('.select')
-input = document.querySelector('form input');
+    browse = document.querySelector('.select'),
+    input = document.querySelector('.file');
 
 browse.addEventListener('click', () => input.click());
 
@@ -16,7 +16,7 @@ input.addEventListener('change', () => {
         if (files.every(e => e.name != file[i].name)) files.push(file[i])
     }
 
-    form.reset();
+    input.value = '';
     showImages();
 })
 
@@ -24,11 +24,10 @@ const showImages = () => {
     let images = '';
     files.forEach((e, i) => {
         images += `<div class="img">
-        <img src="${URL.createObjectURL(e)}" alt="image">
-        <span onclick="delImage(${i})">&times;</span>
-    </div>`
+                <img src="${URL.createObjectURL(e)}" alt="image">
+                <span onclick="delImage(${i})">&times;</span>
+            </div>`
     })
-
     container.innerHTML = images;
 }
 
@@ -50,18 +49,6 @@ form.addEventListener('dragleave', e => {
 
     form.classList.remove('dragover')
 })
-/*
-form.addEventListener('drop', e => {
-    e.preventDefault()
-
-    let file = e.dataTransfer.files;
-    for(let i = 0; i < file.length; i++)
-    {
-        if(files.every(e => e.name != file[i].name)) files.push(file[i])
-    }
-
-    showImages();
-})*/
 
 form.addEventListener('drop', e => {
     e.preventDefault();

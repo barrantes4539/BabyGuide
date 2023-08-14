@@ -154,7 +154,6 @@
     });
 
     function NotificarAlerta(titulo, hora) {
-
         Push.Permission.request();
         Push.create('BabyGuide informa', {
             body: `${titulo} a las ${hora}.`,
@@ -163,6 +162,8 @@
             vibrate: [100, 100, 100],
         })
     }
+
+    NotificarAlerta('Hola mundo', '12');
 
     //async function ejecutarEnHoras(horas) {
     //    for (const hora of horas) {
