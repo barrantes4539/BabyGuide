@@ -11,7 +11,11 @@ using System.Net.Http;
 
 using System.Net.Mail;
 using System.Net;
+
+using System.IO;
+
 using RestSharp;
+
 
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -33,14 +37,7 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-        public ActionResult BabyGaleria()
-        {
-            return View();
-        }
-        public ActionResult NuevaAventura()
-        {
-            return View();
-        }
+
         public ActionResult Preguntas()
         {
 
@@ -190,6 +187,7 @@ namespace BabyGuide.Controllers
             return View(viewModel);
         }
         #region Expediente
+
         [HttpPost]
         public ActionResult AgregarAlergia(string id, string nombre, string fecha)
         {
@@ -890,6 +888,7 @@ namespace BabyGuide.Controllers
             return View("Perfil", List);
         }
 
+        #region Alertas
         //Metodo para alertas
         public ActionResult Alertas()
         {
@@ -937,6 +936,90 @@ namespace BabyGuide.Controllers
 
             return Json(new { success = true }); // Enviar una respuesta JSON para indicar el éxito de la operación
         }
+        #endregion
+
+        #region BabyGaleria
+        public ActionResult BabyGaleria()
+        {
+            return View();
+        }
+
+        //Redireccionamiento de los botones
+        public ActionResult RedirecUltrasonidos()
+        {
+            return RedirectToAction("Ultrasonidos"); // Redirige a la acción "Ultrasonidos"
+        }
+
+        public ActionResult RedirecAlbumAnio()
+        {
+            return RedirectToAction("AlbumAnio"); // Redirige a la acción "AlbumAnio"
+        }
+
+        public ActionResult RedirecEtapasAlbum()
+        {
+            return RedirectToAction("EtapasAlbum"); // Redirige a la acción "EtapasAlbum"
+        }
+
+        public ActionResult RedirecNuevaAventura()
+        {
+            return RedirectToAction("NuevaAventura"); // Redirige a la acción "EtapasAlbum"
+        }
+
+        //Controladores de las vistas de las opciones
+        public ActionResult Ultrasonidos()
+        {
+            return View();
+        }
+
+        public ActionResult AlbumAnio()
+        {
+            return View();
+        }
+
+        public ActionResult EtapasAlbum()
+        {
+            return View();
+        }
+
+        public ActionResult NuevaAventura()
+        {
+            int idBebe = Convert.ToInt32(Session["idBebe"]);
+            string TipoArchivo = Request.Form["slcTipoArchivo"]?.ToString();
+            string Archivo = Request.Form["file"]?.ToString();
+            string Titulo = Request.Form["txtTitulo"]?.ToString();
+            string Etapa = Request.Form["slcEtapa"]?.ToString();
+            string Album = Request.Form["slcAlbum"]?.ToString();
+
+            //byte[] archivoBytes = File.ReadAllBytes(Archivo);
+
+            var archivo = Request.Form.Files[""]; // Obtiene el archivo desde la solicitud
+            if (archivo != null && archivo.Length > 0)
+            {
+                // Accede al nombre del archivo
+                var nombreArchivo = archivo.FileName;
+                // Convierte el archivo en un arreglo de bytes
+                using (var ms = new MemoryStream())
+                {
+                    archivo.CopyTo(ms); byte[] archivoBytes = ms.ToArray();
+                    // Ahora puedes guardar archivoBytes en la base de datos o hacer lo que necesites // ...
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            BabyGaleria bg = new BabyGaleria();
+
+            if (TipoArchivo != null && Archivo != null && Titulo != null && Etapa != null && Album != null)
+            {
+                bg.IngresarMultimedia(idBebe, TipoArchivo, archivoBytes, Titulo, Etapa, Album);
+            }
+
+            return View();
+        }
+        #endregion
+
+
+        #region CorreoE
+
 
         public bool EnviarCorreo(string correo, string clave, string bebe)
         {
@@ -1041,5 +1124,6 @@ namespace BabyGuide.Controllers
             }
             return resultado;
         }
+        #endregion
     }
 }

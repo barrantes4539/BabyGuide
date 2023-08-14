@@ -1,0 +1,101 @@
+﻿
+.contenedor-botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 550px;
+    margin-top: 170px;
+    margin-left: 100px;
+}
+
+h1 {
+    font-family: Daniel, sans-serif;
+    font-size: 50px;
+    color: #00a990e5;
+}
+
+button {
+    background-color: #8ebfcdb9;
+    border-radius: 100px;
+    margin: 10px;
+    border: none;
+    width: 450px;
+    height: 100px;
+    font-family: Mulish, sans-serif;
+    font-size: 200%;
+    color: #678D97;
+    text-align: left;
+    padding-left: 25%;
+}
+
+.contenedor-botones img {
+    display: flex;
+    margin: 25px;
+    margin-left: -280px;
+    width: 70px;
+    height: 70px;
+}
+
+#matriz {
+    margin-top: -335px;
+}
+
+p {
+    font-family: Mulish, sans-serif;
+    font-size: 16px;
+    text-align: justify;
+    color: #325359;
+    margin-top: 15px;
+}
+
+.contenedor-imagen {
+    position: relative;
+    width: 50px;
+    margin-top: -570px;
+    margin-left: 1050px;
+}
+
+.img-fam {
+    width: auto;
+    height: 550px;
+}
+
+.linea-arriba {
+    border-top: 3.5px dashed #00826F;
+    opacity: 80%;
+    position: absolute;
+    top: -15px;
+    left: 115px;
+    width: 250px;
+}
+
+.linea-izquierda {
+    border-left: 3.5px dashed #00826F;
+    opacity: 80%;
+    position: absolute;
+    top: 0;
+    left: -15px;
+    height: 350px;
+}
+
+.linea-abajo-derecha {
+    border-bottom: 3.5px dashed #00826F;
+    border-right: 3.5px dashed #00826F;
+    opacity: 80%;
+    position: absolute;
+    bottom: -15px;
+    left: 280px;
+    width: 100px;
+    height: 100px;
+}
+#oso {
+    width: 100px;
+    margin-top: -1090px;
+    margin-left: 80px
+}
+#nube {
+    width: 200px;
+    margin-top: -400px;
+    margin-left: 550px
+}

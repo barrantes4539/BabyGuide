@@ -7,17 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/BabyGaleria.css">
-
+    <link href="~/assets/css/BabyGaleria/BabyGaleria.css" rel="stylesheet" />
     <title>Baby Galería</title>
 </head>
 <body>
 
     <div class="contenedor-botones">
         <h1>Baby Galería</h1>
-        <button><b>Ultrasonidos</b></button>
-        <button><b>Album por año</b></button>
-        <button><b>Etapas de desarrollo</b></button>
+        <button onclick="window.location.href='@Url.Action("RedirecUltrasonidos", "Home")'"><b>Ultrasonidos</b></button>
+        <button onclick="window.location.href='@Url.Action("RedirecAlbumAnio", "Home")'"><b>Album por año</b></button>
+        <button onclick="window.location.href='@Url.Action("RedirecEtapasAlbum", "Home")'"><b>Etapas de desarrollo</b></button>
         <img src="../assets/img/BabyGaleria/matriz.png" id="matriz">
         <img src="../assets/img/BabyGaleria/album-bebe.png" id="album">
         <img src="../assets/img/BabyGaleria/marioneta.png" id="marioneta">
@@ -31,8 +30,8 @@
         </p>
     </div>
     <div class="contenedor-imagen">
-        <img class="img-fam" src="../assets/img/BabyGaleria/AlbumFamiliar.jpg">
         <div class="linea-arriba"></div>
+        <img class="img-fam" src="../assets/img/BabyGaleria/AlbumFamiliar.jpg">
         <div class="linea-izquierda"></div>
         <div class="linea-abajo-derecha"></div>
     </div>
@@ -40,4 +39,3 @@
     <img id="nube" src="../assets/img/BabyGaleria/nubes.png">
     <script src="../assets/js/main.js"></script>
 </body>
-
