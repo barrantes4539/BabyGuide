@@ -578,6 +578,14 @@ namespace BabyGuide.Controllers
         }
 
         [HttpGet]
+        public JsonResult ListarAlergias()
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            List<string> alergias = sigNombresConsejos.ListarAlergias();
+            return Json(alergias, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public JsonResult ListarConsejos()
         {
             // Crear una instancia de la clase SigNombres_Consejos
@@ -607,11 +615,94 @@ namespace BabyGuide.Controllers
         }
 
         [HttpPost]
+        public ActionResult AgregarConsejo(string titulo, string descripcion)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.AgregarConsejo(titulo, descripcion); // Implementa este método
+            return Json(new { mensaje = "Consejo agregado exitosamente" });
+        }
+
+        [HttpPost]
+        public ActionResult EliminarConsejo(string titulo)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.EliminarConsejo(titulo); // Implementa este método
+            return Json(new { mensaje = "Consejo eliminado con éxito" });
+        }
+
+        [HttpPost]
+        public ActionResult AgregarNombre(string nombre, string significado)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.AgregarNombre(nombre, significado); // Implementa este método
+            return Json(new { mensaje = "Nombre agregado exitosamente" });
+        }
+
+        [HttpPost]
+        public ActionResult EliminarNombre(string nombre)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.EliminarNombre(nombre); // Implementa este método
+            return Json(new { mensaje = "Nombre eliminado con éxito" });
+        }
+
+        [HttpPost]
         public ActionResult ActualizarSignificado(string nombre, string significado)
         {
             SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
             sigNombresConsejos.ActualizarSignificado(nombre, significado); // Implementa este método
             return Json(new { mensaje = "Significado actualizada con éxito." });
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarExpediente(string nuevaAlergia, string actualAlergia)
+        {
+            try
+            {
+                SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+                sigNombresConsejos.ActualizarExpediente(nuevaAlergia, actualAlergia); // Implementa este método
+                return Json(new { mensaje = "Expediente actualizado con éxito" });
+            }
+            catch (Exception ex)
+            {
+                // Captura y maneja cualquier excepción
+                Console.WriteLine("Error al actualizar el expediente: " + ex.Message);
+                return Json(new { mensaje = "Error al actualizar el expediente" });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EliminarAlergia(string nombreAlergia)
+        {
+            try
+            {
+                SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+                sigNombresConsejos.EliminarAlergia(nombreAlergia); // Implementa este método
+                return Json(new { mensaje = "Alergia eliminada con éxito" });
+            }
+            catch (Exception ex)
+            {
+                // Captura y maneja cualquier excepción
+                Console.WriteLine("Error al eliminar la alergia: " + ex.Message);
+                return Json(new { mensaje = "Error al eliminar la alergia" });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AgregarAlergia(string nombreAlergia)
+        {
+            try
+            {
+                SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+                sigNombresConsejos.AgregarAlergia(nombreAlergia); // Implementa este método
+                return Json(new { mensaje = "Alergia agregada exitosamente" });
+            }
+            catch (Exception ex)
+            {
+                // Captura y maneja cualquier excepción
+                Console.WriteLine("Error al agregar la alergia: " + ex.Message);
+                return Json(new { mensaje = "Error al agregar la alergia" });
+            }
         }
 
         //Indicador Total Usuarios controller

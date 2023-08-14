@@ -3,7 +3,7 @@
 .sidenav-configFrontend {
     height: 500px; /* Full-height: remove this if you want "auto" height */
     width: auto; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    position: relative; /* Fixed Sidebar (stay in place on scroll) */
     /*z-index: 1;*/ /* Stay on top */
    
     left: 300px;
@@ -153,6 +153,114 @@ button {
     #guardarCambiosNombre:hover {
         background-color: #0a443a;
     }
+
+/*Estilos para formulario del expediente*/
+#agregarAlergia {
+    background-color: #67e8d2;
+    color: black;
+}
+#eliminarAlergia {
+    background-color: #ff5555;
+    color: black;
+    margin-right: 1px;
+    margin-bottom: 5px;
+}
+    #eliminarAlergia:hover {
+        background-color: #ff3333;
+    }
+#modificarAlergia {
+    background-color: #7eadf5;
+    color: black;
+}
+    #modificarAlergia:hover {
+        background-color: #2b7cd3;
+    }
+#guardarCambiosAlergia {
+    background-color: #333333;
+    color: #eee;
+    width: 40%;
+    font-size: 13px
+}
+
+    #guardarCambiosAlergia:hover {
+        background-color: #0a443a;
+    }
+
+/* Estilos generales de los modales */
+.modal {
+    margin-top: 300px;
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+select option{
+    font-size: 10px;
+}
+/* Estilos específicos para el contenido de los modales */
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.close {
+    color: red;
+    align-self: flex-end;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: -10px;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+#btnAgregarConsejoModal {
+    background-color: #22debd;
+}
+    #btnAgregarConsejoModal:hover {
+        background-color: #6ea095;
+    }
+#btnAgregarNombreModal {
+    background-color: #22debd;
+}
+
+    #btnAgregarNombreModal:hover {
+        background-color: #6ea095;
+    }
+#btnAgregarAlergiaModal {
+    background-color: #22debd;
+}
+
+    #btnAgregarAlergiaModal:hover {
+        background-color: #6ea095;
+    }
+
+
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-width: 800px) {
     .sidenav-configFrontend {
@@ -162,6 +270,7 @@ button {
         margin-top: 150px;
         width: 150px;
         z-index: 1;
+        height: 700px;
     }
 
         .sidenav-configFrontend a {
@@ -175,5 +284,11 @@ button {
         margin-left: 160px;
         position: fixed; /* Fixed Sidebar (stay in place on scroll) */
         
+    }
+    /* Estilos generales de los modales */
+    .modal {
+
+        position: absolute;
+
     }
 }
