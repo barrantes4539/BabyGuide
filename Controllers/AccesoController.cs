@@ -153,7 +153,6 @@ namespace BabyGuide.Controllers
         .bodyb {{
             max-width: 600px;
             width: 600px;
-            height: 1000px;
             margin: 0 auto;
             font-family: ""Montserrat"", sans-serif;
         }}
@@ -191,7 +190,7 @@ namespace BabyGuide.Controllers
             border-bottom: 4px solid black;
             width: 80%;
             text-align: center;
-            margin-left: 40px;
+            margin-left: 60px;
         }}
 
         .sonaja {{
