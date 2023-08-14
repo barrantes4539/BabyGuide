@@ -132,7 +132,7 @@ namespace BabyGuide.Controllers
         {
             if (Session["idBebe"] == null)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             Expediente expediente = new Expediente();
 
@@ -401,7 +401,7 @@ namespace BabyGuide.Controllers
         {
             if (Session["idBebe"] == null)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             Citas citas = new Citas();
 
@@ -439,7 +439,7 @@ namespace BabyGuide.Controllers
         {
             if (Session["idUsuario"] == null)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             Perfil perfil = new Perfil();
 
@@ -502,7 +502,7 @@ namespace BabyGuide.Controllers
         {
             if (Session["idUsuario"] == null)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             PerfilModificar perfil = new PerfilModificar();
             string nom = Request.Form["nom"]?.ToString();
@@ -533,7 +533,7 @@ namespace BabyGuide.Controllers
         {
             if (Session["idBebe"] == null)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             GestionarFamilia gestionarFamilia = new GestionarFamilia();
 
@@ -805,7 +805,7 @@ namespace BabyGuide.Controllers
         {
             if (Session["idBebe"] == null)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             Alertas alertas = new Alertas();
