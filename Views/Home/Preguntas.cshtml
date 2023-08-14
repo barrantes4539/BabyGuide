@@ -9,31 +9,31 @@
 </head>
 
 <body>
-    <div class="main">
-        <div class="contenedor">
-            <img src="../assets/img/PreguntasPage/papalote.png" alt="">
-            <h1>Preguntas con Expertos</h1>
-            <input type="text" class="input-item" placeholder="Escribir Pregunta" id="miInput">
-            <button class="botongeneral" id="miBoton">Buscar Pregunta</button>
-            <div class="resp">
-                <label for="">Respuesta</label>
-
-                <label id="miLabel"></label>
+    <form action="@Url.Action("Preguntas", "Home")" method="post">
+        <div class="main">
+            <div class="contenedor">
+                <img src="../assets/img/PreguntasPage/papalote.png" alt="">
+                <h1>Preguntas con Expertos</h1>
+                <input type="text" class="input-item" placeholder="Escribir Pregunta" id="miInput" name="txtpregunta">
+                <button class="botongeneral" id="miBoton" type="submit">Buscar Pregunta</button>
+                <div class="resp">
+                    <label id="lblpregunta" @(ViewBag.preg != null && ViewBag.preg.ToString() == "No se encontró una pregunta" ? "style=color:red;" : "")>@ViewBag.preg </label>
+                    <label id="lblrespuesta">@ViewBag.res</label>
+                </div>
+            </div>
+            <div class="contenedor2">
+                <h1>Preguntas frecuentes</h1>
+                @foreach (var i in Model)
+                {
+                    <button class="accordion" type="button">@i.Pregunta</button>
+                    <div class="panel">
+                        <p>@i.Respuesta</p>
+                    </div>
+                }
+                <img src="../assets/img/PreguntasPage/carrusel.png" alt="">
             </div>
         </div>
-        <div class="contenedor2">
-            <h1>Preguntas frecuentes</h1>
-            <button class="accordion">¿Cómo críar a mi bebé?</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
-            <button class="accordion">Section 1</button>
-            <div class="panel">
-                <p>Lorem ipsum...</p>
-            </div>
-            <img src="../assets/img/PreguntasPage/carrusel.png" alt="">
-        </div>
-    </div>
+    </form>
     <script>
         var acc = document.getElementsByClassName("accordion");
         var i;

@@ -20,7 +20,7 @@
         <div class="cuerpo">
             <img class="deco" src="../assets/img/ExpedientePage/chupon.png" alt="">
             <div class="containerex">
-                <label for="nom">Nombre</label>
+                <label for="nom" id="lblnom">Nombre</label>
                 <input type="text" id="nom" name="nom" class="input-item" placeholder="Nombre" value="@ViewBag.nom" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
                 <label for="nac" id="lblnac">Fecha Nacimiento</label>
                 <input type="date" id="nac" name="nac" class="input-item" value="@ViewBag.nac.ToString("yyyy-MM-dd")">
@@ -30,7 +30,10 @@
                 <input type="text" id="ape2" name="ape2" class="input-item" placeholder="Apellidos" value="@ViewBag.ape2" maxlength="30" pattern="[A-Za-z]+" title="Solo se permiten letras">
 
             </div>
-            <button class="botongeneral">Guardar</button>
+            @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+            {
+                <button class="botongeneral">Guardar</button>
+            }
         </div>
         <div class="cuerpo2">
             <label for="alt" id="lblalt">Altura (cm)</label>
@@ -53,9 +56,6 @@
                 <option value="7" @(ViewBag.gest.ToString() == "7" ? "selected" : "")>7 meses</option>
                 <option value="8" @(ViewBag.gest.ToString() == "8" ? "selected" : "")>8 meses</option>
                 <option value="9" @(ViewBag.gest.ToString() == "9" ? "selected" : "")>9 meses</option>
-                <option value="10" @(ViewBag.gest.ToString() == "10" ? "selected" : "")>10 meses</option>
-                <option value="11" @(ViewBag.gest.ToString() == "11" ? "selected" : "")>11 meses</option>
-                <option value="12" @(ViewBag.gest.ToString() == "12" ? "selected" : "")>12 meses</option>
             </select>
         </div>
     </form>

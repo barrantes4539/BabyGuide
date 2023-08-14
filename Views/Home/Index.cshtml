@@ -234,7 +234,6 @@
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 // Actualizar el valor del contador con el valor recibido desde el controlador
                 var contadorElement = $("#" + contadorId);
                 contadorElement.attr("data-purecounter-end", data);
@@ -265,11 +264,10 @@
     function cargarConsejos() {
         $.ajax({
             type: 'GET',
-            url: '/Home/ListarConsejos', // Ruta para obtener la lista de consejos
+            url: '@Url.Action("ListarConsejos", "Home")', // Ruta para obtener la lista de consejos
             dataType: 'json',
             success: function (data) {
 
-                console.log(data)
                 // Procesar la lista de consejos y agregarlos al testimonial section
                 var consejosContainer = document.getElementById('consejosContainer');
                 consejosContainer.innerHTML = '';
@@ -323,7 +321,7 @@
             error: function () {
                 alert('Error al buscar el significado.');
             }
-
+            
         });
     }
 

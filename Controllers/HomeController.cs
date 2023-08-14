@@ -11,7 +11,11 @@ using System.Net.Http;
 
 using System.Net.Mail;
 using System.Net;
+
 using System.IO;
+
+using RestSharp;
+
 
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -37,7 +41,62 @@ namespace BabyGuide.Controllers
         public ActionResult Preguntas()
         {
 
-            return View();
+            string preg = Request.Form["txtpregunta"]?.ToString();
+
+            Preguntas preguntas = new Preguntas();
+            if (preg != null)
+            {
+                DataTable dt = preguntas.BuscarRespuesta(preg);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow fila = dt.Rows[0];
+                    ViewBag.res = "Pregunta más coincidente: " + fila["Respuesta"];
+                    ViewBag.preg = fila["Pregunta"];
+                }
+                else if (dt.Rows.Count <= 0)
+                {
+                    string _EndPoint = "https://api.openai.com/";
+                    string _URI = "v1/chat/completions";
+                    string _APIKey = "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";
+
+                    var pSolicitud = preg;
+
+                    var strRespuesta = "";
+
+                    // Consumir la API
+                    var oCliente = new RestClient(_EndPoint);
+                    var oSolicitud = new RestRequest(_URI, Method.Post);
+                    oSolicitud.AddHeader("Content-Type", "application/json");
+                    oSolicitud.AddHeader("Authorization", "Bearer " + _APIKey);
+
+                    // Creamos el cuerpo de la solicitud
+                    var oCuerpo = new Request()
+                    {
+                        model = "gpt-3.5-turbo",
+                        messages = new List<Message>()
+                        {
+                        new Message() {
+                            role="user",
+                            content=pSolicitud
+                        }
+                        }
+                    };
+
+                    var jsonString = JsonConvert.SerializeObject(oCuerpo);
+
+                    oSolicitud.AddJsonBody(jsonString);
+
+                    var oRespuesta = oCliente.Post<Response>(oSolicitud);
+
+                    strRespuesta = oRespuesta.choices[0].message.content;
+
+                    ViewBag.res = "Respondido de ChatGPT: " + strRespuesta;
+                }
+            }
+
+            List<Preguntas> preguntasl = preguntas.VerPreguntas();
+
+            return View(preguntasl);
         }
 
         public ActionResult EtapasDesarrollo()
@@ -410,6 +469,7 @@ namespace BabyGuide.Controllers
                 if (Convert.ToString(fila["idBebe"]) != "")
                 {
                     Session["idBebe"] = fila["idBebe"];
+                    Session["idRol"] = fila["idRoll"];
                 }
             }
 
@@ -491,7 +551,11 @@ namespace BabyGuide.Controllers
 
             return View(viewModel);
         }
-
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public ActionResult ObtenerPasosIngredienteYEtapa(string ingrediente, int etapa)
@@ -530,6 +594,31 @@ namespace BabyGuide.Controllers
             return Json(new { significado });
         }
 
+
+        [HttpGet]
+        public JsonResult ObtenerDescripcionConsejo(string nombre)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            string descripcion = sigNombresConsejos.ObtenerSignificadoPorNombreC(nombre); // Implementa este método
+            return Json(new { Descripcion = descripcion }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult ListarNombres()
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            List<string> nombres = sigNombresConsejos.ListarNombres();
+            return Json(nombres, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult ListarAlergias()
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            List<string> alergias = sigNombresConsejos.ListarAlergias();
+            return Json(alergias, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public JsonResult ListarConsejos()
         {
@@ -541,6 +630,113 @@ namespace BabyGuide.Controllers
 
             // Devolver la lista de consejos como resultado JSON
             return Json(consejos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult ObtenerSignificadoPorNombreC(string nombre)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            string significado = sigNombresConsejos.ObtenerDescripcionPorTitulo(nombre); // Implementa este método
+            return Json(new { Significado = significado }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarDescripcionConsejo(string titulo, string descripcion)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.ActualizarDescripcion(titulo, descripcion); // Implementa este método
+            return Json(new { mensaje = "Descripción actualizada con éxito." });
+        }
+
+        [HttpPost]
+        public ActionResult AgregarConsejo(string titulo, string descripcion)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.AgregarConsejo(titulo, descripcion); // Implementa este método
+            return Json(new { mensaje = "Consejo agregado exitosamente" });
+        }
+
+        [HttpPost]
+        public ActionResult EliminarConsejo(string titulo)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.EliminarConsejo(titulo); // Implementa este método
+            return Json(new { mensaje = "Consejo eliminado con éxito" });
+        }
+
+        [HttpPost]
+        public ActionResult AgregarNombre(string nombre, string significado)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.AgregarNombre(nombre, significado); // Implementa este método
+            return Json(new { mensaje = "Nombre agregado exitosamente" });
+        }
+
+        [HttpPost]
+        public ActionResult EliminarNombre(string nombre)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.EliminarNombre(nombre); // Implementa este método
+            return Json(new { mensaje = "Nombre eliminado con éxito" });
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarSignificado(string nombre, string significado)
+        {
+            SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+            sigNombresConsejos.ActualizarSignificado(nombre, significado); // Implementa este método
+            return Json(new { mensaje = "Significado actualizada con éxito." });
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarExpediente(string nuevaAlergia, string actualAlergia)
+        {
+            try
+            {
+                SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+                sigNombresConsejos.ActualizarExpediente(nuevaAlergia, actualAlergia); // Implementa este método
+                return Json(new { mensaje = "Expediente actualizado con éxito" });
+            }
+            catch (Exception ex)
+            {
+                // Captura y maneja cualquier excepción
+                Console.WriteLine("Error al actualizar el expediente: " + ex.Message);
+                return Json(new { mensaje = "Error al actualizar el expediente" });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EliminarAlergiaC(string nombreAlergia)
+        {
+            try
+            {
+                SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+                sigNombresConsejos.EliminarAlergia(nombreAlergia); // Implementa este método
+                return Json(new { mensaje = "Alergia eliminada con éxito" });
+            }
+            catch (Exception ex)
+            {
+                // Captura y maneja cualquier excepción
+                Console.WriteLine("Error al eliminar la alergia: " + ex.Message);
+                return Json(new { mensaje = "Error al eliminar la alergia" });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AgregarAlergiaC(string nombreAlergia)
+        {
+            try
+            {
+                SigNombres_Consejos sigNombresConsejos = new SigNombres_Consejos();
+                sigNombresConsejos.AgregarAlergia(nombreAlergia); // Implementa este método
+                return Json(new { mensaje = "Alergia agregada exitosamente" });
+            }
+            catch (Exception ex)
+            {
+                // Captura y maneja cualquier excepción
+                Console.WriteLine("Error al agregar la alergia: " + ex.Message);
+                return Json(new { mensaje = "Error al agregar la alergia" });
+            }
         }
 
         //Indicador Total Usuarios controller
@@ -622,6 +818,7 @@ namespace BabyGuide.Controllers
             {
                 if (row["idBebe"].ToString() == valor)
                 {
+                    Session["idRol"] = row["idRoll"].ToString();
                     resultado = new
                     {
                         success = true,
@@ -820,7 +1017,10 @@ namespace BabyGuide.Controllers
         }
         #endregion
 
+
         #region CorreoE
+
+
         public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";

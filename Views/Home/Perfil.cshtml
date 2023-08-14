@@ -31,7 +31,11 @@
                             }
 
                         </select>
-                        <button class="botongeneral" id="btnclave">Compartir Clave</button>
+                        @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+                        {
+                            <button class="botongeneral" id="btnclave">Compartir Clave</button>
+                        }
+
                     </div>
                 }
 
@@ -39,7 +43,7 @@
 
             <div class="bebe2">
                 <button class="botongeneral" id="registrarBebeBtn">Registrar bebé</button>
-                
+
                 <div class="agregar">
                     <input type="text" class="input-item" placeholder="Ingrese clave bebé" id="txtclaveu">
                     <button class="botongeneral" id="btnunir">Confirmar clave</button>
@@ -79,9 +83,6 @@
                             <option value="7">7 meses</option>
                             <option value="8">8 meses</option>
                             <option value="9">9 meses</option>
-                            <option value="10">10 meses</option>
-                            <option value="11">11 meses</option>
-                            <option value="12">12 meses</option>
                         </select>
                         <button class="botongeneral" type="submit">Registrar</button>
                     </form>
@@ -93,7 +94,7 @@
                     <span class="close" id="closeModalclave">&times;</span>
                     <h2>Compartir clave</h2>
                     <label id="lblclave" for="txtclave">Clave bebé</label>
-                    <input type="text" name="name" value="@ViewBag.clave" id="txtclave" disabled/>
+                    <input type="text" name="name" value="@ViewBag.clave" id="txtclave" disabled />
                     <input type="email" name="name" value="" placeholder="Ingresa un Email" id="txtcorreo" />
                     <button class="botongeneral" id="btncompartir">Compartir</button>
                 </div>
@@ -119,7 +120,11 @@
 
             <div class="botonperfil">
                 <a class="botongeneral" href="@Url.Action("PerfilModificar", "Home")">Editar</a>
-                <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")">Gestionar Familia</a>
+                @if (Convert.ToString(Session["idRol"]) == "1" || Convert.ToString(Session["idRol"]) == "2")
+                {
+                    <a class="botongeneral" href="@Url.Action("GestionFamilia", "Home")">Gestionar Familia</a>
+                }
+
             </div>
         </div>
 
@@ -258,7 +263,7 @@
                 } else {
 
                 }
-                
+
             },
             error: function () {
                 alert('Datos del bebe no encontrados.');
@@ -282,7 +287,7 @@
             data: { clave: clave },
             success: function (response) {
                 if (response.success) {
-                    
+
                 } else {
 
                 }

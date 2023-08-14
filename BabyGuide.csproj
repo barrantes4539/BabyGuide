@@ -45,12 +45,46 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.110.2.0\lib\net471\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -101,9 +135,6 @@
       <Private>True</Private>
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -141,6 +172,7 @@
     <Compile Include="Models\BD\Expediente.cs" />
     <Compile Include="Models\BD\PerfilModificar.cs" />
     <Compile Include="Models\BD\Perfil.cs" />
+    <Compile Include="Models\BD\Preguntas.cs" />
     <Compile Include="Models\BD\SigNombres_Consejos.cs" />
     <Compile Include="Models\BD\Usuarios.cs" />
     <Compile Include="Models\Conexion.cs" />
@@ -148,6 +180,8 @@
     <Compile Include="Models\Listas\AlertasModel.cs" />
     <Compile Include="Models\Listas\CategoriasAlertas.cs" />
     <Compile Include="Models\Listas\FamiliaModel.cs" />
+    <Compile Include="Models\Listas\Request.cs" />
+    <Compile Include="Models\Listas\Response.cs" />
     <Compile Include="Models\Listas\Roles.cs" />
     <Compile Include="Models\Listas\Familia.cs" />
     <Compile Include="Models\Listas\Bebes.cs" />
@@ -159,6 +193,7 @@
     <Compile Include="Models\Listas\DietasModel.cs" />
     <Compile Include="Models\Listas\ExpedienteModel.cs" />
     <Compile Include="Models\Listas\Medicamentos.cs" />
+    <Compile Include="Models\Listas\SignificadoNombre.cs" />
     <Compile Include="Models\Listas\VacunasBebe.cs" />
     <Compile Include="Models\Listas\UsuariosModel.cs" />
     <Compile Include="Models\Listas\Vacunas.cs" />
@@ -229,6 +264,7 @@
     <Content Include="assets\img\trash.png" />
     <Content Include="assets\js\AccordionDashboard.js" />
     <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\moduloConfig.js" />
     <Content Include="assets\js\NuevaAventura.js" />
     <Content Include="assets\js\openCity.js" />
     <Content Include="assets\js\push.min.js" />
@@ -410,15 +446,18 @@
     <Content Include="Views\Config\ModuloConfiguracion.cshtml" />
     <Content Include="Views\Config\Usuarios.cshtml" />
     <Content Include="Views\Config\Historial.cshtml" />
-    <Content Include="Views\Config\Configuracion.cshtml" />
     <Content Include="Views\Config\CrearDietas.cshtml" />
     <Content Include="Views\Home\Perfil.cshtml" />
     <Content Include="Views\Home\PerfilModificar.cshtml" />
     <Content Include="Views\Home\GestionFamilia.cshtml" />
     <Content Include="Views\Home\EtapasDesarrollo.cshtml" />
+
     <Content Include="Views\Home\Ultrasonidos.cshtml" />
     <Content Include="Views\Home\AlbumAnio.cshtml" />
     <Content Include="Views\Home\EtapasAlbum.cshtml" />
+
+    <Content Include="Views\Config\Configuracion.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

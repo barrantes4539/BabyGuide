@@ -38,13 +38,14 @@ h1 {
 }
 
 .containerex {
-  width: 70%;
-  /* Espacio entre los inputs */
-  margin: 3%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+    width: 70%;
+    /* Espacio entre los inputs */
+    margin: 3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
 }
 
 
@@ -299,7 +300,14 @@ label{
 
   .input-item{
     min-width: 120%;
+    margin-bottom: 3%;
   }
+    .containerex .input-item {
+        margin-bottom: 4%;
+    }
+    select {
+        margin-bottom: 3%;
+    }
   .containerex{
     flex-direction: column;
     margin-top: 20%;
@@ -321,16 +329,17 @@ label{
     min-width: 90%;
   }
   .cuerpo2 select{
-    width: 90%;
+    min-width: 90%;
   }
   .item-list-container {
     display: flex;
-    width: 90%;
+    flex-direction: column;
+    width: 95%;
   }
   .item-list{
     width: 100%;
   }
-  #Diagnosticos .item-list-container{
+/*  #Diagnosticos .item-list-container{
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -338,8 +347,59 @@ label{
   }
   #Diagnosticos button{
     position: relative;
-  }
+  }*/
+#diag{
+    display: flex;
+    flex-direction: column;
+}
+#save{
+    margin-top: 47%;
+}
+.cuerpo3 .input-item {
+    min-width: 80%;
+}
   .body{
     margin-top: 35%;
   }
+    #lblnom {
+        position: absolute;
+        margin-left: 5%;
+        top: -10px;
+    }
+
+    #lblnac {
+        margin-top: 23%;
+        left: -70px;
+    }
+
+    #lblape1 {
+        margin-left: 5%;
+        margin-top: 49%;
+    }
+
+    #lblape2 {
+        left: -70px;
+        margin-top: 76%;
+    }
+    #lblalt {
+        position: absolute;
+        top: 545px;
+        margin-left: 5%;
+    }
+
+    #lblpes {
+        left: -120px;
+        margin-top: 16%;
+    }
+
+    #lblgen {
+        margin-left: 5%;
+        margin-top: 33%;
+    }
+
+    #lblgest {
+        left: -120px;
+        margin-top: 49%;
+    }
+
 }

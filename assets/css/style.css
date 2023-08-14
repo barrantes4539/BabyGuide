@@ -1698,18 +1698,19 @@ section {
 
 .container-nameMeaning {
     width: 100%;
-    
     margin: 50px auto;
-    background-color: #ffebcd;
+    background-color: #89C6D3;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    /*opacity: 50%;*/
 }
 
     .container-nameMeaning h1 {
         text-align: center;
         margin-bottom: 20px;
-        color: #ff7f50;
+        color: #eee;
     }
 
 .form-container-nameMeaning {
@@ -1721,26 +1722,29 @@ section {
         flex: 1;
         padding: 10px;
         font-size: 16px;
-        border: 2px solid #ff7f50;
+        border: 2px solid #40dfbf;
         border-radius: 10px 0 0 10px;
-        color: #ff7f50;
+        color: #336797;
     }
 
     .form-container-nameMeaning button {
         padding: 10px 20px;
         font-size: 16px;
-        background-color: #ff7f50;
+        background-color: #40dfbf;
         color: #fff;
         border: none;
         border-radius: 0 10px 10px 0;
         cursor: pointer;
     }
+        .form-container-nameMeaning button:hover {
+            background-color: #6a919b;
+        }
 
 .result-container-nameM {
     margin-top: 20px;
     padding: 10px;
-    border: 2px solid #ff7f50;
+    border: 2px solid #eee;
     border-radius: 10px;
-    color: #ff7f50;
+    color: #336797;
     font-weight: bold;
 }
