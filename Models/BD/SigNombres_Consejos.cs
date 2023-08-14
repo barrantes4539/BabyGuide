@@ -304,7 +304,7 @@ namespace BabyGuide.Models.BD
             return alergias;
         }
 
-        public void ActualizarExpediente(string NuevaAlerta, string AlertaActual)
+        public void ActualizarExpediente(string AlertaActual, string NuevaAlerta)
         {
             using (SqlConnection connection = new SqlConnection(Conexion.cn))
             {

@@ -708,7 +708,7 @@ namespace BabyGuide.Controllers
         }
 
         [HttpPost]
-        public ActionResult EliminarAlergia(string nombreAlergia)
+        public ActionResult EliminarAlergiaC(string nombreAlergia)
         {
             try
             {
@@ -725,7 +725,7 @@ namespace BabyGuide.Controllers
         }
 
         [HttpPost]
-        public ActionResult AgregarAlergia(string nombreAlergia)
+        public ActionResult AgregarAlergiaC(string nombreAlergia)
         {
             try
             {

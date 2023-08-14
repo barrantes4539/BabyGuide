@@ -242,7 +242,7 @@
                 }
             });
 
-            $("#guardarCambiosExpediente").click(function () {
+            $("#guardarCambiosAlergia").click(function () {
                 if (formularioActivo === "expediente") {
                     guardarCambiosExpediente();
                 }
@@ -503,8 +503,8 @@
         function AgregarAlergia() {
             var NombreAlergia = $("#inputNuevaAlergia").val();
             $.ajax({
-                url: "@Url.Action("AgregarAlergia", "Home")",
-                method: "POST",
+                url: "@Url.Action("AgregarAlergiaC", "Home")",
+                type: "POST",
                 data: { nombreAlergia: NombreAlergia },
                 success: function (data) {
                     mostrarExitoAlert(data.mensaje);
@@ -521,7 +521,7 @@
         function EliminarAlergia() {
             var nombreAlergiaSeleccionado = $("#alergiasSelector").val();
             $.ajax({
-                url: "@Url.Action("EliminarAlergia", "Home")",
+                url: "@Url.Action("EliminarAlergiaC", "Home")",
                 method: "POST",
                 data: { nombreAlergia: nombreAlergiaSeleccionado },
                 success: function(data) {
