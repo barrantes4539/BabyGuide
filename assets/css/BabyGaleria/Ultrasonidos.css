@@ -204,6 +204,31 @@ audio {
 /*------------------------------- Responsive -------------------------------*/
 
 @media screen and (max-width: 480px) {
+    h1 {
+        font-size: 50px;
+        word-break: break-all;
+        margin-top: 100px;
+        padding-top: 20px;
+        margin-left: 10%;
+        color: #078774;
+    }
+
+    .nube {
+        display: none;
+    }
+
+    .linea-punteada {
+        display: none;
+    }
+
+    .agregar {
+        display: flex;
+        position: relative;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        margin-left: 6%;
+    }
+
     .main {
         /*border: 2px solid #000000;*/
         min-width: 90%;

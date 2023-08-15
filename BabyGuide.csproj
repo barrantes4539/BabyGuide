@@ -455,7 +455,6 @@
     <Content Include="Views\Home\EtapasDesarrollo.cshtml" />
     <Content Include="Views\Home\Ultrasonidos.cshtml" />
     <Content Include="Views\Home\AlbumAnio.cshtml" />
-    <Content Include="Views\Home\EtapasAlbum.cshtml" />
     <Content Include="Views\Config\Configuracion.cshtml" />
   </ItemGroup>
   <ItemGroup>

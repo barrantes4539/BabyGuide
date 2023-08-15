@@ -964,7 +964,7 @@ namespace BabyGuide.Controllers
 
         public ActionResult RedirecEtapasAlbum()
         {
-            return RedirectToAction("EtapasAlbum"); // Redirige a la acción "EtapasAlbum"
+            return RedirectToAction("EtapasDesarrollo"); // Redirige a la acción "EtapasDesarrollo"
         }
 
         public ActionResult RedirecNuevaAventura()
@@ -993,10 +993,6 @@ namespace BabyGuide.Controllers
             return View(lbg);
         }
 
-        public ActionResult EtapasAlbum()
-        {
-            return View();
-        }
         public ActionResult NuevaAventura(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
         {
             int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
