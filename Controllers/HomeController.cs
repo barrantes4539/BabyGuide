@@ -898,14 +898,13 @@ namespace BabyGuide.Controllers
         //Metodo para alertas
         public ActionResult Alertas()
         {
-            //if (Session["idBebe"] == null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Session["idBebe"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             Alertas alertas = new Alertas();
-            int idBebe = 305340319;
-            //int idBebe = Convert.ToInt32(Session["idBebe"]);
+            int idBebe = Convert.ToInt32(Session["idBebe"]);
 
             string Titulo = Request.Form["iptTitulo"]?.ToString();
             string Hora = Request.Form["iptHora"]?.ToString();
@@ -975,7 +974,12 @@ namespace BabyGuide.Controllers
         //Controladores de las vistas de las opciones
         public ActionResult Ultrasonidos()
         {
-            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+            if (Session["idBebe"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            int idBebe = Convert.ToInt32(Session["idBebe"]);
 
             BabyGaleria bg = new BabyGaleria();
             List <ListaBabyGaleria>  lbg = bg.VerUltrasonidos(idBebe);
@@ -985,7 +989,12 @@ namespace BabyGuide.Controllers
 
         public ActionResult AlbumAnio()
         {
-            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+            if (Session["idBebe"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            int idBebe = Convert.ToInt32(Session["idBebe"]);
 
             BabyGaleria bg = new BabyGaleria();
             List<ListaBabyGaleria> lbg = bg.VerBabyGaleria(idBebe);
@@ -995,8 +1004,12 @@ namespace BabyGuide.Controllers
 
         public ActionResult NuevaAventura(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
         {
-            int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
+            if (Session["idBebe"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
+            int idBebe = Convert.ToInt32(Session["idBebe"]);
 
             Models.BD.BabyGaleria bg = new Models.BD.BabyGaleria();
 
