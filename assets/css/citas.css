@@ -17,7 +17,10 @@ body::-webkit-scrollbar-thumb {
     border: none;
     background-color: white;
 }
-
+    .delete-button img {
+        width: 30px;
+        height: 30px;
+    }
 .body{
     margin-top: 10%;
   }

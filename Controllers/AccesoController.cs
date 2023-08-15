@@ -56,7 +56,6 @@ namespace BabyGuide.Controllers
                 Console.WriteLine(usuarios.IdUsuarioLogueado(correo));
                 Session["idUsuario"] = usuarios.IdUsuarioLogueado(correo);
 
-
                 bool respuesta = EnviarVerificacion(Session["correoUsuarioTemporal"].ToString(), out mensaje);
 
                 return RedirectToAction("DobleVerificacion", "Acceso"); // Redireccionar a una página de bienvenida o dashboard después del login exitoso.
