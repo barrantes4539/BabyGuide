@@ -12,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="formNA">
+    <form action="@Url.Action("NuevaAventuraF", "Home")" method="post" enctype="multipart/form-data">
         <div class="agregar-aventura">
             <h4>Nueva Aventura</h4>
             <label class="lbltitulo">Titulo</label>
@@ -67,24 +67,4 @@
     <script src="../assets/js/main.js"></script>
     <script src="~/assets/js/NuevaAventura.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    $(document).ready(function () {
-        $("#formNA").submit(function (e) {
-            e.preventDefault(); // Evita la acción por defecto del formulario
-
-            var formData = new FormData(this);
-            console.log(formData);
-            $.ajax({
-                url: "@Url.Action("NuevaAventuraF", "Home")",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    $("#resultado").html(response);
-                }
-            });
-        });
-    });
-    </script>
 </body>

@@ -970,7 +970,12 @@ namespace BabyGuide.Controllers
         //Controladores de las vistas de las opciones
         public ActionResult Ultrasonidos()
         {
-            return View();
+            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+
+            BabyGaleria bg = new BabyGaleria();
+            List <ListaBabyGaleria>  lbg = bg.VerBabyGaleria(idBebe);
+
+            return View(lbg);
         }
 
         public ActionResult AlbumAnio()
@@ -992,7 +997,7 @@ namespace BabyGuide.Controllers
             int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
 
 
-            BabyGaleria bg = new BabyGaleria();
+            Models.BD.BabyGaleria bg = new Models.BD.BabyGaleria();
 
             if (file != null && file.ContentLength > 0)
             {
