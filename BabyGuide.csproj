@@ -194,6 +194,7 @@
     <Compile Include="Models\Listas\ExpedienteModel.cs" />
     <Compile Include="Models\Listas\Medicamentos.cs" />
     <Compile Include="Models\Listas\SignificadoNombre.cs" />
+    <Compile Include="Models\Listas\BabyGaleria.cs" />
     <Compile Include="Models\Listas\VacunasBebe.cs" />
     <Compile Include="Models\Listas\UsuariosModel.cs" />
     <Compile Include="Models\Listas\Vacunas.cs" />
@@ -451,13 +452,10 @@
     <Content Include="Views\Home\PerfilModificar.cshtml" />
     <Content Include="Views\Home\GestionFamilia.cshtml" />
     <Content Include="Views\Home\EtapasDesarrollo.cshtml" />
-
     <Content Include="Views\Home\Ultrasonidos.cshtml" />
     <Content Include="Views\Home\AlbumAnio.cshtml" />
     <Content Include="Views\Home\EtapasAlbum.cshtml" />
-
     <Content Include="Views\Config\Configuracion.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

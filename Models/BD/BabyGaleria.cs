@@ -39,7 +39,7 @@ namespace BabyGuide.Models.BD
             }
         }
 
-        public List<AlertasBebe> VerAlertas(int idBebe)
+        public List<ListaBabyGaleria> VerBabyGaleria(int idBebe)
         {
             SqlConnection connection = new SqlConnection();
             try
@@ -47,7 +47,7 @@ namespace BabyGuide.Models.BD
                 string connectionString = Conexion.cn;
                 connection = new SqlConnection(connectionString);
                 connection.Open();
-                SqlCommand command = new SqlCommand("spVerAlertas", connection);
+                SqlCommand command = new SqlCommand("spVerBabyGaleria", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@idBebe", idBebe);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -55,17 +55,22 @@ namespace BabyGuide.Models.BD
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
 
-                List<AlertasBebe> List = new List<AlertasBebe>();
+                List<ListaBabyGaleria> List = new List<ListaBabyGaleria>();
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    AlertasBebe Data = new AlertasBebe
+                    byte[] imageBytes = (byte[])row["Archivo"]; // Obtener los datos binarios de la imagen
+                    string base64String = Convert.ToBase64String(imageBytes); // Convertir a base64
+
+                    ListaBabyGaleria Data = new ListaBabyGaleria
                     {
-                        idAlerta = row["idAlerta"].ToString(),
+                        idBebe = row["idBebe"].ToString(),
+                        TipoArchivo = row["TipoArchivo"].ToString(),
+                        Archivo = base64String,
                         Titulo = row["Titulo"].ToString(),
-                        Hora = row["Hora"].ToString(),
-                        idCategoria = row["idCategoria"].ToString(),
-                        Estado = row["Estado"].ToString(),
+                        Etapa = row["Etapa"].ToString(),
+                        Fecha = row["Fecha"].ToString(),
+                        Album = row["Album"].ToString(),
                         // ...
                     };
                     List.Add(Data);
@@ -74,7 +79,7 @@ namespace BabyGuide.Models.BD
             }
             catch (Exception)
             {
-                return new List<AlertasBebe>();
+                return new List<ListaBabyGaleria>();
             }
             finally
             {
