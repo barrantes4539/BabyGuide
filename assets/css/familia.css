@@ -54,7 +54,7 @@ button:hover {
     flex-direction: row;
     flex-wrap: wrap;
 }
-.personas{
+.personas {
     border-radius: 50px;
     background: rgba(108, 165, 177, 0.32);
     padding: 2%;
@@ -63,13 +63,17 @@ button:hover {
     margin-bottom: 3%;
     display: flex;
     flex-direction: row;
+    position: relative;
+    height: 40px;
 }
-.rol{
-    width: 10%;
-    margin-left: 25%;
+.rol {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
 }
-.nombre{
-    width: 50%;
+.nombre {
+    position: absolute;
+    bottom: 10px;
 }
 .body h2{
     color: white;
@@ -105,7 +109,12 @@ button:hover {
     }
     .main2{
         width: 90%;
-        margin-left: 7%;
+        margin-left: 5%;
+    }
+    .main2 select{
+        margin: 2%;
+        width: 100%;
+        margin-left: 5%;
     }
     .perfil{
         flex-direction: column;
@@ -118,4 +127,5 @@ button:hover {
         margin-left: 60%;
         margin-top: -25%;
     }
+
 }
