@@ -813,8 +813,11 @@ namespace BabyGuide.Controllers
             Session["idBebe"] = valor;
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
-            DataRow fila = dataTable.Rows[0];
-            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" };
+
+            Alertas alerta = new Alertas();
+            //int datoAlerta = alerta.ValidarAlertas(Convert.ToInt32(valor));
+
+            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "", HayAlertas = 0 };
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row["idBebe"].ToString() == valor)
@@ -828,9 +831,12 @@ namespace BabyGuide.Controllers
                         rol = row["Rol"].ToString(),
                         clave = row["Clave"].ToString(),
                         idrol = row["idRoll"].ToString(),
+                        HayAlertas = alerta.ValidarAlertas(Convert.ToInt32(valor))
                     };
                 }
             }
+            }
+
             // Devolver el objeto anónimo como respuesta JSON
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
@@ -973,7 +979,7 @@ namespace BabyGuide.Controllers
             int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
 
             BabyGaleria bg = new BabyGaleria();
-            List <ListaBabyGaleria>  lbg = bg.VerBabyGaleria(idBebe);
+            List<ListaBabyGaleria> lbg = bg.VerBabyGaleria(idBebe);
 
             return View(lbg);
         }
@@ -1014,79 +1020,118 @@ namespace BabyGuide.Controllers
         public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";
-            string mensaje = $@"<!DOCTYPE html>
-                                            <html>
-                                            <head>
-                                                <title>Plantilla de Correo Electrónico</title>
-                                                <style>
-                                                /* Estilos generales */
-                                                body {{
-                                                    font-family: Arial, sans-serif;
-                                                    background-color: #f5f5f5;
-                                                    margin: 0;
-                                                    padding: 0;
-                                                }}
+            string mensaje = $@"
+<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    <meta charset=""UTF-8"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <style>
+        .bodyb {{
+            max-width: 600px;
+            width: 600px;
+            margin: 0 auto;
+            font-family: ""Montserrat"", sans-serif;
+        }}
 
-                                                .container {{
-                                                    max-width: 600px;
-                                                    margin: 0 auto;
-                                                    background-color: #fff;
-                                                    padding: 20px;
-                                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                                                }}
+        .div-logo {{
+            background: #C7E3E9;
+            padding: 15px;
+            justify-content: center;
+            text-align: center;
+        }}
 
-                                                /* Encabezado */
-                                                .header {{
-                                                    text-align: center;
-                                                    margin-bottom: 20px;
-                                                }}
+        .div-logo img {{
+            width: 200px;
+            height: 100px;
+        }}
 
-                                                .logo {{
-                                                    max-width: 200px;
-                                                    height: auto;
-                                                }}
 
-                                                .company-name {{
-                                                    font-size: 24px;
-                                                    font-weight: bold;
-                                                    margin-top: 10px;
-                                                }}
+        .div-img img {{
+            display: flex;
+            width: 600px;
+            height: 150px;
+        }}
 
-                                                /* Contenido */
-                                                .content {{
-                                                    margin-bottom: 20px;
-                                                }}
+        .div-info {{
+            background: #E8E8E8;
+            padding-top: 50px;
+            padding-bottom: 100px;
+            border-top: 10px solid #00DDBD;
+            margin-bottom: 100px;
+            position: relative;
+        }}
 
-                                                .content p {{
-                                                    margin-bottom: 10px;
-                                                }}
+        .borde-titulo {{
+            border-top: 4px solid black;
+            border-bottom: 4px solid black;
+            width: 80%;
+            text-align: center;
+            margin-left: 60px;
+        }}
 
-                                                /* Pie de página */
-                                                .footer {{
-                                                    text-align: center;
-                                                    font-size: 14px;
-                                                    color: #999;
-                                                }}
-                                                </style>
-                                            </head>
-                                            <body>
-                                                <div class=""container"">
-                                                <div class=""header"">
-                                                   <img class=""logo"" src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/newLogo.png"" alt=""BabyGuide Logo"">
-                                                </div>
+        .sonaja {{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: 10px;
+            margin-left: 30px;
+        }}
 
-                                                <div class=""content"">
-                                                    <p>Se ha compartido una clave bebé contigo!!</p>
-                                                    <p>Si tu no esperabas este código, solo ignoralo. Se ha compartido la clave del bebé: {bebe} para formar parte de su familia y disfrutar de nuestros servicios. Puedes usarlo cuando inicies sesión en nuestra página web https://tiusr2pl.cuc-carrera-ti.ac.cr/BabyGuide/Acceso/Login</p>
-                                                    <p>La clave es: <strong>{clave}</strong></p>
-                                                </div>
+        .oso {{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            bottom: 30px;
+            left: 40px;
+            margin-left: 70px;
+        }}
 
-                                                <div class=""footer"">
-                                                    <p>&copy; 2023 BabyGuide. Todos los derechos reservados.</p>
-                                                </div>
-                                                </div>
-                                            </body>
-                                            </html>";
+        h1 {{
+            color: #426E77;
+            font-family: ""Book Antiqua"";
+        }}
+
+        h2 {{
+            color: #00BEA3;
+            margin-left: 150px;
+        }}
+
+        h3 {{
+            color: #426E77;
+            margin-left: 250px;
+        }}
+        .parra {{
+            color: #426E77;
+            margin-left: 50px;
+            margin-right: 50px;
+        }}
+        .footer {{
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+        }}
+    </style>
+</head>
+<body>
+  <div class=""bodyb"">
+    <div class=""div-logo""><img src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/newLogo.png""></div>
+    <div class=""div-img""><img src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/BebeCaminando.jpg""></div>
+    <div class=""div-info"">
+        <div class=""borde-titulo"">
+            <h1>Haz sido invitado a unirte!! <img name=""sonaja"" class=""sonaja"" src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/sonajero.png""></h1>
+        </div>
+        <h2>Se ha compartido la clave del bebé: </h2>
+        <h3>{clave}</h3>
+        <h3 class=""parra"">Para el bebé {bebe}, formar parte de su familia y disfrutar de nuestros servicios. Puedes usarlo cuando inicies sesión en nuestra página web https://tiusr2pl.cuc-carrera-ti.ac.cr/BabyGuide/Acceso/Login</h3>
+        <img name=""oso"" class=""oso"" src=""https://tiusr2pl.cuc-carrera-ti.ac.cr/CSSResponsive/oso-de-peluche.png"">
+    </div>
+    <div class=""footer"">
+        <p>&copy; 2023 BabyGuide. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</body>
+</html>";
             bool resultado;
             try
             {
