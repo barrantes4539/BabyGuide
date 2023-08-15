@@ -813,8 +813,11 @@ namespace BabyGuide.Controllers
             Session["idBebe"] = valor;
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
-            DataRow fila = dataTable.Rows[0];
-            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" };
+
+            Alertas alerta = new Alertas();
+            //int datoAlerta = alerta.ValidarAlertas(Convert.ToInt32(valor));
+
+            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" , HayAlertas = 0 };
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row["idBebe"].ToString() == valor)
@@ -828,9 +831,11 @@ namespace BabyGuide.Controllers
                         rol = row["Rol"].ToString(),
                         clave = row["Clave"].ToString(),
                         idrol = row["idRoll"].ToString(),
-                    };
+                        HayAlertas = alerta.ValidarAlertas(Convert.ToInt32(valor))
+                };
                 }
-            }
+            }           
+
             // Devolver el objeto anónimo como respuesta JSON
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
@@ -970,7 +975,7 @@ namespace BabyGuide.Controllers
         //Controladores de las vistas de las opciones
         public ActionResult Ultrasonidos()
         {
-            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+            int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
 
             BabyGaleria bg = new BabyGaleria();
             List <ListaBabyGaleria>  lbg = bg.VerBabyGaleria(idBebe);
@@ -989,7 +994,7 @@ namespace BabyGuide.Controllers
         }
         public ActionResult NuevaAventura(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
         {
-            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+            int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
 
 
             Models.BD.BabyGaleria bg = new Models.BD.BabyGaleria();
