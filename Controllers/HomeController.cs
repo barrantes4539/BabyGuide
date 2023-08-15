@@ -970,7 +970,7 @@ namespace BabyGuide.Controllers
         //Controladores de las vistas de las opciones
         public ActionResult Ultrasonidos()
         {
-            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+            int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
 
             BabyGaleria bg = new BabyGaleria();
             List <ListaBabyGaleria>  lbg = bg.VerBabyGaleria(idBebe);
@@ -989,7 +989,7 @@ namespace BabyGuide.Controllers
         }
         public ActionResult NuevaAventura(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
         {
-            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+            int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
 
 
             Models.BD.BabyGaleria bg = new Models.BD.BabyGaleria();
