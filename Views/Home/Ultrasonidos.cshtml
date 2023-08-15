@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/assets/css/BabyGaleria/Ultrasonidos.css" rel="stylesheet" />
@@ -32,8 +31,17 @@
 
         <!-- Portfolio Gallery Grid -->
         <div class="row">
+
             @foreach (var i in Model)
             {
+                DateTime currentDate = DateTime.Parse(i.Fecha);
+                int year = currentDate.Year;
+
+                <div class="fecha">
+                    <h3>@year</h3>
+                    <div class="separador-anios"></div>
+                </div>
+
                 <div class="column @i.TipoArchivo">
                     <div class="content">
                         <div class="contenedor-imagen">
@@ -43,19 +51,19 @@
                             }
                             else if (i.TipoArchivo == "Video")
                             {
-                                <video controls style="width: 100%; height: 100%;">
+                                <video controls>
                                     <source src="data:video/mp4;base64,@i.Archivo" type="video/mp4">
                                 </video>
                             }
                             else
                             {
-                        <audio controls>
-                            <source src="data:audio/mpeg;base64,@i.Archivo" type="audio/mpeg">
-                        </audio>
+                                <audio controls>
+                                    <source src="data:audio/mpeg;base64,@i.Archivo" type="audio/mpeg">
+                                </audio>
                             }
                         </div>
                         <h4>@i.Titulo</h4>
-                        <p>@i.Fecha</p>
+                        <p>@currentDate.Month/@currentDate.Day/@currentDate.Year</p>
                     </div>
                 </div>
             }
@@ -70,8 +78,9 @@
     filterSelection("all")
 
     function filterSelection(c) {
-        var x, i;
+        var x, y, i;
         x = document.getElementsByClassName("column");
+
         if (c == "all") c = "";
         for (i = 0; i < x.length; i++) {
             w3RemoveClass(x[i], "show");

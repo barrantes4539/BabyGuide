@@ -814,8 +814,7 @@ namespace BabyGuide.Controllers
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
 
-            Alertas alerta = new Alertas();
-            //int datoAlerta = alerta.ValidarAlertas(Convert.ToInt32(valor));
+            Alertas alerta = new Alertas();            
 
             var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" , HayAlertas = 0 };
             foreach (DataRow row in dataTable.Rows)
@@ -899,13 +898,14 @@ namespace BabyGuide.Controllers
         //Metodo para alertas
         public ActionResult Alertas()
         {
-            if (Session["idBebe"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            //if (Session["idBebe"] == null)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
 
             Alertas alertas = new Alertas();
-            int idBebe = Convert.ToInt32(Session["idBebe"]);
+            int idBebe = 305340319;
+            //int idBebe = Convert.ToInt32(Session["idBebe"]);
 
             string Titulo = Request.Form["iptTitulo"]?.ToString();
             string Hora = Request.Form["iptHora"]?.ToString();
@@ -975,17 +975,22 @@ namespace BabyGuide.Controllers
         //Controladores de las vistas de las opciones
         public ActionResult Ultrasonidos()
         {
-            int idBebe = 305340319; //Convert.ToInt32(Session["idBebe"])
+            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
 
             BabyGaleria bg = new BabyGaleria();
-            List <ListaBabyGaleria>  lbg = bg.VerBabyGaleria(idBebe);
+            List <ListaBabyGaleria>  lbg = bg.VerUltrasonidos(idBebe);
 
             return View(lbg);
         }
 
         public ActionResult AlbumAnio()
         {
-            return View();
+            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
+
+            BabyGaleria bg = new BabyGaleria();
+            List<ListaBabyGaleria> lbg = bg.VerBabyGaleria(idBebe);
+
+            return View(lbg);
         }
 
         public ActionResult EtapasAlbum()
@@ -1014,8 +1019,6 @@ namespace BabyGuide.Controllers
 
 
         #region CorreoE
-
-
         public bool EnviarCorreo(string correo, string clave, string bebe)
         {
             string asunto = "Clave Bebé en BabyGuide";
