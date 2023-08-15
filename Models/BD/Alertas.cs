@@ -169,5 +169,32 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
+
+        public int ValidarAlertas(int idBebe)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spValidarAlertas", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@idBebe", idBebe);
+
+                //Ejecuta el procedimiento almacenado y devuelve el valor de la primera columna de la primera fila del resultado.
+                int result = (int)command.ExecuteScalar();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }

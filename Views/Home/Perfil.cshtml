@@ -160,6 +160,7 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/assets/js/push.min.js"></script>
 <script>
     $(document).ready(function () {
         // Asociar el botón al evento click y llamar a la función obtenerDetalleBebe con el valor del campo de bebé
@@ -215,7 +216,7 @@
             var nuevoValor = $(this).val();
             actualizarVariableSession(nuevoValor);
         });
-    });
+    });    
 
     // Función para actualizar la variable de sesión
     function actualizarVariableSession(nuevoValor) {
@@ -243,6 +244,10 @@
                         clave.style.display = "none";
                         enlace.style.display = "none";
                     }
+                    
+                    if (response.HayAlertas === 1) { 
+                        NotificarAlerta();
+                    }
                 } else {
                     console.error("Error al actualizar la variable de sesión.");
                 }
@@ -252,6 +257,16 @@
             }
         });
     }
+
+    function NotificarAlerta() {
+        Push.Permission.request();
+        Push.create('BabyGuide informa', {
+            body: `"Nuevas aventuras aguardan para tu bebé querido. Revisa las alertas disponibles".`,
+            icon: "../assets/img/newLogo.png",
+            timeout: 1500000,
+            vibrate: [100, 100, 100],
+        })
+    } 
 </script>
 <script>
     $(document).ready(function () {
@@ -310,5 +325,5 @@
                 alert('Datos del bebe no encontrados.');
             }
         });
-    }
+    }       
 </script>
