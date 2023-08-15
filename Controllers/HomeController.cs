@@ -813,8 +813,11 @@ namespace BabyGuide.Controllers
             Session["idBebe"] = valor;
             Perfil perfil = new Perfil();
             DataTable dataTable = perfil.CargarPerfil(Convert.ToInt32(Session["idUsuario"]));
-            DataRow fila = dataTable.Rows[0];
-            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" };
+
+            Alertas alerta = new Alertas();
+            //int datoAlerta = alerta.ValidarAlertas(Convert.ToInt32(valor));
+
+            var resultado = new { success = false, nombre = "", apellido = "", rol = "", clave = "", idrol = "" , HayAlertas = 0 };
             foreach (DataRow row in dataTable.Rows)
             {
                 if (row["idBebe"].ToString() == valor)
@@ -828,9 +831,11 @@ namespace BabyGuide.Controllers
                         rol = row["Rol"].ToString(),
                         clave = row["Clave"].ToString(),
                         idrol = row["idRoll"].ToString(),
-                    };
+                        HayAlertas = alerta.ValidarAlertas(Convert.ToInt32(valor))
+                };
                 }
-            }
+            }           
+
             // Devolver el objeto anónimo como respuesta JSON
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
