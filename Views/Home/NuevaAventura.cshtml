@@ -12,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="@Url.Action("NuevaAventura", "Home")" method="post">
+    <form id="formNA">
         <div class="agregar-aventura">
             <h4>Nueva Aventura</h4>
             <label class="lbltitulo">Titulo</label>
@@ -30,7 +30,7 @@
                 <div class="drag-drop-container">
                     <span class="inner">Drag & Drop image here or</span>
                     <span class="select">Browse</span>
-                    <input name="file" type="file" class="file" required>
+                    <input name="file" type="file" class="file" />
                 </div>
                 <div class="contenedor"></div>
             </div>
@@ -49,7 +49,7 @@
                     <option value="4-5">4 a 5 años</option>
                 </select>
             </div>
-            <button>Registrar Aventura</button>
+            <button type="submit">Registrar Aventura</button>
             <img src="~/assets/img/BabyGaleria/oso-de-peluche.png" class="oso" />
         </div>
     </form>
@@ -66,4 +66,25 @@
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>
     <script src="~/assets/js/NuevaAventura.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#formNA").submit(function (e) {
+            e.preventDefault(); // Evita la acción por defecto del formulario
+
+            var formData = new FormData(this);
+            console.log(formData);
+            $.ajax({
+                url: "@Url.Action("NuevaAventuraF", "Home")",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $("#resultado").html(response);
+                }
+            });
+        });
+    });
+    </script>
 </body>

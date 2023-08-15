@@ -23,6 +23,7 @@ using System.Web.DynamicData;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.Web;
 
 namespace BabyGuide.Controllers
 {
@@ -980,37 +981,26 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-
         public ActionResult NuevaAventura()
         {
-            int idBebe = Convert.ToInt32(Session["idBebe"]);
-            string TipoArchivo = Request.Form["slcTipoArchivo"]?.ToString();
-            string Archivo = Request.Form["file"]?.ToString();
-            string Titulo = Request.Form["txtTitulo"]?.ToString();
-            string Etapa = Request.Form["slcEtapa"]?.ToString();
-            string Album = Request.Form["slcAlbum"]?.ToString();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NuevaAventuraF(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
+        {
+            int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
 
-            //byte[] archivoBytes = File.ReadAllBytes(Archivo);
-
-            var archivo = Request.Form.Files[""]; // Obtiene el archivo desde la solicitud
-            if (archivo != null && archivo.Length > 0)
-            {
-                // Accede al nombre del archivo
-                var nombreArchivo = archivo.FileName;
-                // Convierte el archivo en un arreglo de bytes
-                using (var ms = new MemoryStream())
-                {
-                    archivo.CopyTo(ms); byte[] archivoBytes = ms.ToArray();
-                    // Ahora puedes guardar archivoBytes en la base de datos o hacer lo que necesites // ...
-                    return RedirectToAction("Index", "Home");
-                }
-            }
 
             BabyGaleria bg = new BabyGaleria();
 
-            if (TipoArchivo != null && Archivo != null && Titulo != null && Etapa != null && Album != null)
+            if (file != null && file.ContentLength > 0)
             {
-                bg.IngresarMultimedia(idBebe, TipoArchivo, archivoBytes, Titulo, Etapa, Album);
+                int tamanoArchivo = file.ContentLength;
+
+                // Leer archivo y procesar si es necesario
+                byte[] archivoBytes = new byte[tamanoArchivo];
+                file.InputStream.Read(archivoBytes, 0, tamanoArchivo);
+                bg.IngresarMultimedia(idBebe, slcTipoArchivo, archivoBytes, txtTitulo, slcEtapa, slcAlbum);
             }
 
             return View();
