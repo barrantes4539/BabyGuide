@@ -982,12 +982,7 @@ namespace BabyGuide.Controllers
         {
             return View();
         }
-        public ActionResult NuevaAventura()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult NuevaAventuraF(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
+        public ActionResult NuevaAventura(HttpPostedFileBase file, string slcTipoArchivo, string txtTitulo, string slcEtapa, string slcAlbum)
         {
             int idBebe = 5435454; //Convert.ToInt32(Session["idBebe"])
 
@@ -1003,7 +998,6 @@ namespace BabyGuide.Controllers
                 file.InputStream.Read(archivoBytes, 0, tamanoArchivo);
                 bg.IngresarMultimedia(idBebe, slcTipoArchivo, archivoBytes, txtTitulo, slcEtapa, slcAlbum);
             }
-
             return View();
         }
         #endregion
