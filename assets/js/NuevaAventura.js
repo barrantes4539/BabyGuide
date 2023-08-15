@@ -16,7 +16,6 @@ input.addEventListener('change', () => {
         if (files.every(e => e.name != file[i].name)) files.push(file[i])
     }
 
-    input.value = '';
     showImages();
 })
 
