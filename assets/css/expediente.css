@@ -372,38 +372,38 @@ label{
     }
 
     #lblnac {
-        margin-top: 23%;
-        left: -70px;
+        margin-top: 21%;
+        left: -75px;
     }
 
     #lblape1 {
         margin-left: 5%;
-        margin-top: 49%;
+        margin-top: 45%;
     }
 
     #lblape2 {
         left: -70px;
-        margin-top: 76%;
+        margin-top: 70%;
     }
     #lblalt {
         position: absolute;
-        top: 545px;
+        top: 580px;
         margin-left: 5%;
     }
 
     #lblpes {
-        left: -120px;
-        margin-top: 16%;
+        left: -140px;
+        margin-top: 14%;
     }
 
     #lblgen {
         margin-left: 5%;
-        margin-top: 33%;
+        margin-top: 30%;
     }
 
     #lblgest {
-        left: -120px;
-        margin-top: 49%;
+        left: -140px;
+        margin-top: 48%;
     }
 
 }
