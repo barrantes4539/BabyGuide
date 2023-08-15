@@ -160,6 +160,7 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/assets/js/push.min.js"></script>
 <script>
     $(document).ready(function () {
         // Asociar el botón al evento click y llamar a la función obtenerDetalleBebe con el valor del campo de bebé
@@ -243,7 +244,7 @@
                         clave.style.display = "none";
                         enlace.style.display = "none";
                     }
-                    console.log(respose.HayAlertas);
+                    
                     if (response.HayAlertas === 1) { 
                         NotificarAlerta();
                     }
