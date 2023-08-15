@@ -37,7 +37,22 @@
                 <div class="column @i.TipoArchivo">
                     <div class="content">
                         <div class="contenedor-imagen">
-                            <img src="data:image/jpeg;base64,@i.Archivo" alt="@i.Titulo">
+                            @if (i.TipoArchivo == "Imagen")
+                            {
+                                <img src="data:image/jpeg;base64,@i.Archivo" alt="@i.Titulo">
+                            }
+                            else if (i.TipoArchivo == "Video")
+                            {
+                                <video controls style="width: 100%; height: 100%;">
+                                    <source src="data:video/mp4;base64,@i.Archivo" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                        <audio controls>
+                            <source src="data:audio/mpeg;base64,@i.Archivo" type="audio/mpeg">
+                        </audio>
+                            }
                         </div>
                         <h4>@i.Titulo</h4>
                         <p>@i.Fecha</p>
