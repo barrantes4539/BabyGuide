@@ -4,6 +4,125 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AlbumAnio</h2>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/assets/css/BabyGaleria/Ultrasonidos.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Álbum por Año</h1>
+    <img src="~/assets/img/BabyGaleria/nubes.png" class="nube" />
+    <div class="linea-punteada"></div>
+
+    <div class="agregar">
+        <img src="~/assets/img/BabyGaleria/camara-de-fotos.png" class="camara" />
+        <button onclick="window.location.href='@Url.Action("RedirecNuevaAventura", "Home")'">Nueva Aventura</button>
+        <img src="~/assets/img/BabyGaleria/musica.png" class="notam" />
+        <button>Susurros Tiernos</button>
+    </div>
+
+    <!-- MAIN (Center website) -->
+    <div class="main">
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')">Todos</button>
+            <button class="btn" onclick="filterSelection('Imagen')">Imágenes</button>
+            <button class="btn" onclick="filterSelection('Video')">Videos</button>
+            <button class="btn" onclick="filterSelection('Audio')">Audios</button>
+        </div>
+
+        <!-- Portfolio Gallery Grid -->
+        <div class="row">
+            @{ DateTime? prevYearDate = null; }
+
+            @foreach (var i in Model)
+            {
+                DateTime currentDate = DateTime.Parse(i.Fecha);
+                int year = currentDate.Year;
+
+                if (prevYearDate == null || prevYearDate.Value.Year != year)
+                {
+                    <div class="fecha">
+                        <h3>@year</h3>
+                        <div class="separador-anios"></div>
+                    </div>
+                    prevYearDate = currentDate;
+                }
+
+                <div class="column @i.TipoArchivo">
+                    <div class="content">
+                        <div class="contenedor-imagen">
+                            @if (i.TipoArchivo == "Imagen")
+                            {
+                                <img src="data:image/jpeg;base64,@i.Archivo" alt="@i.Titulo">
+                            }
+                            else if (i.TipoArchivo == "Video")
+                            {
+                                <video controls>
+                                    <source src="data:video/mp4;base64,@i.Archivo" type="video/mp4">
+                                </video>
+                            }
+                            else
+                            {
+                                <audio controls>
+                                    <source src="data:audio/mpeg;base64,@i.Archivo" type="audio/mpeg">
+                                </audio>
+                            }
+                        </div>
+                        <h4>@i.Titulo</h4>
+                        <p>@currentDate.Month/@currentDate.Day/@currentDate.Year</p>
+                    </div>
+                </div>
+            }
+            <!-- END GRID -->
+        </div>
+
+        <!-- END MAIN -->
+    </div>
+</body>
+
+<script>
+    filterSelection("all")
+
+    function filterSelection(c) {
+        var x, y, i;
+        x = document.getElementsByClassName("column");
+
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+    }
+
+    function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+        }
+    }
+
+    function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
 
 
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>

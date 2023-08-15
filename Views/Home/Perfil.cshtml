@@ -216,7 +216,7 @@
             var nuevoValor = $(this).val();
             actualizarVariableSession(nuevoValor);
         });
-    });    
+    });
 
     // Función para actualizar la variable de sesión
     function actualizarVariableSession(nuevoValor) {
@@ -226,6 +226,10 @@
             data: { valor: nuevoValor },
             success: function (response) {
                 if (response.success) {
+                    if (response.HayAlertas === 1) {
+                        NotificarAlerta();
+                    }
+
                     // jQuery
                     $('#lblnom').text(response.nombre);
                     $('#lblape').text(response.apellido);
@@ -243,11 +247,7 @@
 
                         clave.style.display = "none";
                         enlace.style.display = "none";
-                    }
-                    
-                    if (response.HayAlertas === 1) { 
-                        NotificarAlerta();
-                    }
+                    }                    
                 } else {
                     console.error("Error al actualizar la variable de sesión.");
                 }
@@ -266,7 +266,7 @@
             timeout: 1500000,
             vibrate: [100, 100, 100],
         })
-    } 
+    }
 </script>
 <script>
     $(document).ready(function () {
@@ -325,5 +325,5 @@
                 alert('Datos del bebe no encontrados.');
             }
         });
-    }       
+    }
 </script>

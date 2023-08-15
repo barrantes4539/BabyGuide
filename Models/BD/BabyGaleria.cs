@@ -86,5 +86,53 @@ namespace BabyGuide.Models.BD
                 connection.Close();
             }
         }
+
+        public List<ListaBabyGaleria> VerUltrasonidos(int idBebe)
+        {
+            SqlConnection connection = new SqlConnection();
+            try
+            {
+                string connectionString = Conexion.cn;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand("spVerUltrasonidos", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@idBebe", idBebe);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                List<ListaBabyGaleria> List = new List<ListaBabyGaleria>();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    byte[] imageBytes = (byte[])row["Archivo"]; // Obtener los datos binarios de la imagen
+                    string base64String = Convert.ToBase64String(imageBytes); // Convertir a base64
+
+                    ListaBabyGaleria Data = new ListaBabyGaleria
+                    {
+                        idBebe = row["idBebe"].ToString(),
+                        TipoArchivo = row["TipoArchivo"].ToString(),
+                        Archivo = base64String,
+                        Titulo = row["Titulo"].ToString(),
+                        Etapa = row["Etapa"].ToString(),
+                        Fecha = row["Fecha"].ToString(),
+                        Album = row["Album"].ToString(),
+                        // ...
+                    };
+                    List.Add(Data);
+                }
+                return List;
+            }
+            catch (Exception)
+            {
+                return new List<ListaBabyGaleria>();
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }

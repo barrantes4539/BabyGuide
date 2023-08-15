@@ -64,3 +64,24 @@ p {
     margin-left: 5%;
     margin-bottom: 5%;
 }
+
+/*------------------------------- Responsive -------------------------------*/
+
+@media screen and (max-width: 480px) {
+
+    body {
+        font-family: Arial, sans-serif;
+        align-items: center;
+        justify-content: center;
+        padding-top: 15%;
+    }
+
+    .izquierda,
+    .derecha {
+        width: 90%;
+    }
+
+    p {
+        display: none;
+    }
+}

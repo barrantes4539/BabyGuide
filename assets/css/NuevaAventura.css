@@ -251,3 +251,97 @@
         margin-left: -210px;
         transform: rotate(-15deg);
     }
+
+/*------------------------------- Responsive -------------------------------*/
+
+@media screen and (max-width: 480px) {
+    /*Contenedor de Agregar Aventura*/
+    .agregar-aventura {
+        border: 2px dashed #00DDBD;
+        border-radius: 15px;
+        width: 80%;
+        height: auto;
+    }
+
+        .agregar-aventura label {
+            position: absolute;
+        }
+
+        .agregar-aventura .lbltitulo {
+            background-color: white;            
+            margin-left: 50px;
+            padding-left: 5px;
+            padding-right: 10px;
+        }
+
+        .agregar-aventura input {
+            border: 2px solid #00DDBD;
+            border-radius: 5px;
+            min-width: 80%;
+            margin-top: 20px;
+            margin-left: 10%;
+        }
+
+        .agregar-aventura select {
+            border: 2px solid #00DDBD;
+            border-radius: 5px;
+            width: 170px;
+            height: 30px;
+        }
+
+        .agregar-aventura .tipo-archivo {
+            margin-top:20px;
+            margin-left: 32px;
+        }
+
+    .info-categorias {
+        position: relative;
+        margin-top: 0;
+        margin-left: 30px;
+    }
+
+        .info-categorias .lblalbum {
+            top: 20px;
+            left: 15px;
+        }
+
+        .info-categorias .album-destino {
+            margin-top: 50px;
+            margin-left: 10px;
+        }
+
+        .info-categorias .lbletapa {
+            top: 100px;
+            left: 15px;
+        }
+
+        .info-categorias .etapa-desarrollo {
+            margin-top: 50px;
+            left: 0;
+        }
+
+    .agregar-aventura button {
+        background-color: #6CA5B1;
+        border: none;
+        border-radius: 30px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        margin-left: 15%;
+        padding: 5px;
+        padding-left: 40px;
+        padding-right: 40px;
+        color: white;
+    }
+
+    .agregar-aventura .oso {
+        display: none;
+    }
+
+    .decoracion {
+        display:none;
+    }
+
+    .contenedor-cohete {
+        display: none;
+    }
+}
