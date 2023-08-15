@@ -310,7 +310,7 @@
         // Realizar la solicitud al controlador utilizando AJAX
         $.ajax({
             type: 'POST',
-            url: '/Home/ObtenerSignificadoPorNombre', // Ruta de la función en el controlador
+            url: '@Url.Action("ObtenerSignificadoPorNombre", "Home")', // Ruta de la función en el controlador
             data: { nombre: nombre },
             dataType: 'json', // Especificamos que esperamos una respuesta JSON del servidor
             success: function (data) {
@@ -321,7 +321,7 @@
             error: function () {
                 alert('Error al buscar el significado.');
             }
-            
+
         });
     }
 
